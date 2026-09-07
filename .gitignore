@@ -1,1 +1,15 @@
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+
+# IDE
 .idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
