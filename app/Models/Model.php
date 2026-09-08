@@ -26,7 +26,7 @@ abstract class Model
         return in_array($column , $this->allowedColumns , true);
     }
 
-    public function fidd(int $id):? array
+    public function find(int $id):? array
     {
         $sql = "SELECT * FROM $this->table WHERE id_$this->table = :id LIMIT 1";
         $statment = $this->connection->prepare($sql);
