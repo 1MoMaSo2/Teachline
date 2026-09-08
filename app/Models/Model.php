@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+use InvalidArgumentException;
 use PDO;
 
 abstract class Model
@@ -7,6 +8,8 @@ abstract class Model
     protected PDO $connection;
 
     protected string $table;
+
+    protected array $fillable = [];
 
     public function __construct(PDO $connection){
         $this->connection = $connection;
@@ -40,9 +43,20 @@ abstract class Model
 
     public function create(array $data):int
     {
+//        $columns = array_keys($data);
+//        $placeholders = array_map(fn(string $column): string => ':' . $column , $columns);
+//        $sql = sprintf('INSERT INTO %s (%s) VALUES (:%s)' , $this->table , implode(', ' , $columns) , implode(', ' , $placeholders));
+//        $statment = $this->connection->prepare($sql);
+//        $statment->execute($data);
+//        return $this->connection->lastInsertId();
+
+        $data = $this->filterFillable($data);
+        if($data === []){
+            throw new InvalidArgumentException("No fillable data provided");
+        }
         $columns = array_keys($data);
-        $placeholders = array_map(fn(string $column): string => ':' . $column , $columns);
-        $sql = sprintf('INSERT INTO %s (%s) VALUES (:%s)' , $this->table , implode(', ' , $columns) , implode(', ' , $placeholders));
+        $placeholders = array_map(fn(string $column):string => ':' , $columns);
+        $sql = sprintf('INSERT INTO %s (%s) VALUES (%s)' , $this->table , implode(', ' , $columns) , implode(', ' , $placeholders));
         $statment = $this->connection->prepare($sql);
         $statment->execute($data);
         return $this->connection->lastInsertId();
@@ -50,6 +64,19 @@ abstract class Model
 
     public function update(int $id, array $data):bool
     {
+//        $set = [];
+//        foreach (array_keys($data) as $column) {
+//            $set[] = "$column = :$column";
+//        }
+//        $sql = sprintf('UPDATE %s SET %s WHERE id_%s = :id' ,  $this->table , implode(', ' , $set) , $this->table);
+//        $statment = $this->connection->prepare($sql);
+//        $data[':id'] = $id;
+//        return $statment->execute($data);
+
+        $data = $this->filterFillable($data);
+        if($data === []){
+            throw new InvalidArgumentException("No fillable data provided");
+        }
         $set = [];
         foreach (array_keys($data) as $column) {
             $set[] = "$column = :$column";
@@ -65,5 +92,10 @@ abstract class Model
         $sql = "DELETE FROM $this->table WHERE id_$this->table = :id";
         $statment = $this->connection->prepare($sql);
         return $statment->execute([':id' => $id]);
+    }
+
+    public function filterFillable(array $data):array
+    {
+        return array_intersect_key($data , array_flip($this->fillable));
     }
 }
