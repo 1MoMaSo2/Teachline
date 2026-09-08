@@ -2,7 +2,6 @@
 namespace App\Core;
 use PDO;
 use Dotenv\Dotenv;
-
 class Database
 {
     private PDO $connection;
