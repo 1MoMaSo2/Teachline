@@ -1,15 +1,21 @@
 <?php
 namespace App\Controllers;
+use App\Core\View;
 use App\Models\Student;
 class StudentController
 {
-    public function __construct(private Student $student)
+    public function __construct(private Student $student , private View $view)
     {
     }
 
     public function index():void
     {
         $students = $this->student->fineAll();
-        require __DIR__ . '/../Views/Students/index.php';
+        $this->view->render('students/index' ,
+            [
+            'title' => 'Students',
+            'students' => $students
+            ]
+        );
     }
 }
