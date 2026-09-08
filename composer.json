@@ -1,0 +1,19 @@
+{
+    "name": "teachline/teachline",
+    "description": "teachline is educational platform",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MohammadMahdi Soveyzi",
+            "email": "mohammadmahdi.soveyzi.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "*",
+      "ext-pdo": "*"
+    }
+}
