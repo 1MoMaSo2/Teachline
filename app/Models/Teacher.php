@@ -13,4 +13,8 @@ class Teacher extends User
         'teacher_field_study_mast',
         'teacher_teaching_history_mast'
     ];
+    protected array $allowedColumns = [
+        'teacher_email_mast',
+        'teacher_phone_number_mast'
+    ];
 }

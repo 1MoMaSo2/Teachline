@@ -1,6 +1,5 @@
 <?php
 namespace App\Models;
-
 class Student extends User
 {
     protected string $table = 'student_mast';
@@ -10,5 +9,10 @@ class Student extends User
         'student_phone_number_mast',
         'student_education_basic_mast',
         'student_field_study_mast'
+    ];
+
+    protected array $allowedColumns = [
+        'student_email_mast',
+        'student_phone_number_mast'
     ];
 }

@@ -11,8 +11,19 @@ abstract class Model
 
     protected array $fillable = [];
 
+    protected array $allowedColumns = [];
+
     public function __construct(PDO $connection){
         $this->connection = $connection;
+    }
+
+    public function filterFillable(array $data):array
+    {
+        return array_intersect_key($data , array_flip($this->fillable));
+    }
+    public function isAllowedColumn(string $column): bool
+    {
+        return in_array($column , $this->allowedColumns , true);
     }
 
     public function fidd(int $id):? array
@@ -34,6 +45,9 @@ abstract class Model
 
     public function findBy(string $column , mixed $value):? array
     {
+        if(!$this->isAllowedColumn($column)){
+            throw new InvalidArgumentException("Invalid column provided.");
+        }
         $sql = "SELECT * FROM $this->table WHERE $column = :value LIMIT 1";
         $statment = $this->connection->prepare($sql);
         $statment->execute([':value' => $value]);
@@ -43,13 +57,6 @@ abstract class Model
 
     public function create(array $data):int
     {
-//        $columns = array_keys($data);
-//        $placeholders = array_map(fn(string $column): string => ':' . $column , $columns);
-//        $sql = sprintf('INSERT INTO %s (%s) VALUES (:%s)' , $this->table , implode(', ' , $columns) , implode(', ' , $placeholders));
-//        $statment = $this->connection->prepare($sql);
-//        $statment->execute($data);
-//        return $this->connection->lastInsertId();
-
         $data = $this->filterFillable($data);
         if($data === []){
             throw new InvalidArgumentException("No fillable data provided");
@@ -64,15 +71,6 @@ abstract class Model
 
     public function update(int $id, array $data):bool
     {
-//        $set = [];
-//        foreach (array_keys($data) as $column) {
-//            $set[] = "$column = :$column";
-//        }
-//        $sql = sprintf('UPDATE %s SET %s WHERE id_%s = :id' ,  $this->table , implode(', ' , $set) , $this->table);
-//        $statment = $this->connection->prepare($sql);
-//        $data[':id'] = $id;
-//        return $statment->execute($data);
-
         $data = $this->filterFillable($data);
         if($data === []){
             throw new InvalidArgumentException("No fillable data provided");
@@ -92,10 +90,5 @@ abstract class Model
         $sql = "DELETE FROM $this->table WHERE id_$this->table = :id";
         $statment = $this->connection->prepare($sql);
         return $statment->execute([':id' => $id]);
-    }
-
-    public function filterFillable(array $data):array
-    {
-        return array_intersect_key($data , array_flip($this->fillable));
     }
 }

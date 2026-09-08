@@ -8,4 +8,8 @@ class Admin extends User
         'admin_username_mast',
         'admin_email_mast',
     ];
+    protected array $allowedColumns = [
+        'admin_username_mast',
+        'admin_email_mast',
+    ];
 }
