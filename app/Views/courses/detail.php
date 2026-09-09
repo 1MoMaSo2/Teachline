@@ -77,14 +77,14 @@
                                                     <p> قسمت <?php echo $index + 1 ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="position-relative d-flex align-items-center">
-                                                            <a href="assets/upload/course/<?php echo $meeting['training_course_meetings_link_mast']; ?>"
+                                                            <a href="/teachline/assets/upload/course/<?php echo $meeting['training_course_meetings_link_mast']; ?>"
                                                                class="btn btn-primary-soft btn-round btn-sm mb-0 stretched-link position-static" title="تماشای ویدیو">
                                                                 <i class="fas fa-play me-0"></i>
                                                             </a>
-                                                            <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px"><?php echo $meeting['training_course_meetings_title_mast']; ?></span>
+                                                            <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px"><?php echo htmlentities($meeting['training_course_meetings_title_mast']); ?></span>
                                                         </div>
                                                         <div class="position-relative d-flex align-items-center">
-                                                            <a href="assets/upload/course/<?php echo $meeting['training_course_meetings_link_mast']; ?>" download
+                                                            <a href="/teachline/assets/upload/course/<?php echo $meeting['training_course_meetings_link_mast']; ?>" download
                                                                class="btn btn-success-soft btn-round btn-sm mb-0 stretched-link position-static" title="دانلود ویدیو">
                                                                 <i class="fas fa-download me-0"></i>
                                                             </a>

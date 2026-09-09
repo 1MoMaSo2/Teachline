@@ -1,5 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="fa" dir="rtl">-->
 <head>
     <title>TeachLine مدرسه آنلاین</title>
 
@@ -71,7 +69,7 @@
     </script>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="teachline/assets/images/logo_teachline.svg">
+    <link rel="shortcut icon" href="/teachline/assets/images/logo_teachline.svg">
 
     <link rel="stylesheet" type="text/css" href="/teachline/assets/vendor/font-awesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/teachline/assets/vendor/bootstrap-icons/bootstrap-icons.css">
