@@ -72,11 +72,7 @@
                                         <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
                                             <div class="accordion-body mt-3">
                                                 <!-- Course lecture -->
-                                                <div class="tab-pane fade" id="course-pills-2">
-                                                    <p style="color: red">test</p>
-                                                    <?php var_dump($meetings); ?>
-                                                </div>
-                                                <?php foreach ($meetings as $index => $meeting): ?> { ?>
+                                                <?php foreach ($meetings as $index => $meeting): ?>
                                                     <hr>
                                                     <p> قسمت <?php echo $index + 1 ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
