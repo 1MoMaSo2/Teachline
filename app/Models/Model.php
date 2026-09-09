@@ -35,7 +35,7 @@ abstract class Model
         return $result ?: null;
     }
 
-    public function fineAll(): array
+    public function findAll(): array
     {
         $sql = "SELECT * FROM $this->table";
         $statment = $this->connection->prepare($sql);

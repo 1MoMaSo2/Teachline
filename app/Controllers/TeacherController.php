@@ -8,7 +8,7 @@ class TeacherController
 
     public function index():void
     {
-        $teachers = $this->teacher->fineAll();
+        $teachers = $this->teacher->findAll();
         $this->view->render('teachers/index' ,
             [
                 'title' => 'teachers',

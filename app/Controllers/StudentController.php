@@ -7,7 +7,7 @@ class StudentController
     public function __construct(private Student $student , private View $view){}
     public function index():void
     {
-        $students = $this->student->fineAll();
+        $students = $this->student->findAll();
         $this->view->render('students/index' ,
             [
             'title' => 'students',
