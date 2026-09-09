@@ -1,0 +1,28 @@
+<?php
+namespace App\Controllers;
+use App\Core\View;
+use App\Models\Course;
+class CourseController
+{
+    public function __construct(private Course $course , private View $view){}
+
+    public function detail():void
+    {
+        $courseName = $_GET['course'] ?? '';
+        if($courseName == ''){
+            throw new \InvalidArgumentException("Course name is required.");
+        }
+
+        $course = $this->course->findByName($courseName);
+        if($course == null){
+            throw new \InvalidArgumentException("Course not found.");
+        }
+
+        $meetings = $this->course->findMeetingsByCourseName($courseName);
+        $this->view->render("courses/detail" , [
+            'title' => $courseName,
+            'course' => $course,
+            'meetings' => $meetings
+        ]);
+    }
+}

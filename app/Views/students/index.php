@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="fa">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Students</title>-->
+<!--</head>-->
+<!--<body>-->
 
 <h1>Students</h1>
 
@@ -29,5 +29,5 @@
 
 <?php endif; ?>
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
