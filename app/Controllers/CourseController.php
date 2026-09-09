@@ -2,10 +2,11 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\Course;
+
+require_once __DIR__ . '/../../script/jdf/jdf.php';
 class CourseController
 {
     public function __construct(private Course $course , private View $view){}
-
     public function detail():void
     {
         $courseName = $_GET['course'] ?? '';

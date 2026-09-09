@@ -1,6 +1,5 @@
 <?php
 namespace App\Models;
-
 class Course extends Model
 {
     protected string $table = 'training_courses_mast';

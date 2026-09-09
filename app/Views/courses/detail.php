@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
-<body>
-<!-- **************** MAIN CONTENT START **************** -->
 <main>
-
     <!-- =======================
     Page intro START -->
     <section class="bg-light py-0 py-sm-5">
@@ -23,7 +17,7 @@
                         <br>
                         <li style="margin-top: 10px" class="list-inline-item h5 fw-light mb-1 mb-sm-0"><i class="fas bi-person text-purple me-2"></i><?php echo htmlentities($course['training_courses_teacher_mast']); ?></li>
                         <br>
-<!--                        <li style="margin-top: 10px" class="list-inline-item h5 fw-light mb-1 mb-sm-0"><i class="fas bi-calendar-date text-success me-2"></i>آخرین به روزرسانی : --><?php //echo jdate('Y/m/d' , $course['training_courses_date_update_course_mast']); ?><!--</li>-->
+                        <li style="margin-top: 10px" class="list-inline-item h5 fw-light mb-1 mb-sm-0"><i class="fas bi-calendar-date text-success me-2"></i>آخرین به روزرسانی : <?php echo jdate('Y/m/d' , $course['training_courses_date_update_course_mast']); ?></li>
                     </ul>
                 </div>
             </div>
@@ -51,6 +45,7 @@
                                 <li class="nav-item me-2 me-sm-4" role="presentation">
                                     <button class="nav-link mb-2 mb-md-0" id="course-pills-tab-2" data-bs-toggle="pill" data-bs-target="#course-pills-2" type="button" role="tab" aria-controls="course-pills-2" aria-selected="false">جلسات دوره</button>
                                 </li>
+                            </ul>
                         </div>
                         <!-- Tabs END -->
 
@@ -77,25 +72,29 @@
                                         <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
                                             <div class="accordion-body mt-3">
                                                 <!-- Course lecture -->
-                                                <?php foreach ($meetings_course as $meetings_courses) { ?>
+                                                <div class="tab-pane fade" id="course-pills-2">
+                                                    <p style="color: red">test</p>
+                                                    <?php var_dump($meetings); ?>
+                                                </div>
+                                                <?php foreach ($meetings as $index => $meeting): ?> { ?>
                                                     <hr>
-                                                    <p> قسمت <?php echo $num++ ?></p>
+                                                    <p> قسمت <?php echo $index + 1 ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="position-relative d-flex align-items-center">
-                                                            <a href="assets/upload/course/<?php echo $meetings_courses['training_course_meetings_link_mast']; ?>"
+                                                            <a href="assets/upload/course/<?php echo $meeting['training_course_meetings_link_mast']; ?>"
                                                                class="btn btn-primary-soft btn-round btn-sm mb-0 stretched-link position-static" title="تماشای ویدیو">
                                                                 <i class="fas fa-play me-0"></i>
                                                             </a>
-                                                            <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px"><?php echo $meetings_courses['training_course_meetings_title_mast']; ?></span>
+                                                            <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px"><?php echo $meeting['training_course_meetings_title_mast']; ?></span>
                                                         </div>
                                                         <div class="position-relative d-flex align-items-center">
-                                                            <a href="assets/upload/course/<?php echo $meetings_courses['training_course_meetings_link_mast']; ?>" download
+                                                            <a href="assets/upload/course/<?php echo $meeting['training_course_meetings_link_mast']; ?>" download
                                                                class="btn btn-success-soft btn-round btn-sm mb-0 stretched-link position-static" title="دانلود ویدیو">
                                                                 <i class="fas fa-download me-0"></i>
                                                             </a>
                                                         </div>
                                                     </div>
-                                                <?php } ?>
+                                                <?php endforeach; ?>
                                                 <!-- Divider -->
                                             </div>
                                         </div>
@@ -128,9 +127,9 @@
                                 <div class="card card-body shadow p-4">
                                     <h4 class="mb-3 fs-5">برچسب ها</h4>
                                     <ul class="list-inline mb-0">
-                                        <?php foreach ($tags as $tag){ ?>
-                                            <li class="list-inline-item"><a class="btn btn-outline-light btn-sm" href="#"><?php echo htmlentities($tag) ?></a></li>
-                                        <?php } ?>
+<!--                                        --><?php //foreach ($tags as $tag){ ?>
+<!--                                            <li class="list-inline-item"><a class="btn btn-outline-light btn-sm" href="#">--><?php //echo htmlentities($tag) ?><!--</a></li>-->
+<!--                                        --><?php //} ?>
                                     </ul>
                                 </div>
                                 <!-- Tags END -->
@@ -225,7 +224,3 @@
 
 <!-- Template Functions -->
 <script src="../../../assets/js/functions.js"></script>
-
-</body>
-
-</html>
