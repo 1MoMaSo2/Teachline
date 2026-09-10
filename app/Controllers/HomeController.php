@@ -22,7 +22,8 @@ class HomeController
 
         $this->view->render('home/index', [
             'title' => 'TeachLine',
-            'statistics' => $statistics
+            'statistics' => $statistics ,
+            'user' => $user
         ]);
     }
 }
