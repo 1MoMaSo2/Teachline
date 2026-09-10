@@ -123,9 +123,9 @@
                                 <div class="card card-body shadow p-4">
                                     <h4 class="mb-3 fs-5">برچسب ها</h4>
                                     <ul class="list-inline mb-0">
-<!--                                        --><?php //foreach ($tags as $tag){ ?>
-<!--                                            <li class="list-inline-item"><a class="btn btn-outline-light btn-sm" href="#">--><?php //echo htmlentities($tag) ?><!--</a></li>-->
-<!--                                        --><?php //} ?>
+                                        <?php foreach ($tags as $tag): ?>
+                                            <li class="list-inline-item"><a class="btn btn-outline-light btn-sm" href="#"><?php echo htmlentities($tag) ?></a></li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                                 <!-- Tags END -->

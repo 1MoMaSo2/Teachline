@@ -20,10 +20,12 @@ class CourseController
         }
 
         $meetings = $this->course->findMeetingsByCourseName($courseName);
+        $tags = array_filter(array_map('trim' , explode(',' , $course['training_courses_tag_mast'] ?? '')));
         $this->view->render("courses/detail" , [
             'title' => $courseName,
             'course' => $course,
-            'meetings' => $meetings
+            'meetings' => $meetings,
+            'tags' => $tags
         ]);
     }
 }
