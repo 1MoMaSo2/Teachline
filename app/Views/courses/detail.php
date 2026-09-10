@@ -211,12 +211,12 @@
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
 <!-- Bootstrap JS -->
-<script src="../../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<?php asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
 
 <!-- Vendors -->
-<script src="../../../assets/vendor/tiny-slider/tiny-slider-rtl.js"></script>
-<script src="../../../assets/vendor/glightbox/js/glightbox.js"></script>
-<script src="../../../assets/vendor/choices/js/choices.min.js"></script>
+<script src="<?php asset('vendor/tiny-slider/tiny-slider-rtl.js') ?>"></script>
+<script src="<?php asset('vendor/glightbox/js/glightbox.js') ?>"></script>
+<script src="<?php asset('vendor/choices/js/choices.min.js') ?>"></script>
 
 <!-- Template Functions -->
-<script src="../../../assets/js/functions.js"></script>
+<script src="<?php asset('js/functions.js') ?>"></script>
