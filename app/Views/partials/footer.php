@@ -80,7 +80,7 @@ Footer START -->
         <div class="row">
             <div class="col-lg-6 mx-auto text-center mb-5">
                 <!-- Logo -->
-                <a href="index.php"> <img class="h-40px" src="assets/images/logo_teachline.svg" alt="logo"> </a>
+                <a href="index.php"> <img class="h-40px" src="<?= asset('images/logo_teachline.svg') ?>" alt="logo"> </a>
                 <br>
                 <br>
                 <p class="mt-3 text-white">این پلتفرم با هدف ارتقای آموزش هنرستان ها و تسهیل یادگیری هنرجویان طراحی شده است</p>

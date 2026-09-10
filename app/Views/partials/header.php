@@ -12,8 +12,8 @@
         <div class="container-fluid px-3 px-xl-6">
             <!-- Logo START -->
             <a class="navbar-brand" href="index.php">
-                <img class="light-mode-item navbar-brand-item" src="assets/images/logo_teachline.svg" alt="logo teachline">
-                <img class="dark-mode-item navbar-brand-item" src="assets/images/logo_teachline.svg" alt="logo teachline">
+                <img class="light-mode-item navbar-brand-item" src="<?= asset('images/logo_teachline.svg') ?>" alt="logo teachline">
+                <img class="dark-mode-item navbar-brand-item" src="<?= asset('images/logo_teachline.svg') ?>" alt="logo teachline">
             </a>
             <!-- Logo END -->
 
