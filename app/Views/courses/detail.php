@@ -1,3 +1,8 @@
+<?php
+/** @var array $course */
+/** @var array $meetings */
+/** @var array $tags */
+?>
 <main>
     <!-- =======================
     Page intro START -->
