@@ -5,11 +5,11 @@
 include "include/database/connect.php";
 global $connection;
 
-if (isset($_POST['search'])){
-    $array = array(
-        'search_content' => $_POST['search_content']);
-    header("location:search-content.php?course=$array[search_content]");
-}
+//if (isset($_POST['search'])){
+//    $array = array(
+//        'search_content' => $_POST['search_content']);
+//    header("location:search-content.php?course=$array[search_content]");
+//}
 
 $send = $connection->prepare("SELECT COUNT(id_training_courses_mast) FROM training_courses_mast");
 $send->execute();
@@ -73,10 +73,10 @@ include "include/layout/header.php";
                     <!-- Content -->
                     <br>
                     <!-- Search bar -->
-                    <form method="post" class="border rounded p-2 mb-4">
+                    <form method="get" action="/teachline/public/course-search" class="border rounded p-2 mb-4">
                         <div class="input-group">
-                            <input class="form-control border-0 me-1" type="search" name="search_content" placeholder="جستجو..." aria-label="Search">
-                            <button type="submit" name="search" class="btn btn-primary mb-0 rounded"><i class="fas fa-search"></i></button>
+                            <input class="form-control border-0 me-1" type="search" name="course" placeholder="جستجو..." aria-label="Search">
+                            <button type="submit" class="btn btn-primary mb-0 rounded"><i class="fas fa-search"></i></button>
                         </div>
                     </form>
 

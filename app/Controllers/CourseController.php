@@ -28,4 +28,14 @@ class CourseController
             'tags' => $tags
         ]);
     }
+    public function search():void
+    {
+        $search = trim($_GET['course'] ?? '');
+        $courses = $this->course->searchByName($search);
+        $this->view->render("courses/search" , [
+            'title' => 'جستجوی دوره ها',
+            'search' => $search,
+            'courses' => $courses
+        ]);
+    }
 }

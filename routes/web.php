@@ -8,4 +8,5 @@ return function (Router $router , StudentController $studentController , Teacher
     $router->get('/students' , [$studentController , 'index']);
     $router->get('/teachers' , [$teacherController , 'index']);
     $router->get('/course-detail' , [$courseController , 'detail']);
+    $router->get('/course-search' , [$courseController , 'search']);
 };

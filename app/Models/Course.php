@@ -12,6 +12,13 @@ class Course extends Model
         $course = $statement->fetch(\PDO::FETCH_ASSOC);
         return $course ?: null;
     }
+    public function searchByName(string $search):?array
+    {
+        $sql = "SELECT * FROM $this->table WHERE training_courses_name_mast LIKE :search";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([':search' => '%' . $search . '%']);
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
     public function findMeetingsByCourseName(string $courseName):?array
     {
         $sql = "SELECT * FROM training_course_meetings_mast WHERE training_course_meetings_course_name_mast = :course_name";
