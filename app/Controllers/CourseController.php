@@ -38,4 +38,24 @@ class CourseController
             'courses' => $courses
         ]);
     }
+    public function category(string $education , string $type):void
+    {
+        $allowedEducations = [',' , 'دهم' , 'یازدهم' , 'دوازدهم'];
+        $allowedTypes = [',' , 'عمومی' , 'تخصصی'];
+
+        if(!in_array($education , $allowedEducations ,true)){
+            throw new \InvalidArgumentException("Invalid education.");
+        }
+        if(!in_array($type , $allowedTypes ,true)){
+            throw new \InvalidArgumentException("Invalid course type.");
+        }
+
+        $courses = $this->course->findByEducationAndType($education , $type);
+        $this->view->render('courses/category' , [
+            'title' => " دروس {$type} پایه {$education}",
+            'education' => $education,
+            'type' => $type,
+            'courses' => $courses
+        ]);
+    }
 }

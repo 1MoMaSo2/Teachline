@@ -1,12 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="fa">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Students</title>-->
-<!--</head>-->
-<!--<body>-->
-
 <h1>Students</h1>
 
 <?php if (empty($students)): ?>
@@ -28,6 +19,3 @@
     </ul>
 
 <?php endif; ?>
-
-<!--</body>-->
-<!--</html>-->

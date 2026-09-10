@@ -211,7 +211,7 @@ IT courses START -->
                         <div class="card-img-overlay d-flex">
                             <!-- Info -->
                             <div class="mt-auto card-text">
-                                <h5 class="card-title fw-normal"><a href="tenth-general-category.php" class="stretched-link">دروس عمومی پایه دهم هنرستان</a></h5>
+                                <h5 class="card-title fw-normal"><a href="/teachline/public/course-category/دهم/عمومی" class="stretched-link">دروس عمومی پایه دهم هنرستان</a></h5>
                             </div>
                         </div>
                     </div>
@@ -226,7 +226,7 @@ IT courses START -->
                         <div class="card-img-overlay d-flex">
                             <!-- Info -->
                             <div class="mt-auto card-text">
-                                <h5 class="card-title fw-normal"><a href="eleventh-general-category.php" class="stretched-link">دروس عمومی پایه یازدهم هنرستان</a></h5>
+                                <h5 class="card-title fw-normal"><a href="/teachline/public/course-category/یازدهم/عمومی" class="stretched-link">دروس عمومی پایه یازدهم هنرستان</a></h5>
                             </div>
                         </div>
                     </div>
@@ -241,7 +241,7 @@ IT courses START -->
                         <div class="card-img-overlay d-flex">
                             <!-- Info -->
                             <div class="mt-auto card-text">
-                                <h5 class="card-title fw-normal"><a href="twelfth-general-category.php" class="stretched-link">دروس عمومی پایه دوازدهم هنرستان</a></h5>
+                                <h5 class="card-title fw-normal"><a href="/teachline/public/course-category/دوازدهم/عمومی" class="stretched-link">دروس عمومی پایه دوازدهم هنرستان</a></h5>
                             </div>
                         </div>
                     </div>
@@ -256,7 +256,7 @@ IT courses START -->
                         <div class="card-img-overlay d-flex">
                             <!-- Info -->
                             <div class="mt-auto card-text">
-                                <h5 class="card-title fw-normal"><a href="tenth-specialized-category.php" class="stretched-link">دروس تخصصی پایه دهم هنرستان</a></h5>
+                                <h5 class="card-title fw-normal"><a href="/teachline/public/course-category/دهم/تخصصی" class="stretched-link">دروس تخصصی پایه دهم هنرستان</a></h5>
                             </div>
                         </div>
                     </div>
@@ -271,7 +271,7 @@ IT courses START -->
                         <div class="card-img-overlay d-flex">
                             <!-- Info -->
                             <div class="mt-auto card-text">
-                                <h5 class="card-title fw-normal"><a href="eleventh-specialized-category.php" class="stretched-link">دروس تخصصی پایه یازدهم هنرستان</a></h5>
+                                <h5 class="card-title fw-normal"><a href="/teachline/public/course-category/یازدهم/تخصصی" class="stretched-link">دروس تخصصی پایه یازدهم هنرستان</a></h5>
                             </div>
                         </div>
                     </div>
@@ -286,7 +286,7 @@ IT courses START -->
                         <div class="card-img-overlay d-flex">
                             <!-- Info -->
                             <div class="mt-auto card-text">
-                                <h5 class="card-title fw-normal"><a href="twelfth-specialized-category.php" class="stretched-link">دروس تخصصی پایه دوازدهم هنرستان</a></h5>
+                                <h5 class="card-title fw-normal"><a href="/teachline/public/course-category/دوازدهم/تخصصی" class="stretched-link">دروس تخصصی پایه دوازدهم هنرستان</a></h5>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,6 @@ use InvalidArgumentException;
 class Router
 {
     private array $routes = [];
-
     public function get(string $path, callable $action): void
     {
         $this->addRoute('GET', $path, $action);
@@ -16,9 +15,17 @@ class Router
 
     public function dispatch(string $method , string $path): mixed
     {
-        if (!isset($this->routes[$method][$path])) {
-            throw new InvalidArgumentException('Route not found.');
+        foreach ($this->routes[$method] ?? [] as $route => $action) {
+
+            $pattern = preg_replace('#\{[^/]+\}#' , '([^/]+)' , $route);
+
+            if (preg_match('#^' . $pattern . '$#', $path, $matches)) {
+                array_shift($matches);
+                $matches = array_map('urldecode', $matches);
+                return $action(...$matches);
+            }
         }
-        return ($this->routes[$method][$path])();
+
+        throw new InvalidArgumentException('Route not found.');
     }
 }

@@ -19,6 +19,13 @@ class Course extends Model
         $statement->execute([':search' => '%' . $search . '%']);
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function findByEducationAndType(string $education , string $type):array
+    {
+        $sql = "SELECT * FROM $this->table WHERE training_courses_education_basic_mast = :education AND training_courses_type_book_mast = :type";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([':education'=>$education , ':type'=>$type]);
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
     public function findMeetingsByCourseName(string $courseName):?array
     {
         $sql = "SELECT * FROM training_course_meetings_mast WHERE training_course_meetings_course_name_mast = :course_name";

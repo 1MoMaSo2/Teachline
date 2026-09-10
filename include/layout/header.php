@@ -47,19 +47,19 @@
                                 <a class="dropdown-item dropdown-toggle" href="#">دروس</a>
                                 <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
                                     <li>دروس عمومی</li>
-                                    <li><a href="tenth-general-category.php" class="dropdown-item">دروس عمومی پایه
+                                    <li><a href="/teachline/public/course-category/دهم/عمومی" class="dropdown-item">دروس عمومی پایه
                                             دهم</a></li>
-                                    <li><a href="eleventh-general-category.php" class="dropdown-item">دروس عمومی پایه
+                                    <li><a href="/teachline/public/course-category/یازدهم/عمومی" class="dropdown-item">دروس عمومی پایه
                                             یازدهم</a></li>
-                                    <li><a href="twelfth-general-category.php" class="dropdown-item">دروس عمومی پایه
+                                    <li><a href="/teachline/public/course-category/دوازدهم/عمومی" class="dropdown-item">دروس عمومی پایه
                                             دوازدهم</a></li>
                                     <hr>
                                     <li>دروس تخصصی</li>
-                                    <li><a href="tenth-specialized-category.php" class="dropdown-item">دروس تخصصی پایه
+                                    <li><a href="/teachline/public/course-category/دهم/تخصصی" class="dropdown-item">دروس تخصصی پایه
                                             دهم</a></li>
-                                    <li><a href="eleventh-specialized-category.php" class="dropdown-item">دروس تخصصی
+                                    <li><a href="/teachline/public/course-category/یازدهم/تخصصی" class="dropdown-item">دروس تخصصی
                                             پایه یازدهم</a></li>
-                                    <li><a href="twelfth-specialized-category.php" class="dropdown-item">دروس تخصصی پایه
+                                    <li><a href="/teachline/public/course-category/دوازدهم/تخصصی" class="dropdown-item">دروس تخصصی پایه
                                             دوازدهم</a></li>
                                 </ul>
                             </li>
