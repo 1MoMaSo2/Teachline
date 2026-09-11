@@ -8,6 +8,10 @@ class Router
     {
         $this->addRoute('GET', $path, $action);
     }
+    public function post(string $path, callable $action): void
+    {
+        $this->addRoute('POST', $path, $action);
+    }
     private function addRoute(string $method , string $path , callable $action): void
     {
         $this->routes[$method][$path] = $action;

@@ -24,4 +24,25 @@ class Student extends User
     {
         return $this->findBy('student_email_mast' , $email);
     }
+
+    public function verifyPassword(string $email , string $password): ?array
+    {
+        $student = $this->findByEmail($email);
+        if (!$student) {
+            return null;
+        }
+
+        if (!password_verify($password , $student['student_password_mast'])) {
+            return null;
+        }
+
+        return $student;
+    }
+
+    public function updatePassword(int $id , string $hashedPassword): bool
+    {
+        return $this->update($id , [
+            'student_password_mast' => $hashedPassword
+        ]);
+    }
 }

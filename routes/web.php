@@ -14,4 +14,5 @@ return function (Router $router , StudentController $studentController , Teacher
     $router->get('/course-category/{education}/{type}' , [$courseController , 'category']);
     $router->get('/' , [$homeController , 'index']);
     $router->get('/login' , [$authController , 'login']);
+    $router->post('/login' , [$authController , 'login']);
 };
