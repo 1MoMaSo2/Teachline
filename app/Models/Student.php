@@ -15,4 +15,9 @@ class Student extends User
         'student_email_mast',
         'student_phone_number_mast'
     ];
+
+    public function findByEmail(string $email):?array
+    {
+        return $this->findBy('student_email_mast' , $email);
+    }
 }
