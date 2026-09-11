@@ -62,7 +62,7 @@ abstract class Model
             throw new InvalidArgumentException("No fillable data provided");
         }
         $columns = array_keys($data);
-        $placeholders = array_map(fn(string $column):string => ':' , $columns);
+        $placeholders = array_map(fn(string $column):string => ":$column" , $columns);
         $sql = sprintf('INSERT INTO %s (%s) VALUES (%s)' , $this->table , implode(', ' , $columns) , implode(', ' , $placeholders));
         $statment = $this->connection->prepare($sql);
         $statment->execute($data);
