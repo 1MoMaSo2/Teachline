@@ -6,9 +6,13 @@ class Student extends User
     protected array $fillable = [
         'student_full_name_mast',
         'student_email_mast',
+        'student_password_mast',
         'student_phone_number_mast',
         'student_education_basic_mast',
-        'student_field_study_mast'
+        'student_field_study_mast',
+        'student_date_created_account_mast',
+        'student_active_code_mast',
+        'student_status_mast'
     ];
 
     protected array $allowedColumns = [
