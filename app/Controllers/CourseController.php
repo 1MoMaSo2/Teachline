@@ -45,8 +45,8 @@ class CourseController
     }
     public function category(string $education , string $type):void
     {
-        $allowedEducations = [',' , 'دهم' , 'یازدهم' , 'دوازدهم'];
-        $allowedTypes = [',' , 'عمومی' , 'تخصصی'];
+        $allowedEducations = ['دهم' , 'یازدهم' , 'دوازدهم'];
+        $allowedTypes = ['عمومی' , 'تخصصی'];
 
         if(!in_array($education , $allowedEducations ,true)){
             throw new \InvalidArgumentException("Invalid education.");
