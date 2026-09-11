@@ -10,6 +10,7 @@ use App\Controllers\StudentController;
 use App\Controllers\TeacherController;
 use App\Controllers\CourseController;
 use App\Controllers\HomeController;
+use App\Controllers\AuthController;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -24,8 +25,9 @@ $studentController = new StudentController($student , $view);
 $teacherController = new TeacherController($teacher , $view);
 $courseController = new CourseController($course , $view);
 $homeController = new HomeController($home , $view);
+$authController = new AuthController($student , $view);
 
 $router = new Router();
 $routes = require __DIR__ . '/routes/web.php';
-$routes($router , $studentController , $teacherController , $courseController , $homeController);
+$routes($router , $studentController , $teacherController , $courseController , $homeController , $authController);
 return $router;

@@ -4,8 +4,9 @@ use App\Controllers\StudentController;
 use App\Controllers\TeacherController;
 use App\Controllers\CourseController;
 use App\Controllers\HomeController;
+use App\Controllers\AuthController;
 
-return function (Router $router , StudentController $studentController , TeacherController $teacherController , CourseController $courseController , HomeController $homeController):void {
+return function (Router $router , StudentController $studentController , TeacherController $teacherController , CourseController $courseController , HomeController $homeController , AuthController $authController):void {
     $router->get('/students' , [$studentController , 'index']);
     $router->get('/teachers' , [$teacherController , 'index']);
     $router->get('/course-detail' , [$courseController , 'detail']);
