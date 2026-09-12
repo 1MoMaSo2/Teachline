@@ -2,9 +2,10 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\Student;
+use App\Services\MailService;
 class AuthController
 {
-    public function __construct(private Student $student , private View $view) {}
+    public function __construct(private Student $student , private View $view , private MailService $mailService) {}
 
     public function login(): void
     {
@@ -124,8 +125,16 @@ class AuthController
                 'student_active_code_mast' => $activeCode
             ]);
 
-            flash('success' , 'ثبت نام با موفقیت انجام شد');
-            header('Location:' . base_url('/login'));
+            $mailSent = $this->mailService->sendActivationEmail($email , $fullName , (string) $activeCode);
+
+            if (!$mailSent) {
+                flash('info', 'ثبت نام انجام شد اما ارسال ایمیل فعال سازی با مشکل مواجه شد');
+                header('Location:' . base_url('/register'));
+                exit;
+            }
+
+            flash('success', 'ثبت نام انجام شد. کد فعال سازی به ایمیل شما ارسال شد');
+            header('Location:' . base_url('/activate'));
             exit;
         }
 
@@ -138,20 +147,24 @@ class AuthController
     {
         $activeCode = trim($_GET['code'] ?? '');
 
+        // اگر کدی ارسال نشده، صفحه فعال سازی را نمایش بده
         if ($activeCode === '') {
-            flash('error', 'کد فعال سازی نامعتبر است');
-            header('Location:' . base_url('/login'));
-            exit;
+            $this->view->render('auth/activate', [
+                'title' => 'فعال سازی حساب'
+            ], 'auth');
+
+            return;
         }
 
         $student = $this->student->findByActiveCode($activeCode);
 
         if (!$student) {
             flash('error', 'کد فعال سازی نامعتبر است');
-            header('Location:' . base_url('/login'));
+            header('Location:' . base_url('/activate'));
             exit;
         }
 
+        // اگر حساب قبلاً فعال شده باشد
         if ((int)$student['student_status_mast'] === 1) {
             flash('success', 'حساب شما قبلاً فعال شده است');
             header('Location:' . base_url('/login'));
@@ -164,7 +177,7 @@ class AuthController
 
         if (!$activated) {
             flash('error', 'فعال سازی حساب انجام نشد');
-            header('Location:' . base_url('/login'));
+            header('Location:' . base_url('/activate'));
             exit;
         }
 

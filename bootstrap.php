@@ -11,6 +11,7 @@ use App\Controllers\TeacherController;
 use App\Controllers\CourseController;
 use App\Controllers\HomeController;
 use App\Controllers\AuthController;
+use App\Services\MailService;
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/app/Helpers/url.php';
@@ -26,11 +27,12 @@ $teacher = new Teacher($connection);
 $course = new Course($connection);
 $home = new Home($connection);
 $view = new View();
+$mailService = new MailService();
 $studentController = new StudentController($student , $view);
 $teacherController = new TeacherController($teacher , $view);
 $courseController = new CourseController($course , $view);
 $homeController = new HomeController($home , $view);
-$authController = new AuthController($student , $view);
+$authController = new AuthController($student , $view , $mailService);
 
 $router = new Router();
 $routes = require __DIR__ . '/routes/web.php';
