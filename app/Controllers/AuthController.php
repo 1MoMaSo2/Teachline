@@ -52,6 +52,14 @@ class AuthController
             $educationBasic = trim($_POST['education_basic'] ?? '');
             $fieldStudy = trim($_POST['field_study'] ?? '');
 
+            $old = [
+                'full_name' => $fullName,
+                'email' => $email,
+                'phone_number' => $phoneNumber,
+                'education_basic' => $educationBasic,
+                'field_study' => $fieldStudy
+            ];
+
             $errors = [];
 
             if ($fullName === '') {
@@ -81,7 +89,8 @@ class AuthController
             if (!empty($errors)) {
                 $this->view->render('auth/register', [
                     'title' => 'ثبت نام',
-                    'errors' => $errors
+                    'errors' => $errors ,
+                    'old' => $old
                 ], 'auth');
 
                 return;

@@ -1,3 +1,7 @@
+<?php
+$errors = $errors ?? [];
+$old = $old ?? [];
+?>
 <body>
 
 <!-- Main Content -->
@@ -54,7 +58,7 @@
 
 
                             <!-- Register Form -->
-                            <form method="post">
+                            <form method="post" novalidate>
 
                                 <!-- Full Name -->
                                 <div class="mb-4">
@@ -70,15 +74,22 @@
                                         </span>
 
                                         <input
-                                            type="text"
-                                            name="full_name"
-                                            class="form-control border-0 bg-light rounded-end ps-1"
-                                            id="full_name"
-                                            placeholder="نام و نام خانوادگی"
-                                            required
+                                                type="text"
+                                                name="full_name"
+                                                class="form-control border-0 bg-light rounded-end ps-1"
+                                                id="full_name"
+                                                placeholder="نام و نام خانوادگی"
+                                                value="<?= htmlspecialchars($old['full_name'] ?? '') ?>"
+                                                required
                                         >
 
                                     </div>
+
+                                    <?php if (isset($errors['full_name'])): ?>
+                                        <div class="text-danger small mt-2">
+                                            <?= htmlspecialchars($errors['full_name']) ?>
+                                        </div>
+                                    <?php endif; ?>
 
                                 </div>
 
@@ -97,15 +108,22 @@
                                         </span>
 
                                         <input
-                                            type="email"
-                                            name="email"
-                                            class="form-control border-0 bg-light rounded-end ps-1"
-                                            id="email"
-                                            placeholder="***@gmail.com"
-                                            required
+                                                type="email"
+                                                name="email"
+                                                class="form-control border-0 bg-light rounded-end ps-1"
+                                                id="email"
+                                                placeholder="***@gmail.com"
+                                                value="<?= htmlspecialchars($old['email'] ?? '') ?>"
+                                                required
                                         >
 
                                     </div>
+
+                                    <?php if (isset($errors['email'])): ?>
+                                        <div class="text-danger small mt-2">
+                                            <?= htmlspecialchars($errors['email']) ?>
+                                        </div>
+                                    <?php endif; ?>
 
                                 </div>
                                 <!-- Password -->
@@ -142,6 +160,12 @@
 
                                     </div>
 
+                                    <?php if (isset($errors['password'])): ?>
+                                        <div class="text-danger small mt-2">
+                                            <?= htmlspecialchars($errors['password']) ?>
+                                        </div>
+                                    <?php endif; ?>
+
                                 </div>
 
 
@@ -159,17 +183,24 @@
                                         </span>
 
                                         <input
-                                            type="tel"
-                                            name="phone_number"
-                                            class="form-control border-0 bg-light rounded-end ps-1"
-                                            id="phone_number"
-                                            placeholder="09123456789"
-                                            pattern="[0-9]{11}"
-                                            title="شماره موبایل باید 11 رقم باشد"
-                                            required
+                                                type="tel"
+                                                name="phone_number"
+                                                class="form-control border-0 bg-light rounded-end ps-1"
+                                                id="phone_number"
+                                                placeholder="09123456789"
+                                                value="<?= htmlspecialchars($old['phone_number'] ?? '') ?>"
+                                                pattern="[0-9]{11}"
+                                                title="شماره موبایل باید 11 رقم باشد"
+                                                required
                                         >
 
                                     </div>
+
+                                    <?php if (isset($errors['phone_number'])): ?>
+                                        <div class="text-danger small mt-2">
+                                            <?= htmlspecialchars($errors['phone_number']) ?>
+                                        </div>
+                                    <?php endif; ?>
 
                                 </div>
 
@@ -204,6 +235,12 @@
                                         </option>
 
                                     </select>
+
+                                    <?php if (isset($errors['education_basic'])): ?>
+                                        <div class="text-danger small mt-2">
+                                            <?= htmlspecialchars($errors['education_basic']) ?>
+                                        </div>
+                                    <?php endif; ?>
 
                                 </div>
 
@@ -251,6 +288,12 @@
                                         </option>
 
                                     </select>
+
+                                    <?php if (isset($errors['field_study'])): ?>
+                                        <div class="text-danger small mt-2">
+                                            <?= htmlspecialchars($errors['field_study']) ?>
+                                        </div>
+                                    <?php endif; ?>
 
                                 </div>
 
