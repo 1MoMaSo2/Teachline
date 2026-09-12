@@ -40,4 +40,12 @@ class AuthController
             'title' => 'ورود'
         ], 'auth');
     }
+
+    public function logout():void
+    {
+        $_SESSION = [];
+        session_destroy();
+        header('location:' . base_url('/'));
+        exit;
+    }
 }

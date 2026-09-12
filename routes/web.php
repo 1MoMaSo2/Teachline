@@ -15,4 +15,5 @@ return function (Router $router , StudentController $studentController , Teacher
     $router->get('/' , [$homeController , 'index']);
     $router->get('/login' , [$authController , 'login']);
     $router->post('/login' , [$authController , 'login']);
+    $router->get('/logout' , [$authController , 'logout']);
 };
