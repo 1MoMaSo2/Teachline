@@ -183,7 +183,7 @@
                                     </h6>
 
                                     <a
-                                            href="/teachline/sign-up.php"
+                                            href="<?= base_url('/register') ?>"
                                             class="btn btn-sm btn-primary-soft mt-3 mb-0"
                                             style="margin-right: 25px">
                                         ثبت نام
