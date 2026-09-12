@@ -30,6 +30,16 @@ class Student extends User
         return $this->findBy('student_phone_number_mast' , $phoneNumber);
     }
 
+    public function findByActiveCode(string $activeCode):?array
+    {
+        return $this->findBy('student_active_code_mast' , $activeCode);
+    }
+
+    public function activate(int $id): bool
+    {
+        return $this->update($id , ['student_status_mast' => 1]);
+    }
+
     public function verifyPassword(string $email , string $password): ?array
     {
         $student = $this->findByEmail($email);
