@@ -25,6 +25,11 @@ class Student extends User
         return $this->findBy('student_email_mast' , $email);
     }
 
+    public function findByPhone(string $phoneNumber):?array
+    {
+        return $this->findBy('student_phone_number_mast' , $phoneNumber);
+    }
+
     public function verifyPassword(string $email , string $password): ?array
     {
         $student = $this->findByEmail($email);

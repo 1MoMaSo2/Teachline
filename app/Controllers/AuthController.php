@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\Student;
+use JetBrains\PhpStorm\NoReturn;
 use RuntimeException;
 class AuthController
 {
@@ -86,15 +87,40 @@ class AuthController
                 $errors['field_study'] = 'لطفاً رشته تحصیلی را انتخاب کنید';
             }
 
+            if (empty($errors)) {
+                if ($this->student->findByEmail($email)) {
+                    $errors['email'] = 'این ایمیل قبلاً ثبت شده است';
+                }
+
+                if ($this->student->findByPhone($phoneNumber)) {
+                    $errors['phone_number'] = 'این شماره موبایل قبلاً ثبت شده است';
+                }
+            }
+
             if (!empty($errors)) {
                 $this->view->render('auth/register', [
                     'title' => 'ثبت نام',
-                    'errors' => $errors ,
+                    'errors' => $errors,
                     'old' => $old
                 ], 'auth');
 
                 return;
             }
+
+            $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
+
+            $studentId = $this->student->create([
+                'student_full_name_mast' => $fullName,
+                'student_email_mast' => $email,
+                'student_password_mast' => $hashedPassword,
+                'student_phone_number_mast' => $phoneNumber,
+                'student_education_basic_mast' => $educationBasic,
+                'student_field_study_mast' => $fieldStudy,
+            ]);
+
+            flash('success' , 'ثبت نام با موفقیت انجام شد');
+            header('Location:' . base_url('/login'));
+            exit;
         }
 
         $this->view->render('auth/register', [
