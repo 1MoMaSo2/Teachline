@@ -3,6 +3,7 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Models\Student;
 use App\Services\MailService;
+use App\Core\Validator;
 class AuthController
 {
     public function __construct(private Student $student , private View $view , private MailService $mailService) {}
@@ -66,31 +67,14 @@ class AuthController
                 'field_study' => $fieldStudy
             ];
 
-            $errors = [];
-
-            if ($fullName === '') {
-                $errors['full_name'] = 'نام و نام خانوادگی الزامی است';
-            }
-
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors['email'] = 'ایمیل وارد شده معتبر نیست';
-            }
-
-            if (strlen($password) < 8) {
-                $errors['password'] = 'رمز عبور باید حداقل ۸ کاراکتر باشد';
-            }
-
-            if (!preg_match('/^09\d{9}$/', $phoneNumber)) {
-                $errors['phone_number'] = 'شماره موبایل معتبر نیست';
-            }
-
-            if ($educationBasic === '') {
-                $errors['education_basic'] = 'لطفاً مقطع تحصیلی را انتخاب کنید';
-            }
-
-            if ($fieldStudy === '') {
-                $errors['field_study'] = 'لطفاً رشته تحصیلی را انتخاب کنید';
-            }
+            $validator = new Validator();
+            $validator->required('full_name' , $fullName , 'نام و نام خانوادگی الزامی است');
+            $validator->email('email' , $email , 'ایمیل وارد شده معتبر نیست');
+            $validator->minLength('password' , $password , 8 , 'رمز عبور باید حداقل ۸ کاراکتر باشد');
+            $validator->regex('phone_number' , $phoneNumber , '/^09\d{9}$/' , 'شماره موبایل معتبر نیست');
+            $validator->required('education_basic' , $educationBasic , 'لطفاً مقطع تحصیلی را انتخاب کنید');
+            $validator->required('field_study' , $fieldStudy , 'لطفاً رشته تحصیلی را انتخاب کنید');
+            $errors = $validator->errors();
 
             if (empty($errors)) {
                 if ($this->student->findByEmail($email)) {
