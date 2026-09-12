@@ -15,6 +15,7 @@ use App\Controllers\AuthController;
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/app/Helpers/url.php';
 require_once __DIR__ . '/app/Helpers/flash.php';
+require_once __DIR__ . '/app/Helpers/auth.php';
 
 session_start();
 
