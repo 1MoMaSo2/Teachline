@@ -15,7 +15,7 @@ class AuthController
             $student = $this->student->verifyPassword($email, $password);
 
             if (!$student) {
-                flash('error', 'ایمیل یا رمز عبور نادرست است');
+                flash('error' , 'ایمیل یا رمز عبور نادرست است');
                 header('location:' . base_url('/login'));
                 exit;
             }
@@ -31,6 +31,7 @@ class AuthController
             $_SESSION['full_name'] = $student['student_full_name_mast'];
             $_SESSION['email'] = $student['student_email_mast'];
 
+            flash('success' , 'با موفقیت وارد شدید');
             header('Location:' . base_url('/'));
             exit;
         }
