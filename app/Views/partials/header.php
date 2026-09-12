@@ -76,7 +76,7 @@
                 <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3"
                     aria-labelledby="profileDropdown">
                     <!-- Profile info -->
-                    <?php if (isset($_SESSION['login'])) { ?>
+                    <?php if (is_logged_in()) { ?>
                         <li class="px-3 mb-3">
                             <div class="d-flex align-items-center">
                                 <div>
@@ -90,12 +90,12 @@
                             <hr class="dropdown-divider">
                         </li>
                         <!-- Links -->
-                        <li><a class="dropdown-item bg-danger-soft-hover" href="log-out.php"><i
+                        <li><a class="dropdown-item bg-danger-soft-hover" href="<?= base_url('/logout') ?>"><i
                                     class="bi bi-power fa-fw me-2"></i> خروج</a></li>
                     <?php } else { ?>
                         <li><a class="dropdown-item bg-black-soft-hover" href="sign-up.php"><i
                                     class="bi bi-pencil fa-fw me-2"></i>ثبت نام</a></li>
-                        <li><a class="dropdown-item bg-black-soft-hover" href="sign-in.php"><i
+                        <li><a class="dropdown-item bg-black-soft-hover" href="<?= base_url('/login') ?>"><i
                                     class="bi bi-box-arrow-down-left fa-fw me-2"></i>ورود</a></li>
                     <?php } ?>
                     <li>
