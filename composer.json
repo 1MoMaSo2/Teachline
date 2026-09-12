@@ -17,6 +17,7 @@
     ],
     "require": {
         "vlucas/phpdotenv": "*",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+        "phpmailer/phpmailer": "^7.1"
     }
 }
