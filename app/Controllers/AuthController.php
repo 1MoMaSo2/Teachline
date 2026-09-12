@@ -11,11 +11,17 @@ class AuthController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
-            $student = $this->student->verifyPassword($email, $password);
+            $student = $this->student->verifyPassword($email , $password);
 
             if (!$student) {
                 flash('error' , 'ایمیل یا رمز عبور نادرست است');
                 header('location:' . base_url('/login'));
+                exit;
+            }
+
+            if ((int)$student['student_status_mast'] !== 1) {
+                flash('warning', 'حساب شما هنوز فعال نشده است');
+                header('Location:' . base_url('/login'));
                 exit;
             }
 
@@ -106,7 +112,7 @@ class AuthController
             }
 
             $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
-
+            $activeCode = random_int(100000 , 999999);
             $studentId = $this->student->create([
                 'student_full_name_mast' => $fullName,
                 'student_email_mast' => $email,
@@ -114,6 +120,8 @@ class AuthController
                 'student_phone_number_mast' => $phoneNumber,
                 'student_education_basic_mast' => $educationBasic,
                 'student_field_study_mast' => $fieldStudy,
+                'student_date_created_account_mast' => time(),
+                'student_active_code_mast' => $activeCode
             ]);
 
             flash('success' , 'ثبت نام با موفقیت انجام شد');
@@ -124,6 +132,45 @@ class AuthController
         $this->view->render('auth/register', [
             'title' => 'ثبت نام'
         ], 'auth');
+    }
+
+    public function activate(): void
+    {
+        $activeCode = trim($_GET['code'] ?? '');
+
+        if ($activeCode === '') {
+            flash('error', 'کد فعال سازی نامعتبر است');
+            header('Location:' . base_url('/login'));
+            exit;
+        }
+
+        $student = $this->student->findByActiveCode($activeCode);
+
+        if (!$student) {
+            flash('error', 'کد فعال سازی نامعتبر است');
+            header('Location:' . base_url('/login'));
+            exit;
+        }
+
+        if ((int)$student['student_status_mast'] === 1) {
+            flash('success', 'حساب شما قبلاً فعال شده است');
+            header('Location:' . base_url('/login'));
+            exit;
+        }
+
+        $activated = $this->student->activate(
+            (int)$student['id_student_mast']
+        );
+
+        if (!$activated) {
+            flash('error', 'فعال سازی حساب انجام نشد');
+            header('Location:' . base_url('/login'));
+            exit;
+        }
+
+        flash('success', 'حساب شما با موفقیت فعال شد');
+        header('Location:' . base_url('/login'));
+        exit;
     }
 
     public function logout():void

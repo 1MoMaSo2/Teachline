@@ -17,7 +17,8 @@ class Student extends User
 
     protected array $allowedColumns = [
         'student_email_mast',
-        'student_phone_number_mast'
+        'student_phone_number_mast',
+        'student_active_code_mast'
     ];
 
     public function findByEmail(string $email):?array
