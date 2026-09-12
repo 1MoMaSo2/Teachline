@@ -74,9 +74,8 @@ class AuthController
             $validator->regex('phone_number' , $phoneNumber , '/^09\d{9}$/' , 'شماره موبایل معتبر نیست');
             $validator->required('education_basic' , $educationBasic , 'لطفاً مقطع تحصیلی را انتخاب کنید');
             $validator->required('field_study' , $fieldStudy , 'لطفاً رشته تحصیلی را انتخاب کنید');
-            $errors = $validator->errors();
 
-            if (empty($errors)) {
+            if (!$validator->fails()) {
                 if ($this->student->findByEmail($email)) {
                     $errors['email'] = 'این ایمیل قبلاً ثبت شده است';
                 }
@@ -85,6 +84,8 @@ class AuthController
                     $errors['phone_number'] = 'این شماره موبایل قبلاً ثبت شده است';
                 }
             }
+
+            $errors = $validator->errors();
 
             if (!empty($errors)) {
                 $this->view->render('auth/register', [

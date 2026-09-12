@@ -30,6 +30,11 @@ class Validator
         }
     }
 
+    public function addError(string $field , string $message): void
+    {
+        $this->errors[$field] = $message;
+    }
+
     public function fails(): bool
     {
         return !empty($this->errors);
