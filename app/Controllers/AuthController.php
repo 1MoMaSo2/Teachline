@@ -77,11 +77,11 @@ class AuthController
 
             if (!$validator->fails()) {
                 if ($this->student->findByEmail($email)) {
-                    $errors['email'] = 'این ایمیل قبلاً ثبت شده است';
+                    $validator->addError('email' , 'این ایمیل قبلا ثبت شده است');
                 }
 
                 if ($this->student->findByPhone($phoneNumber)) {
-                    $errors['phone_number'] = 'این شماره موبایل قبلاً ثبت شده است';
+                    $validator->addError('phone_number' , 'این شماره موبایل قبلا ثبت شده است');
                 }
             }
 
