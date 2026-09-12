@@ -15,7 +15,8 @@ class AuthController
             $student = $this->student->verifyPassword($email, $password);
 
             if (!$student) {
-                echo 'ایمیل یا رمز عبور نادرست است';
+                flash('error', 'ایمیل یا رمز عبور نادرست است');
+                header('location:' . base_url('/login'));
                 exit;
             }
 

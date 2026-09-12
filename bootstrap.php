@@ -16,6 +16,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/app/Helpers/url.php';
 require_once __DIR__ . '/app/Helpers/flash.php';
 
+session_start();
+
 $database = new Database();
 $connection = $database->getConnection();
 $student = new Student($connection);
