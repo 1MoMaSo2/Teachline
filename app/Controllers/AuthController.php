@@ -80,6 +80,14 @@ class AuthController
             $validator->required('education_basic' , $educationBasic , 'لطفاً مقطع تحصیلی را انتخاب کنید');
             $validator->required('field_study' , $fieldStudy , 'لطفاً رشته تحصیلی را انتخاب کنید');
 
+            if (!$this->educationBasic->existsByName($educationBasic)) {
+                $validator->addError('education_basic' , 'مقطع تحصیلی انتخاب شده معتبر نیست');
+            }
+
+            if (!$this->fieldStudy->existsByName($fieldStudy)) {
+                $validator->addError('field_study' , 'رشته تحصیلی انتخاب شده معتبر نیست');
+            }
+
             if (!$validator->fails()) {
                 if ($this->student->findByEmail($email)) {
                     $validator->addError('email' , 'این ایمیل قبلا ثبت شده است');

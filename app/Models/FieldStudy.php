@@ -11,4 +11,12 @@ class FieldStudy extends Model
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    public function existsByName(string $name): bool
+    {
+        $sql = "SELECT 1 FROM {$this->table} WHERE field_study_name_mast = :name LIMIT 1";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute(['name' => $name]);
+        return $statement->fetch() !== false;
+    }
 }

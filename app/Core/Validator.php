@@ -13,7 +13,7 @@ class Validator
 
     public function email(string $field , string $value , string $message): void
     {
-        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($value , FILTER_VALIDATE_EMAIL)) {
             $this->errors[$field] = $message;
         }
     }
@@ -25,7 +25,7 @@ class Validator
     }
 
     public function regex(string $field , string $value , string $pattern , string $message): void {
-        if (!preg_match($pattern, $value)) {
+        if (!preg_match($pattern , $value)) {
             $this->errors[$field] = $message;
         }
     }
