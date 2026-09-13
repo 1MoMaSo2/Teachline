@@ -1,5 +1,4 @@
 <?php
-
 function flash(string $type , string $message): void
 {
     if (session_status() === PHP_SESSION_NONE) {

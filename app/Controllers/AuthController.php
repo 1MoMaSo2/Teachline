@@ -132,7 +132,6 @@ class AuthController
     {
         $activeCode = trim($_GET['code'] ?? '');
 
-        // اگر کدی ارسال نشده، صفحه فعال سازی را نمایش بده
         if ($activeCode === '') {
             $this->view->render('auth/activate', [
                 'title' => 'فعال سازی حساب'
@@ -149,7 +148,6 @@ class AuthController
             exit;
         }
 
-        // اگر حساب قبلاً فعال شده باشد
         if ((int)$student['student_status_mast'] === 1) {
             flash('success', 'حساب شما قبلاً فعال شده است');
             header('Location:' . base_url('/login'));
