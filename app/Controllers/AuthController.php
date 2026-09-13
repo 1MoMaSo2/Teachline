@@ -74,9 +74,24 @@ class AuthController
 
             $validator = new Validator();
             $validator->required('full_name' , $fullName , 'نام و نام خانوادگی الزامی است');
+
+            if($fullName !== ''){
+                $validator->name('full_name' , $fullName , 'نام و نام خانوادگی فقط باید شامل حروف و فاصله باشد');
+            }
+
             $validator->email('email' , $email , 'ایمیل وارد شده معتبر نیست');
-            $validator->minLength('password' , $password , 8 , 'رمز عبور باید حداقل ۸ کاراکتر باشد');
-            $validator->regex('phone_number' , $phoneNumber , '/^09\d{9}$/' , 'شماره موبایل معتبر نیست');
+            $validator->required('password' , $password , 'رمز عبور الزامی است');
+
+            if($password !== ''){
+                $validator->minLength('password' , $password , 8 , 'رمز عبور باید حداقل ۸ کاراکتر باشد');
+            }
+
+            $validator->required('phone_number' , $phoneNumber , 'شماره موبایل الزامی است');
+
+            if($phoneNumber !== ''){
+                $validator->regex('phone_number' , $phoneNumber , '/^09\d{9}$/' , 'شماره موبایل معتبر نیست');
+            }
+
             $validator->required('education_basic' , $educationBasic , 'لطفاً مقطع تحصیلی را انتخاب کنید');
             $validator->required('field_study' , $fieldStudy , 'لطفاً رشته تحصیلی را انتخاب کنید');
 

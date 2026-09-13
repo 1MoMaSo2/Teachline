@@ -30,6 +30,13 @@ class Validator
         }
     }
 
+    public function name(string $field, string $value, string $message): void
+    {
+        if (!preg_match('/^[\p{L}\s]+$/u' , $value)) {
+            $this->errors[$field] = $message;
+        }
+    }
+
     public function addError(string $field , string $message): void
     {
         $this->errors[$field] = $message;
