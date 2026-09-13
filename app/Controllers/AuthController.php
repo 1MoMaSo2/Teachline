@@ -4,9 +4,11 @@ use App\Core\View;
 use App\Models\Student;
 use App\Services\MailService;
 use App\Core\Validator;
+use App\Models\EducationBasic;
+use App\Models\FieldStudy;
 class AuthController
 {
-    public function __construct(private Student $student , private View $view , private MailService $mailService) {}
+    public function __construct(private Student $student , private View $view , private MailService $mailService , private EducationBasic $educationBasic , private FieldStudy $fieldStudy) {}
 
     public function login(): void
     {
