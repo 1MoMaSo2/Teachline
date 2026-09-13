@@ -223,16 +223,16 @@ $old = $old ?? [];
                                             انتخاب مقطع تحصیلی
                                         </option>
 
-                                        <option value="دهم">
-                                            دهم
-                                        </option>
-                                        <option value="یازدهم">
-                                            یازدهم
-                                        </option>
+                                        <?php foreach ($educationBasics as $education): ?>
 
-                                        <option value="دوازدهم">
-                                            دوازدهم
-                                        </option>
+                                            <option
+                                                    value="<?= htmlspecialchars($education['education_basic_name_mast']) ?>"
+                                                    <?= (($old['education_basic'] ?? '') === $education['education_basic_name_mast']) ? 'selected' : '' ?>
+                                            >
+                                                <?= htmlspecialchars($education['education_basic_name_mast']) ?>
+                                            </option>
+
+                                        <?php endforeach; ?>
 
                                     </select>
 
@@ -263,29 +263,16 @@ $old = $old ?? [];
                                             انتخاب رشته تحصیلی
                                         </option>
 
-                                        <option value="کامپیوتر">
-                                            کامپیوتر
-                                        </option>
+                                        <?php foreach ($fieldStudies as $field): ?>
 
-                                        <option value="برق">
-                                            برق
-                                        </option>
+                                            <option
+                                                    value="<?= htmlspecialchars($field['field_study_name_mast']) ?>"
+                                                    <?= (($old['field_study'] ?? '') === $field['field_study_name_mast']) ? 'selected' : '' ?>
+                                            >
+                                                <?= htmlspecialchars($field['field_study_name_mast']) ?>
+                                            </option>
 
-                                        <option value="شیمی">
-                                            شیمی
-                                        </option>
-
-                                        <option value="صنایع فلز">
-                                            صنایع فلز
-                                        </option>
-
-                                        <option value="مکانیک">
-                                            مکانیک
-                                        </option>
-
-                                        <option value="آبیاری گیاهان دریایی">
-                                            آبیاری گیاهان دریایی
-                                        </option>
+                                        <?php endforeach; ?>
 
                                     </select>
 

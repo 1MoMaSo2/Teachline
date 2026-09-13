@@ -52,6 +52,9 @@ class AuthController
 
     public function register(): void
     {
+        $educationBasics = $this->educationBasic->all();
+        $fieldStudies = $this->fieldStudy->all();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $fullName = trim($_POST['full_name'] ?? '');
@@ -93,7 +96,9 @@ class AuthController
                 $this->view->render('auth/register', [
                     'title' => 'ثبت نام',
                     'errors' => $errors,
-                    'old' => $old
+                    'old' => $old,
+                    'educationBasics' => $educationBasics,
+                    'fieldStudies' => $fieldStudies
                 ], 'auth');
 
                 return;
@@ -126,7 +131,9 @@ class AuthController
         }
 
         $this->view->render('auth/register', [
-            'title' => 'ثبت نام'
+            'title' => 'ثبت نام',
+            'educationBasics' => $educationBasics,
+            'fieldStudies' => $fieldStudies
         ], 'auth');
     }
 

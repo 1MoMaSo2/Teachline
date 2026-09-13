@@ -158,7 +158,7 @@
 
                                 <span>
                                     حساب کاربری ندارید ؟
-                                    <a href="<?= base_url('sign-up.php') ?>">
+                                    <a href="<?= base_url('/register') ?>">
                                         ثبت نام
                                     </a>
                                 </span>
