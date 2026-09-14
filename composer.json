@@ -6,7 +6,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/url.php"
+            "app/Helpers/url.php",
+            "app/Helpers/date.php"
         ]
     },
     "authors": [

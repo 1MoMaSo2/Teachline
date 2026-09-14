@@ -1,80 +1,183 @@
-<section class="pt-5">
-    <div class="container">
+<section class="pt-0">
 
-        <div class="card border bg-transparent rounded-3">
+    <div class="card border bg-transparent rounded-3">
 
-            <div class="card-header bg-transparent border-bottom">
-                <h3 class="mb-0 ff-vb fs-5">لیست دوره‌های من</h3>
-            </div>
+        <!-- Card header START -->
+        <div class="card-header bg-transparent border-bottom">
 
-            <div class="card-body">
-
-                <?php if (empty($courses)): ?>
-
-                    <p class="mb-0">هنوز دوره‌ای برای شما ثبت نشده است.</p>
-
-                <?php else: ?>
-
-                    <div class="table-responsive border-0">
-
-                        <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-
-                            <thead>
-                            <tr>
-                                <th scope="col" class="border-0">نام دوره</th>
-                                <th scope="col" class="border-0">رشته تحصیلی</th>
-                                <th scope="col" class="border-0">وضعیت</th>
-                                <th scope="col" class="border-0">تاریخ ثبت</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-
-                            <?php foreach ($courses as $course): ?>
-
-                                <tr>
-
-                                    <td>
-                                        <?= htmlspecialchars(
-                                            $course['training_courses_name_mast']
-                                        ) ?>
-                                    </td>
-
-                                    <td>
-                                        <?= htmlspecialchars(
-                                            $course['training_courses_field_study_mast']
-                                        ) ?>
-                                    </td>
-
-                                    <td>
-                                        <?php if ((int) $course['training_courses_status_mast'] === 1): ?>
-                                            فعال
-                                        <?php else: ?>
-                                            در انتظار تأیید
-                                        <?php endif; ?>
-                                    </td>
-
-                                    <td>
-                                        <?= htmlspecialchars(
-                                            $course['training_courses_date_created_course_mast']
-                                        ) ?>
-                                    </td>
-
-                                </tr>
-
-                            <?php endforeach; ?>
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                <?php endif; ?>
-
-            </div>
+            <h3 class="mb-0 ff-vb fs-5">
+                لیست دوره ها
+            </h3>
 
         </div>
+        <!-- Card header END -->
+
+
+        <!-- Card body START -->
+        <div class="card-body">
+
+            <!-- Course list table START -->
+            <div class="table-responsive border-0">
+
+                <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+
+                    <!-- Table head -->
+                    <thead>
+
+                    <tr>
+
+                        <th scope="col" class="border-0 rounded-start">
+                            نام دوره
+                        </th>
+
+                        <th scope="col" class="border-0">
+                            تاریخ ثبت دوره
+                        </th>
+
+                        <th scope="col" class="border-0">
+                            تاریخ آپدیت دوره
+                        </th>
+
+                        <th scope="col" class="border-0">
+                            رشته تحصیلی
+                        </th>
+
+                        <th scope="col" class="border-0 rounded-end">
+                            عملیات
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <!-- Table body START -->
+                    <tbody>
+
+                    <?php if (empty($courses)): ?>
+
+                        <tr>
+
+                            <td colspan="5" class="text-center py-4">
+                                هنوز دوره‌ای برای شما ثبت نشده است.
+                            </td>
+
+                        </tr>
+
+                    <?php else: ?>
+
+                    <?php foreach ($courses as $course): ?>
+
+                    <tr>
+
+                        <!-- Course name -->
+                        <td>
+
+                            <div class="d-flex">
+
+                                <div class="badge bg-secondary bg-opacity-10">
+
+                                    <h6 class="fw-normal mb-0">
+
+                                        <?= htmlspecialchars($course['training_courses_name_mast']) ?>
+
+                                    </h6>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+                        <!-- Created date -->
+                        <td>
+
+                            <div class="badge bg-secondary bg-opacity-10 text-secondary">
+
+                                <?= jalali_date('Y/m/d , ساعت H:i' , (int) $course['training_courses_date_created_course_mast']) ?>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- Updated date -->
+                        <td>
+
+                            <div class="badge bg-secondary bg-opacity-10 text-secondary">
+
+                                <?= jalali_date('Y/m/d , ساعت H:i' , (int) $course['training_courses_date_update_course_mast']) ?>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- Field of study -->
+                        <td>
+
+                            <div class="badge bg-secondary bg-opacity-10 text-secondary">
+
+                                <?= htmlspecialchars($course['training_courses_field_study_mast']) ?>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- Operations -->
+                        <td>
+
+                            <button
+                                    type="button"
+                                    class="btn btn-sm btn-success-soft btn-round me-1 mb-0"
+                                    title="ویرایش"
+                                    disabled>
+
+                                <i class="far fa-fw fa-edit"></i>
+
+                            </button>
+
+
+                            <button
+                                    type="button"
+                                    class="btn btn-sm btn-danger-soft btn-round me-1 mb-0"
+                                    title="حذف"
+                                    disabled>
+
+                                <i class="fas fa-fw fa-times"></i>
+
+                            </button>
+
+
+                            <button
+                                    type="button"
+                                    class="btn btn-sm btn-primary-soft btn-round mb-0"
+                                    title="مدیریت جلسات"
+                                    disabled>
+
+                                <i class="fas fa-fw fa-chalkboard"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
+
+                    </tbody>
+                    <!-- Table body END -->
+
+                </table>
+
+            </div>
+            <!-- Course list table END -->
+
+        </div>
+        <!-- Card body END -->
 
     </div>
+
 </section>
