@@ -504,7 +504,7 @@ Action box START-->
                                             <!-- Content and input -->
                                             <div class="col-lg-4 text-lg-end">
                                                 <a href="<?= base_url('/register/teacher') ?>" class="btn btn-success mb-0">ثبت درخواست</a>
-                                                <a href="/teachline/instructor/instructor-sign-in.php" class="btn btn-success mb-0">ورود به پنل</a>
+                                                <a href="<?= base_url('/login') ?>" class="btn btn-success mb-0">ورود به پنل</a>
                                             </div>
                                         </div>
                                     </div>

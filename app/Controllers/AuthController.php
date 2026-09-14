@@ -14,35 +14,56 @@ class AuthController
     public function login(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
-            $student = $this->student->verifyPassword($email , $password);
 
-            if (!$student) {
-                flash('error' , 'ایمیل یا رمز عبور نادرست است');
-                header('location:' . base_url('/login'));
+            $student = $this->student->verifyPassword($email, $password);
+
+            if ($student) {
+                if ((int)$student['student_status_mast'] !== 1) {
+                    flash('warning', 'حساب شما هنوز فعال نشده است');
+                    header('Location:' . base_url('/login'));
+                    exit;
+                }
+
+                session_regenerate_id(true);
+
+                $_SESSION['login'] = true;
+                $_SESSION['user_type'] = 'student';
+                $_SESSION['student_id'] = $student['id_student_mast'];
+                $_SESSION['full_name'] = $student['student_full_name_mast'];
+                $_SESSION['email'] = $student['student_email_mast'];
+
+                flash('success', 'با موفقیت وارد شدید');
+                header('Location:' . base_url('/'));
                 exit;
             }
 
-            if ((int)$student['student_status_mast'] !== 1) {
-                flash('warning', 'حساب شما هنوز فعال نشده است');
-                header('Location:' . base_url('/login'));
+            $teacher = $this->teacher->verifyPassword($email, $password);
+
+            if ($teacher) {
+                if ((int)$teacher['teacher_status_mast'] !== 1) {
+                    flash('warning' , 'حساب مدرس شما هنوز توسط مدیر تأیید نشده است');
+                    header('Location:' . base_url('/login'));
+                    exit;
+                }
+
+                session_regenerate_id(true);
+
+                $_SESSION['login'] = true;
+                $_SESSION['user_type'] = 'teacher';
+                $_SESSION['teacher_id'] = $teacher['id_teacher_mast'];
+                $_SESSION['full_name'] = $teacher['teacher_full_name_mast'];
+                $_SESSION['email'] = $teacher['teacher_email_mast'];
+
+                flash('success', 'با موفقیت وارد شدید');
+                header('Location:' . base_url('/'));
                 exit;
             }
 
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-
-            session_regenerate_id(true);
-
-            $_SESSION['login'] = true;
-            $_SESSION['student_id'] = $student['id_student_mast'];
-            $_SESSION['full_name'] = $student['student_full_name_mast'];
-            $_SESSION['email'] = $student['student_email_mast'];
-
-            flash('success' , 'با موفقیت وارد شدید');
-            header('Location:' . base_url('/'));
+            flash('error', 'ایمیل یا رمز عبور نادرست است');
+            header('Location:' . base_url('/login'));
             exit;
         }
 
