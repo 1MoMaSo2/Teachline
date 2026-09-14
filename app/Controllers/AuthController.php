@@ -2,13 +2,14 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\Student;
+use App\Models\Teacher;
 use App\Services\MailService;
 use App\Core\Validator;
 use App\Models\EducationBasic;
 use App\Models\FieldStudy;
 class AuthController
 {
-    public function __construct(private Student $student , private View $view , private MailService $mailService , private EducationBasic $educationBasic , private FieldStudy $fieldStudy) {}
+    public function __construct(private Student $student , private Teacher $teacher , private View $view , private MailService $mailService , private EducationBasic $educationBasic , private FieldStudy $fieldStudy) {}
 
     public function login(): void
     {
@@ -159,6 +160,108 @@ class AuthController
             'title' => 'ثبت نام',
             'educationBasics' => $educationBasics,
             'fieldStudies' => $fieldStudies
+        ], 'auth');
+    }
+
+    public function registerTeacher(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $fullName = trim($_POST['full_name'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+            $phoneNumber = trim($_POST['phone_number'] ?? '');
+            $gender = trim($_POST['gender'] ?? '');
+            $degree = trim($_POST['degree'] ?? '');
+            $fieldStudy = trim($_POST['field_study'] ?? '');
+            $teachingHistory = trim($_POST['teaching_history'] ?? '');
+
+            $old = [
+                'full_name' => $fullName,
+                'email' => $email,
+                'phone_number' => $phoneNumber,
+                'gender' => $gender,
+                'degree' => $degree,
+                'teaching_history' => $teachingHistory
+            ];
+
+            $validator = new Validator();
+
+            $validator->required('full_name' , $fullName , 'نام و نام خانوادگی الزامی است');
+
+            if ($fullName !== '') {$validator->name('full_name' , $fullName , 'نام و نام خانوادگی فقط باید شامل حروف و فاصله باشد');
+            }
+
+            $validator->required('email' , $email , 'ایمیل الزامی است');
+            if ($email !== '') {
+                $validator->email('email' , $email , 'ایمیل وارد شده معتبر نیست');
+            }
+
+            $validator->required('password' , $password , 'رمز عبور الزامی است');
+            if ($password !== '') {
+                $validator->minLength('password' , $password , 8 , 'رمز عبور باید حداقل ۸ کاراکتر باشد');
+            }
+
+            $validator->required('phone_number' , $phoneNumber , 'شماره موبایل الزامی است');
+            if ($phoneNumber !== '') {
+                $validator->regex('phone_number' , $phoneNumber , '/^09\d{9}$/', 'شماره موبایل معتبر نیست');
+            }
+
+            $validator->required('gender' , $gender , 'لطفاً جنسیت را انتخاب کنید');
+            $validator->required('degree' , $degree , 'مدرک تحصیلی الزامی است');
+            $validator->required('field_study' , $fieldStudy , 'رشته تحصیلی الزامی است');
+            $validator->required('teaching_history' , $teachingHistory , 'سابقه تدریس الزامی است');
+
+            if (!$validator->fails()) {
+                if ($this->teacher->findByEmail($email)) {
+                    $validator->addError('email' , 'این ایمیل قبلا ثبت شده است');
+                }
+
+                if ($this->teacher->findByPhone($phoneNumber)) {
+                    $validator->addError('phone_number' , 'این شماره موبایل قبلا ثبت شده است');
+                }
+            }
+
+            $errors = $validator->errors();
+
+            if (!empty($errors)) {
+                $this->view->render('auth/register-teacher', [
+                    'title' => 'ثبت نام مدرس',
+                    'errors' => $errors,
+                    'old' => $old,
+                ], 'auth');
+
+                return;
+            }
+
+            $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
+
+            $teacherId = $this->teacher->create([
+                'teacher_full_name_mast' => $fullName,
+                'teacher_email_mast' => $email,
+                'teacher_password_mast' => $hashedPassword,
+                'teacher_phone_number_mast' => $phoneNumber,
+                'teacher_gender_mast' => $gender,
+                'teacher_degree_mast' => $degree,
+                'teacher_field_study_mast' => $fieldStudy,
+                'teacher_teaching_history_mast' => $teachingHistory,
+                'teacher_status_mast' => 0,
+                'teacher_date_created_account_mast' => time()
+            ]);
+
+            if (!$teacherId) {
+                flash('error' , 'ثبت نام مدرس انجام نشد');
+                header('Location:' . base_url('/register/teacher'));
+                exit;
+            }
+
+            flash('success' , 'درخواست ثبت نام شما با موفقیت ارسال شد و پس از تأیید مدیر فعال می‌شود');
+            header('Location:' . base_url('/login'));
+            exit;
+        }
+
+        $this->view->render('auth/register-teacher', [
+            'title' => 'ثبت نام مدرس',
         ], 'auth');
     }
 

@@ -36,7 +36,7 @@ $studentController = new StudentController($student , $view);
 $teacherController = new TeacherController($teacher , $view);
 $courseController = new CourseController($course , $view);
 $homeController = new HomeController($home , $view);
-$authController = new AuthController($student , $view , $mailService , $educationBasic , $fieldStudy);
+$authController = new AuthController($student , $teacher , $view , $mailService , $educationBasic , $fieldStudy);
 
 $router = new Router();
 $routes = require __DIR__ . '/routes/web.php';

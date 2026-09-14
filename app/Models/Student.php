@@ -57,8 +57,6 @@ class Student extends User
 
     public function updatePassword(int $id , string $hashedPassword): bool
     {
-        return $this->update($id , [
-            'student_password_mast' => $hashedPassword
-        ]);
+        return $this->update($id , ['student_password_mast' => $hashedPassword]);
     }
 }

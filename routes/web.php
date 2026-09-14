@@ -17,6 +17,8 @@ return function (Router $router , StudentController $studentController , Teacher
     $router->post('/login' , [$authController , 'login']);
     $router->get('/register' , [$authController , 'register']);
     $router->post('/register' , [$authController , 'register']);
+    $router->get('/register/teacher' , [$authController , 'registerTeacher']);
+    $router->post('/register/teacher' , [$authController , 'registerTeacher']);
     $router->get('/activate' , [$authController , 'activate']);
     $router->get('/logout' , [$authController , 'logout']);
 };
