@@ -18,6 +18,6 @@ class TeacherCourseController
         $this->view->render('teachers/courses', [
             'title' => 'دوره‌های من',
             'courses' => $courses
-        ]);
+        ] , 'teacher');
     }
 }
