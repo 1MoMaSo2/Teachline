@@ -12,6 +12,7 @@ class Course extends Model
         $course = $statement->fetch(\PDO::FETCH_ASSOC);
         return $course ?: null;
     }
+
     public function searchByName(string $search):?array
     {
         $sql = "SELECT * FROM $this->table WHERE training_courses_name_mast LIKE :search";
@@ -19,6 +20,7 @@ class Course extends Model
         $statement->execute([':search' => '%' . $search . '%']);
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
+
     public function findByEducationAndType(string $education , string $type):array
     {
         $sql = "SELECT * FROM $this->table WHERE training_courses_education_basic_mast = :education AND training_courses_type_book_mast = :type";
@@ -26,11 +28,20 @@ class Course extends Model
         $statement->execute([':education'=>$education , ':type'=>$type]);
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
+
     public function findMeetingsByCourseName(string $courseName):?array
     {
         $sql = "SELECT * FROM training_course_meetings_mast WHERE training_course_meetings_course_name_mast = :course_name";
         $statement = $this->connection->prepare($sql);
         $statement->execute([':course_name'=>$courseName]);
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function findByTeacherId(int $teacherId): array
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id ORDER BY id_training_courses_mast DESC";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['teacher_id' => $teacherId]);
+        return $stmt->fetchAll();
     }
 }
