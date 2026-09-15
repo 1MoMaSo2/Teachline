@@ -44,4 +44,12 @@ class Course extends Model
         $stmt->execute(['teacher_id' => $teacherId]);
         return $stmt->fetchAll();
     }
+
+    public function countByTeacherId(int $teacherId): int
+    {
+        $sql = "SELECT COUNT(id_training_courses_mast) FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['teacher_id' => $teacherId]);
+        return (int) $stmt->fetchColumn();
+    }
 }
