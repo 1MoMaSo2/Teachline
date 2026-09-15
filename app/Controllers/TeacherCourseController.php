@@ -141,8 +141,13 @@ class TeacherCourseController
             exit;
         }
 
-        flash('success' , 'دوره با موفقیت حذف شد.');
-        $this->course->deleteByIdAndTeacherId($courseId, $teacherId);
+        $deleted = $this->course->deleteByIdAndTeacherId($courseId, $teacherId);
+
+        if (!$deleted) {
+            throw new \RuntimeException('Course could not be deleted.');
+        }
+
+        flash('success', 'دوره با موفقیت حذف شد.');
         header('Location: /teachline/public/teacher/courses');
         exit;
     }
