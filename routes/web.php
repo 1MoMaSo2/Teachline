@@ -26,4 +26,5 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->get('/teacher' , [$teacherCourseController , 'dashboard'] , 'auth');
     $router->get('/teacher/edit-course' , [$teacherCourseController , 'edit'] , 'auth');
     $router->post('/teacher/edit-course' , [$teacherCourseController , 'update'] , 'auth');
+    $router->get('/teacher/delete-course' , [$teacherCourseController , 'delete'] , 'auth');
 };
