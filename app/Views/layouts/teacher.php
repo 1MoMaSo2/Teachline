@@ -112,9 +112,11 @@
 
 <?php require_once __DIR__ . '/../partials/flash.php'; ?>
 
-
 <!-- Bootstrap JS -->
 <script src="/teachline/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- PureCounter -->
+<script src="/teachline/assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
 
 <!-- Template Functions -->
 <script src="/teachline/assets/js/functions.js"></script>
