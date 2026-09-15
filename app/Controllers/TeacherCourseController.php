@@ -41,6 +41,89 @@ class TeacherCourseController
         ] , 'teacher');
     }
 
+    public function edit(): void
+    {
+        $teacherId = $_SESSION['teacher_id'] ?? null;
+
+        if (!$teacherId) {
+            throw new \RuntimeException('Teacher ID not found.');
+        }
+
+        $courseId = $_GET['id'] ?? null;
+
+        if (!is_numeric($courseId) || (int) $courseId <= 0) {
+            throw new \InvalidArgumentException('Invalid course ID.');
+        }
+
+        $course = $this->course->findByIdAndTeacherId((int) $courseId , (int) $teacherId);
+
+        if (!$course) {
+            throw new \RuntimeException('Course not found.');
+        }
+
+        $educationBasics = $this->educationBasic->all();
+        $fieldStudies = $this->fieldStudy->all();
+        $typeBooks = $this->typeBook->all();
+
+        $this->view->render('teachers/edit-course', [
+            'title' => 'ویرایش دوره',
+            'course' => $course,
+            'educationBasics' => $educationBasics,
+            'fieldStudies' => $fieldStudies,
+            'typeBooks' => $typeBooks
+        ], 'teacher');
+    }
+
+    public function update(): void
+    {
+
+        $teacherId = $_SESSION['teacher_id'] ?? null;
+        $teacherName = $_SESSION['full_name'] ?? null;
+
+        if (!$teacherId || !$teacherName) {
+            throw new \RuntimeException('Teacher information not found.');
+        }
+
+        $courseId = $_GET['id'] ?? null;
+
+        if (!is_numeric($courseId) || (int) $courseId <= 0) {
+            throw new \InvalidArgumentException('Invalid course ID.');
+        }
+
+        $name = trim($_POST['name_course'] ?? '');
+        $description = trim($_POST['description'] ?? '');
+        $tag = trim($_POST['tag'] ?? '');
+        $educationBasic = trim($_POST['education_basic'] ?? '');
+        $fieldStudy = trim($_POST['field_study'] ?? '');
+        $typeBook = trim($_POST['type_book'] ?? '');
+        $nameBook = trim($_POST['name_book'] ?? '');
+        $lesson = trim($_POST['lesson'] ?? '');
+
+        if ($name === '' ||  $description === '' ||  $tag === '' || $educationBasic === '' ||  $fieldStudy === '' || $typeBook === '' ||  $nameBook === '' ||  $lesson === '') {
+            throw new \InvalidArgumentException('لطفاً تمام فیلدها را تکمیل کنید.');
+        }
+
+    $updated = $this->course->updateByIdAndTeacherId((int) $courseId , (int) $teacherId , [
+            'name' => $name,
+            'teacher' => $teacherName,
+            'description' => $description,
+            'tag' => $tag,
+            'education_basic' => $educationBasic,
+            'field_study' => $fieldStudy,
+            'type_book' => $typeBook,
+            'name_book' => $nameBook,
+            'lesson' => $lesson,
+            'date_update' => time()
+        ]);
+
+    if (!$updated) {
+        throw new \RuntimeException('Course could not be updated.');
+    }
+
+    header('Location: /teachline/public/teacher/courses');
+    exit;
+}
+
     public function create(): void
     {
         $educationBasics = $this->educationBasic->all();

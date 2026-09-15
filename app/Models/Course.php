@@ -59,6 +59,54 @@ class Course extends Model
         return $stmt->fetchAll();
     }
 
+    public function findByIdAndTeacherId(int $courseId, int $teacherId): ?array
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE id_training_courses_mast = :course_id AND teacher_id_training_courses_mast = :teacher_id LIMIT 1";
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([
+            'course_id' => $courseId,
+            'teacher_id' => $teacherId
+        ]);
+
+        $course = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $course ?: null;
+    }
+
+    public function updateByIdAndTeacherId(int $courseId , int $teacherId , array $data): bool
+    {
+        $sql = "UPDATE {$this->table}
+            SET training_courses_name_mast = :name,
+                training_courses_teacher_mast = :teacher,
+                training_courses_description_mast = :description,
+                training_courses_tag_mast = :tag,
+                training_courses_education_basic_mast = :education_basic,
+                training_courses_field_study_mast = :field_study,
+                training_courses_type_book_mast = :type_book,
+                training_courses_name_book_mast = :name_book,
+                training_courses_lesson_mast = :lesson,
+                training_courses_date_update_course_mast = :date_update
+            WHERE 
+                id_training_courses_mast = :course_id AND teacher_id_training_courses_mast = :teacher_id";
+
+        $stmt = $this->connection->prepare($sql);
+
+        return $stmt->execute([
+            'name' => $data['name'],
+            'teacher' => $data['teacher'],
+            'description' => $data['description'],
+            'tag' => $data['tag'],
+            'education_basic' => $data['education_basic'],
+            'field_study' => $data['field_study'],
+            'type_book' => $data['type_book'],
+            'name_book' => $data['name_book'],
+            'lesson' => $data['lesson'],
+            'date_update' => $data['date_update'],
+            'course_id' => $courseId,
+            'teacher_id' => $teacherId
+        ]);
+    }
+
     public function countByTeacherId(int $teacherId): int
     {
         $sql = "SELECT COUNT(id_training_courses_mast) FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id AND training_courses_status_mast = 1";

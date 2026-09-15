@@ -127,15 +127,11 @@
                         <!-- Operations -->
                         <td>
 
-                            <button
-                                    type="button"
-                                    class="btn btn-sm btn-success-soft btn-round me-1 mb-0"
-                                    title="ویرایش"
-                                    disabled>
-
+                            <a href="/teachline/public/teacher/edit-course?id=<?= (int) $course['id_training_courses_mast'] ?>"
+                               class="btn btn-sm btn-success-soft btn-round me-1 mb-0"
+                               title="ویرایش">
                                 <i class="far fa-fw fa-edit"></i>
-
-                            </button>
+                            </a>
 
 
                             <button
