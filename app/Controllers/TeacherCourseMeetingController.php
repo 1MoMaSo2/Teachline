@@ -133,22 +133,38 @@ class TeacherCourseMeetingController
             exit;
         }
 
-        $course = $this->course->findByIdAndTeacherId($courseId , $teacherId);
+        $course = $this->course->findByIdAndTeacherId($courseId, $teacherId);
 
         if (!$course) {
             header('Location: /teachline/public/teacher/courses');
             exit;
         }
 
-        $deleted = $this->courseMeeting->deleteByIdAndCourseName($meetingId , $course['training_courses_name_mast']);
+        $courseName = $course['training_courses_name_mast'];
+        $meeting = $this->courseMeeting->findByIdAndCourseName($meetingId , $courseName);
 
-        if (!$deleted) {
+        if (!$meeting) {
             flash('error' , 'جلسه مورد نظر پیدا نشد.');
             header('Location: /teachline/public/teacher/course-meetings?id=' . $courseId);
             exit;
         }
 
-        flash('success', 'جلسه با موفقیت حذف شد.');
+        $deleted = $this->courseMeeting->deleteByIdAndCourseName($meetingId , $courseName);
+
+        if (!$deleted) {
+            flash('error' , 'حذف جلسه انجام نشد.');
+            header('Location: /teachline/public/teacher/course-meetings?id=' . $courseId);
+            exit;
+        }
+
+        $fileName = basename(parse_url($meeting['training_course_meetings_link_mast'] , PHP_URL_PATH));
+        $filePath = __DIR__ . '/../../assets/upload/course/' . $fileName;
+
+        if (is_file($filePath)) {
+            unlink($filePath);
+        }
+
+        flash('success', 'جلسه و فایل ویدیویی با موفقیت حذف شدند.');
         header('Location: /teachline/public/teacher/course-meetings?id=' . $courseId);
         exit;
     }

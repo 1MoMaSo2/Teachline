@@ -124,5 +124,28 @@
 <!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    document.querySelectorAll('.delete-meeting').forEach(function (button) {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const deleteUrl = this.href;
+
+            Swal.fire({
+                title: 'حذف جلسه؟',
+                text: 'آیا از حذف این جلسه و فایل ویدیویی مطمئن هستید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'بله، حذف کن',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

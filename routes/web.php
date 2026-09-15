@@ -30,5 +30,5 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->get('/teacher/delete-course' , [$teacherCourseController , 'delete'] , 'auth');
     $router->get('/teacher/course-meetings' , [$teacherCourseMeetingController , 'index'] , 'auth');
     $router->post('/teacher/course-meetings' , [$teacherCourseMeetingController , 'store'] , 'auth');
-    $router->get('/teacher/course-meetings' , [$teacherCourseMeetingController , 'delete'] , 'auth');
+    $router->get('/teacher/course-meetings/delete' , [$teacherCourseMeetingController , 'delete'] , 'auth');
 };

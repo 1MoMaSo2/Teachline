@@ -43,6 +43,18 @@ class CourseMeeting extends Model
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function findByIdAndCourseName(int $meetingId , string $courseName): ?array
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE id_training_course_meetings_mast = :meeting_id AND training_course_meetings_course_name_mast = :course_name LIMIT 1";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([
+            'meeting_id' => $meetingId,
+            'course_name' => $courseName,
+        ]);
+        $meeting = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $meeting ?: null;
+    }
+
     public function deleteByIdAndCourseName(int $meetingId , string $courseName): bool
     {
         $sql = "DELETE FROM {$this->table} WHERE id_training_course_meetings_mast = :meeting_id AND training_course_meetings_course_name_mast = :course_name LIMIT 1";

@@ -87,9 +87,7 @@
 
                                 <a
                                         href="/teachline/public/teacher/course-meetings/delete?id=<?= (int)$course['id_training_courses_mast'] ?>&meeting_id=<?= (int)$meeting['id_training_course_meetings_mast'] ?>"
-                                        class="btn btn-sm btn-danger"
-                                        onclick="return confirm('آیا از حذف این جلسه مطمئن هستید؟');"
-                                >
+                                        class="btn btn-sm btn-danger delete-meeting">
                                     حذف
                                 </a>
                             </td>
