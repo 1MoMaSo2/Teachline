@@ -134,15 +134,15 @@
                             </a>
 
 
-                            <button
-                                    type="button"
+                            <a
+                                    href="/teachline/public/teacher/delete-course?id=<?= (int) $course['id_training_courses_mast'] ?>"
                                     class="btn btn-sm btn-danger-soft btn-round me-1 mb-0"
                                     title="حذف"
-                                    disabled>
+                                    onclick="return confirm('آیا از حذف این دوره مطمئن هستید؟');">
 
                                 <i class="fas fa-fw fa-times"></i>
 
-                            </button>
+                            </a>
 
 
                             <button
