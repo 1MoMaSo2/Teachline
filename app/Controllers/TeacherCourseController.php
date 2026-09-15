@@ -122,7 +122,28 @@ class TeacherCourseController
 
     header('Location: /teachline/public/teacher/courses');
     exit;
-}
+    }
+
+    public function delete(): void
+    {
+        $teacherId = (int) ($_SESSION['teacher_id'] ?? 0);
+
+        if ($teacherId <= 0) {
+            header('Location: /teachline/public/login');
+            exit;
+        }
+
+        $courseId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        if (!$courseId || $courseId <= 0) {
+            header('Location: /teachline/public/teacher/courses');
+            exit;
+        }
+
+        $this->course->deleteByIdAndTeacherId($courseId, $teacherId);
+        header('Location: /teachline/public/teacher/courses');
+        exit;
+    }
 
     public function create(): void
     {
