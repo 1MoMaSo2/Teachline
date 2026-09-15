@@ -58,7 +58,7 @@ class AuthController
                 $_SESSION['email'] = $teacher['teacher_email_mast'];
 
                 flash('success', 'با موفقیت وارد شدید');
-                header('Location:' . base_url('/'));
+                header('Location:' . base_url('/teacher'));
                 exit;
             }
 

@@ -53,7 +53,7 @@ class Course extends Model
 
     public function findByTeacherId(int $teacherId): array
     {
-        $sql = "SELECT * FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id ORDER BY id_training_courses_mast DESC";
+        $sql = "SELECT * FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id AND training_courses_status_mast = 1 ORDER BY id_training_courses_mast DESC";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute(['teacher_id' => $teacherId]);
         return $stmt->fetchAll();
@@ -61,7 +61,7 @@ class Course extends Model
 
     public function countByTeacherId(int $teacherId): int
     {
-        $sql = "SELECT COUNT(id_training_courses_mast) FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id";
+        $sql = "SELECT COUNT(id_training_courses_mast) FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id AND training_courses_status_mast = 1";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute(['teacher_id' => $teacherId]);
         return (int) $stmt->fetchColumn();

@@ -17,7 +17,7 @@
 
                     <a
                         class="list-group-item"
-                        href="<?= base_url('/teacher/dashboard') ?>">
+                        href="<?= base_url('/teacher') ?>">
 
                         <i class="bi bi-ui-checks-grid fa-fw me-2"></i>
 

@@ -10,6 +10,22 @@ class TeacherCourseController
 {
     public function __construct(private Course $course , private EducationBasic $educationBasic , private FieldStudy $fieldStudy, private TypeBook $typeBook , private View $view) {}
 
+    public function dashboard(): void
+    {
+        $teacherId = $_SESSION['teacher_id'] ?? null;
+
+        if (!$teacherId) {
+            throw new \RuntimeException('Teacher ID not found.');
+        }
+
+        $courseCount = $this->course->countByTeacherId((int) $teacherId);
+
+        $this->view->render('teachers/dashboard', [
+            'title' => 'پنل مدرس',
+            'courseCount' => $courseCount
+        ], 'teacher');
+    }
+
     public function index(): void
     {
         $teacherId = $_SESSION['teacher_id'] ?? null;

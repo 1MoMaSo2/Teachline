@@ -23,4 +23,5 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->get('/teacher/courses' , [$teacherCourseController , 'index'] , 'auth');
     $router->get('/teacher/create-course' , [$teacherCourseController , 'create'] , 'auth');
     $router->post('/teacher/create-course' , [$teacherCourseController , 'store'] , 'auth');
+    $router->get('/teacher' , [$teacherCourseController , 'dashboard'] , 'auth');
 };
