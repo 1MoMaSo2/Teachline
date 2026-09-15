@@ -21,4 +21,5 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->get('/logout' , [$authController , 'logout']);
 
     $router->get('/teacher/courses' , [$teacherCourseController , 'index'] , 'auth');
+    $router->get('/teacher/create-course' , [$teacherCourseController , 'create']);
 };
