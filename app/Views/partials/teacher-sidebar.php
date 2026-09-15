@@ -27,7 +27,7 @@
 
                     <a
                         class="list-group-item"
-                        href="<?= base_url('/teacher/courses/create') ?>">
+                        href="<?= base_url('/teacher/create-course') ?>">
 
                         <i class="bi bi-collection-play fa-fw me-2"></i>
 

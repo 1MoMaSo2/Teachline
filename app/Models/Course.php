@@ -3,6 +3,20 @@ namespace App\Models;
 class Course extends Model
 {
     protected string $table = 'training_courses_mast';
+    protected array $fillable = [
+        'teacher_id_training_courses_mast',
+        'training_courses_name_mast',
+        'training_courses_teacher_mast',
+        'training_courses_description_mast',
+        'training_courses_tag_mast',
+        'training_courses_education_basic_mast',
+        'training_courses_field_study_mast',
+        'training_courses_type_book_mast',
+        'training_courses_name_book_mast',
+        'training_courses_lesson_mast',
+        'training_courses_date_created_course_mast',
+        'training_courses_date_update_course_mast',
+    ];
     protected array $allowedColumns = ['training_courses_name_mast'];
     public function findByName(string $name):?array
     {
