@@ -201,7 +201,7 @@ class TeacherCourseController
         if ($courseId <= 0) {
             throw new \RuntimeException('Course could not be created.');
         }
-
+        flash('success' , 'دوره با موفقیت ثبت شد و پس از تأیید مدیر در لیست دوره‌ها قرار خواهد گرفت.');
         header('Location: /teachline/public/teacher/courses');
         exit;
     }
