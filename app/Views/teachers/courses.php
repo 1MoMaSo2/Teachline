@@ -161,15 +161,14 @@
                                     </a>
 
 
-                                    <button
-                                            type="button"
+                                    <a
+                                            href="/teachline/public/teacher/course-meetings?id=<?= (int)$course['id_training_courses_mast'] ?>"
                                             class="btn btn-sm btn-primary-soft btn-round mb-0"
-                                            title="مدیریت جلسات"
-                                            disabled>
+                                            title="مدیریت جلسات">
 
                                         <i class="fas fa-fw fa-chalkboard"></i>
 
-                                    </button>
+                                    </a>
 
                                 </td>
 

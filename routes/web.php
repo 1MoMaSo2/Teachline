@@ -4,8 +4,9 @@ use App\Controllers\CourseController;
 use App\Controllers\HomeController;
 use App\Controllers\AuthController;
 use App\Controllers\TeacherCourseController;
+use App\Controllers\TeacherCourseMeetingController;
 
-return function (Router $router , CourseController $courseController , HomeController $homeController , AuthController $authController , TeacherCourseController $teacherCourseController):void {
+return function (Router $router , CourseController $courseController , HomeController $homeController , AuthController $authController , TeacherCourseController $teacherCourseController , TeacherCourseMeetingController $teacherCourseMeetingController):void {
     $router->get('/course-detail' , [$courseController , 'detail']);
     $router->get('/course-search' , [$courseController , 'search']);
     $router->get('/course-category/{education}/{type}' , [$courseController , 'category']);
@@ -27,4 +28,7 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->get('/teacher/edit-course' , [$teacherCourseController , 'edit'] , 'auth');
     $router->post('/teacher/edit-course' , [$teacherCourseController , 'update'] , 'auth');
     $router->get('/teacher/delete-course' , [$teacherCourseController , 'delete'] , 'auth');
+    $router->get('/teacher/course-meetings' , [$teacherCourseMeetingController , 'index'] , 'auth');
+    $router->post('/teacher/course-meetings' , [$teacherCourseMeetingController , 'store'] , 'auth');
+    $router->get('/teacher/course-meetings' , [$teacherCourseMeetingController , 'delete'] , 'auth');
 };
