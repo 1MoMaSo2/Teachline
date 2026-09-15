@@ -7,9 +7,9 @@
 
 <body>
 
-<?php require_once __DIR__ . '/../partials/header.php'; ?>
+<?php require_once __DIR__ . '/../partials/teacher-header.php'; ?>
 
-<!-- **** MAIN CONTENT START **** -->
+<!-- ** MAIN CONTENT START ** -->
 <main>
 
     <!-- =======================
@@ -32,6 +32,7 @@
 
                             <!-- Teacher profile info -->
                             <div class="col d-md-flex justify-content-between align-items-center mt-4">
+
                                 <div>
                                     <br>
                                     <br>
@@ -42,6 +43,7 @@
                                         <?= htmlspecialchars($_SESSION['full_name'] ?? 'پنل مدرس') ?>
                                     </h1>
                                 </div>
+
                             </div>
 
                         </div>
@@ -54,11 +56,11 @@
                             </a>
 
                             <button
-                                class="btn btn-primary d-xl-none"
-                                type="button"
-                                data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasSidebar"
-                                aria-controls="offcanvasSidebar">
+                                    class="btn btn-primary d-xl-none"
+                                    type="button"
+                                    data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasSidebar"
+                                    aria-controls="offcanvasSidebar">
 
                                 <i class="fas fa-sliders-h"></i>
 
@@ -105,12 +107,10 @@
     Page content END -->
 
 </main>
-<!-- **** MAIN CONTENT END **** -->
+<!-- ** MAIN CONTENT END ** -->
 
 
 <?php require_once __DIR__ . '/../partials/flash.php'; ?>
-
-<?php require_once __DIR__ . '/../partials/footer.php'; ?>
 
 
 <!-- Bootstrap JS -->
