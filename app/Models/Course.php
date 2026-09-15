@@ -107,6 +107,16 @@ class Course extends Model
         ]);
     }
 
+    public function deleteByIdAndTeacherId(int $courseId, int $teacherId): bool
+    {
+        $sql = "DELETE FROM {$this->table} WHERE id_training_courses_mast = :course_id AND teacher_id_training_courses_mast = :teacher_id";
+        $stmt = $this->connection->prepare($sql);
+        return $stmt->execute([
+            'course_id' => $courseId,
+            'teacher_id' => $teacherId
+        ]);
+    }
+
     public function countByTeacherId(int $teacherId): int
     {
         $sql = "SELECT COUNT(id_training_courses_mast) FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id AND training_courses_status_mast = 1";
