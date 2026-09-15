@@ -119,7 +119,7 @@ class TeacherCourseController
     if (!$updated) {
         throw new \RuntimeException('Course could not be updated.');
     }
-
+    flash('success' , 'دوره با موفقیت ویرایش شد.');
     header('Location: /teachline/public/teacher/courses');
     exit;
     }
