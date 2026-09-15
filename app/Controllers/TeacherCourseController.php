@@ -99,8 +99,19 @@ class TeacherCourseController
         $nameBook = trim($_POST['name_book'] ?? '');
         $lesson = trim($_POST['lesson'] ?? '');
 
-        if ($name === '' ||  $description === '' ||  $tag === '' || $educationBasic === '' ||  $fieldStudy === '' || $typeBook === '' ||  $nameBook === '' ||  $lesson === '') {
-            throw new \InvalidArgumentException('لطفاً تمام فیلدها را تکمیل کنید.');
+        if (
+            $name === '' ||
+            $description === '' ||
+            $tag === '' ||
+            $educationBasic === '' ||
+            $fieldStudy === '' ||
+            $typeBook === '' ||
+            $nameBook === '' ||
+            $lesson === ''
+        ) {
+            flash('warning', 'لطفاً تمام فیلدها را تکمیل کنید.');
+            header('Location: /teachline/public/teacher/edit-course?id=' . (int) $courseId);
+            exit;
         }
 
     $updated = $this->course->updateByIdAndTeacherId((int) $courseId , (int) $teacherId , [
@@ -184,8 +195,19 @@ class TeacherCourseController
         $nameBook = trim($_POST['name_book'] ?? '');
         $lesson = trim($_POST['lesson'] ?? '');
 
-        if ($name === '' || $description === '' || $tag === '' || $educationBasic === '' || $fieldStudy === '' || $typeBook === '' || $nameBook === '' || $lesson === '') {
-            throw new \InvalidArgumentException('لطفاً تمام فیلدها را تکمیل کنید.');
+        if (
+            $name === '' ||
+            $description === '' ||
+            $tag === '' ||
+            $educationBasic === '' ||
+            $fieldStudy === '' ||
+            $typeBook === '' ||
+            $nameBook === '' ||
+            $lesson === ''
+        ) {
+            flash('warning', 'لطفاً تمام فیلدها را تکمیل کنید.');
+            header('Location: /teachline/public/teacher/create-course');
+            exit;
         }
 
         $now = time();
