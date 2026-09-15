@@ -8,8 +8,6 @@ use App\Models\Course;
 use App\Models\Home;
 use App\Models\EducationBasic;
 use App\Models\FieldStudy;
-use App\Controllers\StudentController;
-use App\Controllers\TeacherController;
 use App\Controllers\CourseController;
 use App\Controllers\TeacherCourseController;
 use App\Controllers\HomeController;
@@ -33,8 +31,6 @@ $educationBasic = new EducationBasic($connection);
 $fieldStudy = new FieldStudy($connection);
 $view = new View();
 $mailService = new MailService();
-$studentController = new StudentController($student , $view);
-$teacherController = new TeacherController($teacher , $view);
 $courseController = new CourseController($course , $view);
 $teacherCourseController = new TeacherCourseController($course , $view);
 $homeController = new HomeController($home , $view);
@@ -42,5 +38,5 @@ $authController = new AuthController($student , $teacher , $view , $mailService 
 
 $router = new Router();
 $routes = require __DIR__ . '/routes/web.php';
-$routes($router , $studentController , $teacherController , $courseController , $homeController , $authController , $teacherCourseController);
+$routes($router , $courseController , $homeController , $authController , $teacherCourseController);
 return $router;
