@@ -66,98 +66,114 @@
 
                     <?php else: ?>
 
-                    <?php foreach ($courses as $course): ?>
+                        <?php foreach ($courses as $course): ?>
 
-                    <tr>
+                            <tr>
 
-                        <!-- Course name -->
-                        <td>
+                                <!-- Course name -->
+                                <td>
 
-                            <div class="d-flex">
+                                    <div class="d-flex">
 
-                                <div class="badge bg-secondary bg-opacity-10">
+                                        <div class="badge bg-secondary bg-opacity-10">
 
-                                    <h6 class="fw-normal mb-0">
+                                            <h6 class="fw-normal mb-0">
 
-                                        <?= htmlspecialchars($course['training_courses_name_mast']) ?>
+                                                <?= htmlspecialchars($course['training_courses_name_mast']) ?>
 
-                                    </h6>
+                                            </h6>
 
-                                </div>
+                                        </div>
 
-                            </div>
+                                    </div>
 
-                        </td>
-                        <!-- Created date -->
-                        <td>
+                                </td>
+                                <!-- Created date -->
+                                <td>
 
-                            <div class="badge bg-secondary bg-opacity-10 text-secondary">
+                                    <div class="badge bg-secondary bg-opacity-10 text-secondary">
 
-                                <?= jalali_date('Y/m/d , ساعت H:i' , (int) $course['training_courses_date_created_course_mast']) ?>
+                                        <?= jalali_date('Y/m/d , ساعت H:i', (int)$course['training_courses_date_created_course_mast']) ?>
 
-                            </div>
+                                    </div>
 
-                        </td>
-
-
-                        <!-- Updated date -->
-                        <td>
-
-                            <div class="badge bg-secondary bg-opacity-10 text-secondary">
-
-                                <?= jalali_date('Y/m/d , ساعت H:i' , (int) $course['training_courses_date_update_course_mast']) ?>
-
-                            </div>
-
-                        </td>
+                                </td>
 
 
-                        <!-- Field of study -->
-                        <td>
+                                <!-- Updated date -->
+                                <td>
 
-                            <div class="badge bg-secondary bg-opacity-10 text-secondary">
+                                    <div class="badge bg-secondary bg-opacity-10 text-secondary">
 
-                                <?= htmlspecialchars($course['training_courses_field_study_mast']) ?>
+                                        <?= jalali_date('Y/m/d , ساعت H:i', (int)$course['training_courses_date_update_course_mast']) ?>
 
-                            </div>
+                                    </div>
 
-                        </td>
-
-
-                        <!-- Operations -->
-                        <td>
-
-                            <a href="/teachline/public/teacher/edit-course?id=<?= (int) $course['id_training_courses_mast'] ?>"
-                               class="btn btn-sm btn-success-soft btn-round me-1 mb-0"
-                               title="ویرایش">
-                                <i class="far fa-fw fa-edit"></i>
-                            </a>
+                                </td>
 
 
-                            <a
-                                    href="/teachline/public/teacher/delete-course?id=<?= (int) $course['id_training_courses_mast'] ?>"
-                                    class="btn btn-sm btn-danger-soft btn-round me-1 mb-0"
-                                    title="حذف"
-                                    onclick="return confirm('آیا از حذف این دوره مطمئن هستید؟');">
+                                <!-- Field of study -->
+                                <td>
 
-                                <i class="fas fa-fw fa-times"></i>
+                                    <div class="badge bg-secondary bg-opacity-10 text-secondary">
 
-                            </a>
+                                        <?= htmlspecialchars($course['training_courses_field_study_mast']) ?>
+
+                                    </div>
+
+                                </td>
 
 
-                            <button
-                                    type="button"
-                                    class="btn btn-sm btn-primary-soft btn-round mb-0"
-                                    title="مدیریت جلسات"
-                                    disabled>
+                                <!-- Operations -->
+                                <td>
 
-                                <i class="fas fa-fw fa-chalkboard"></i>
+                                    <a href="/teachline/public/teacher/edit-course?id=<?= (int)$course['id_training_courses_mast'] ?>"
+                                       class="btn btn-sm btn-success-soft btn-round me-1 mb-0"
+                                       title="ویرایش">
+                                        <i class="far fa-fw fa-edit"></i>
+                                    </a>
 
-                            </button>
 
-                        </td>
+                                    <a
+                                            href="/teachline/public/teacher/delete-course?id=<?= (int)$course['id_training_courses_mast'] ?>"
+                                            class="btn btn-sm btn-danger-soft btn-round me-1 mb-0"
+                                            title="حذف"
+                                            onclick="event.preventDefault();
 
-                    </tr>
+                                                Swal.fire({
+                                                    title: 'حذف دوره',
+                                                    text: 'آیا از حذف این دوره مطمئن هستید؟',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonText: 'بله، حذف شود',
+                                                    cancelButtonText: 'انصراف',
+                                                    reverseButtons: true
+                                             }).then((result) => {
+                                                 if (result.isConfirmed) {
+                                                      window.location.href = this.href;
+                                                  }
+                                                });
+
+                                                return false;">
+
+                                        <i class="fas fa-fw fa-times"></i>
+
+                                    </a>
+
+
+                                    <button
+                                            type="button"
+                                            class="btn btn-sm btn-primary-soft btn-round mb-0"
+                                            title="مدیریت جلسات"
+                                            disabled>
+
+                                        <i class="fas fa-fw fa-chalkboard"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
 
                         <?php endforeach; ?>
 
