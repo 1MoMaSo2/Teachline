@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-xl">
         <div class="container-fluid px-3 px-xl-6">
             <!-- Logo START -->
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="/teachline/public/">
                 <img class="light-mode-item navbar-brand-item" src="<?= asset('images/logo_teachline.svg') ?>" alt="logo teachline">
                 <img class="dark-mode-item navbar-brand-item" src="<?= asset('images/logo_teachline.svg') ?>" alt="logo teachline">
             </a>
@@ -27,7 +27,7 @@
                 <ul class="navbar-nav navbar-nav-scroll me-auto">
                     <!-- Nav item 1 Demos -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link" style="margin-right: 20px" href="index.php" id="demoMenu">صفحه اصلی</a>
+                        <a class="nav-link" style="margin-right: 20px" href="/teachline/public/" id="demoMenu">صفحه اصلی</a>
                     </li>
 
                     <!-- Nav item 2 Pages -->
