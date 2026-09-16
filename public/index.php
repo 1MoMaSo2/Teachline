@@ -8,4 +8,10 @@ if (str_starts_with($path , $basePath)) {
     $path = substr($path , strlen($basePath));
 }
 $path = $path ?: '/';
-$router->dispatch($_SERVER['REQUEST_METHOD'] , $path);
+
+try {
+    $router->dispatch($_SERVER['REQUEST_METHOD'], $path);
+} catch (\InvalidArgumentException $e) {
+    http_response_code(404);
+    require_once __DIR__ . '/../app/Views/errors/404.php';
+}
