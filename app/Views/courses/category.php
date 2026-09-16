@@ -33,6 +33,8 @@
                                         <div class="d-flex justify-content-between mb-3">
                                             <h5 class="card-title fw-normal">
                                                 <a href="/teachline/public/course-detail?id=<?= (int) $course['id_training_courses_mast'] ?>">
+                                                    <?= htmlentities($course['training_courses_name_mast']) ?>
+                                                </a>
                                             </h5>
                                         </div>
 
