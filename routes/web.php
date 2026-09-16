@@ -21,14 +21,14 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->get('/activate' , [$authController , 'activate']);
     $router->get('/logout' , [$authController , 'logout']);
 
-    $router->get('/teacher/courses' , [$teacherCourseController , 'index'] , 'auth');
-    $router->get('/teacher/create-course' , [$teacherCourseController , 'create'] , 'auth');
-    $router->post('/teacher/create-course' , [$teacherCourseController , 'store'] , 'auth');
-    $router->get('/teacher' , [$teacherCourseController , 'dashboard'] , 'auth');
-    $router->get('/teacher/edit-course' , [$teacherCourseController , 'edit'] , 'auth');
-    $router->post('/teacher/edit-course' , [$teacherCourseController , 'update'] , 'auth');
-    $router->get('/teacher/delete-course' , [$teacherCourseController , 'delete'] , 'auth');
-    $router->get('/teacher/course-meetings' , [$teacherCourseMeetingController , 'index'] , 'auth');
-    $router->post('/teacher/course-meetings' , [$teacherCourseMeetingController , 'store'] , 'auth');
-    $router->get('/teacher/course-meetings/delete' , [$teacherCourseMeetingController , 'delete'] , 'auth');
+    $router->get('/teacher/courses' , [$teacherCourseController , 'index'] , 'teacher_auth');
+    $router->get('/teacher/create-course' , [$teacherCourseController , 'create'] , 'teacher_auth');
+    $router->post('/teacher/create-course' , [$teacherCourseController , 'store'] , 'teacher_auth');
+    $router->get('/teacher' , [$teacherCourseController , 'dashboard'] , 'teacher_auth');
+    $router->get('/teacher/edit-course' , [$teacherCourseController , 'edit'] , 'teacher_auth');
+    $router->post('/teacher/edit-course' , [$teacherCourseController , 'update'] , 'teacher_auth');
+    $router->get('/teacher/delete-course' , [$teacherCourseController , 'delete'] , 'teacher_auth');
+    $router->get('/teacher/course-meetings' , [$teacherCourseMeetingController , 'index'] , 'teacher_auth');
+    $router->post('/teacher/course-meetings' , [$teacherCourseMeetingController , 'store'] , 'teacher_auth');
+    $router->get('/teacher/course-meetings/delete' , [$teacherCourseMeetingController , 'delete'] , 'teacher_auth');
 };

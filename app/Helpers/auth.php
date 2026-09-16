@@ -12,3 +12,12 @@ function require_login(): void
         exit;
     }
 }
+
+function require_teacher(): void
+{
+    if (!is_logged_in() || ($_SESSION['user_type'] ?? null) !== 'teacher' || (int) ($_SESSION['teacher_id'] ?? 0) <= 0) {
+        flash('warning' , 'برای دسترسی به بخش مدرس ابتدا وارد حساب مدرس شوید.');
+        header('Location: ' . base_url('/login'));
+        exit;
+    }
+}

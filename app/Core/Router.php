@@ -42,12 +42,17 @@ class Router
 
     private function runMiddleware(string|callable|null $middleware): void
     {
-        if($middleware === 'auth') {
+        if ($middleware === 'auth') {
             require_login();
             return;
         }
 
-        if($middleware){
+        if ($middleware === 'teacher_auth') {
+            require_teacher();
+            return;
+        }
+
+        if ($middleware) {
             $middleware();
         }
     }
