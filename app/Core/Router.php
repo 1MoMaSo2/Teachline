@@ -24,6 +24,8 @@ class Router
 
     public function dispatch(string $method , string $path): mixed
     {
+        $path = $path !== '/' ? rtrim($path , '/') : '/';
+
         foreach ($this->routes[$method] ?? [] as $route => $routeData) {
 
             $pattern = preg_replace('#\{[^/]+\}#' , '([^/]+)' , $route);
