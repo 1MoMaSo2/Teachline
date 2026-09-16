@@ -27,6 +27,15 @@ class Course extends Model
         return $course ?: null;
     }
 
+    public function findById(int $id): ?array
+    {
+        $sql = "SELECT * FROM training_courses_mast WHERE id_training_courses_mast = :id LIMIT 1";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute(['id' => $id]);
+        $course = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $course ?: null;
+    }
+
     public function searchByName(string $search):?array
     {
         $sql = "SELECT * FROM $this->table WHERE training_courses_name_mast LIKE :search";

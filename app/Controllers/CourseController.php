@@ -7,29 +7,31 @@ require_once __DIR__ . '/../../script/jdf/jdf.php';
 class CourseController
 {
     public function __construct(private Course $course , private View $view){}
-    public function detail():void
+    public function detail(): void
     {
-        $courseName = $_GET['course'] ?? '';
-        if($courseName == ''){
-            throw new \InvalidArgumentException("Course name is required.");
+        $courseId = filter_input(INPUT_GET , 'id' , FILTER_VALIDATE_INT);
+
+        if (!$courseId || $courseId <= 0) {
+            throw new \InvalidArgumentException("Course ID is required.");
         }
 
-        $course = $this->course->findByName($courseName);
-        if($course == null){
+        $course = $this->course->findById($courseId);
+
+        if ($course === null) {
             throw new \InvalidArgumentException("Course not found.");
         }
 
-        $meetings = $this->course->findMeetingsByCourseId((int) $course['id_training_courses_mast']);
-        echo '<pre>';
-        var_dump([
-            'course_id' => $course['id_training_courses_mast'],
-            'course_name' => $course['training_courses_name_mast'],
-            'meetings' => $meetings
-        ]);
-        exit;
-        $tags = array_filter(array_map('trim' , explode(',' , $course['training_courses_tag_mast'] ?? '')));
-        $this->view->render("courses/detail" , [
-            'title' => $courseName,
+        $meetings = $this->course->findMeetingsByCourseId($courseId);
+
+        $tags = array_filter(
+            array_map(
+                'trim',
+                explode(',', $course['training_courses_tag_mast'] ?? '')
+            )
+        );
+
+        $this->view->render("courses/detail", [
+            'title' => $course['training_courses_name_mast'],
             'course' => $course,
             'meetings' => $meetings,
             'tags' => $tags
