@@ -74,14 +74,9 @@
 
                             <td>
                                 <a
-                                        href="<?= htmlspecialchars(
-                                                $meeting['training_course_meetings_link_mast'],
-                                                ENT_QUOTES,
-                                                'UTF-8'
-                                        ) ?>"
+                                        href="<?= htmlspecialchars(asset('upload/course/' . $meeting['training_course_meetings_link_mast']) , ENT_QUOTES , 'UTF-8') ?>"
                                         target="_blank"
-                                        class="btn btn-sm btn-primary"
-                                >
+                                        class="btn btn-sm btn-primary">
                                     مشاهده ویدیو
                                 </a>
 

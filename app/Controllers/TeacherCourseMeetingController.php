@@ -88,7 +88,7 @@ class TeacherCourseMeetingController
             exit;
         }
 
-        $uploadDirectory = __DIR__ . '/../../assets/upload/course/';
+        $uploadDirectory = __DIR__ . '/../../public/assets/upload/course/';
 
         if (!is_dir($uploadDirectory)) {
             mkdir($uploadDirectory , 0755 , true);
@@ -103,7 +103,7 @@ class TeacherCourseMeetingController
             exit;
         }
 
-        $link = '/teachline/assets/upload/course/' . $fileName;
+        $link = $fileName;
         $this->courseMeeting->create([
             'teacher_id' => $teacherId,
             'title' => $title,
@@ -158,7 +158,7 @@ class TeacherCourseMeetingController
         }
 
         $fileName = basename(parse_url($meeting['training_course_meetings_link_mast'] , PHP_URL_PATH));
-        $filePath = __DIR__ . '/../../assets/upload/course/' . $fileName;
+        $filePath = __DIR__ . '/../../public/assets/upload/course/' . $fileName;
 
         if (is_file($filePath)) {
             unlink($filePath);
