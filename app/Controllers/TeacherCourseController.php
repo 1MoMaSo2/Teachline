@@ -2,13 +2,14 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\Course;
+use App\Models\CourseMeeting;
 use App\Models\EducationBasic;
 use App\Models\FieldStudy;
 use App\Models\TypeBook;
 
 class TeacherCourseController
 {
-    public function __construct(private Course $course , private EducationBasic $educationBasic , private FieldStudy $fieldStudy, private TypeBook $typeBook , private View $view) {}
+    public function __construct(private Course $course , private CourseMeeting $courseMeeting , private EducationBasic $educationBasic , private FieldStudy $fieldStudy, private TypeBook $typeBook , private View $view) {}
 
     public function dashboard(): void
     {
@@ -145,20 +146,44 @@ class TeacherCourseController
             exit;
         }
 
-        $courseId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $courseId = filter_input(INPUT_GET , 'id' , FILTER_VALIDATE_INT);
 
         if (!$courseId || $courseId <= 0) {
             header('Location: /teachline/public/teacher/courses');
             exit;
         }
 
-        $deleted = $this->course->deleteByIdAndTeacherId($courseId, $teacherId);
+        $course = $this->course->findByIdAndTeacherId($courseId , $teacherId);
+
+        if (!$course) {
+            throw new \RuntimeException('Course not found.');
+        }
+
+        $meetings = $this->courseMeeting->findByCourseId($courseId);
+
+        $uploadDirectory = __DIR__ . '/../../public/assets/upload/course/';
+
+        foreach ($meetings as $meeting) {
+            $fileName = basename($meeting['training_course_meetings_link_mast'] ?? '');
+
+            if ($fileName === '') {
+                continue;
+            }
+
+            $filePath = $uploadDirectory . $fileName;
+
+            if (is_file($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+        $deleted = $this->course->deleteByIdAndTeacherId($courseId , $teacherId);
 
         if (!$deleted) {
             throw new \RuntimeException('Course could not be deleted.');
         }
 
-        flash('success', 'دوره با موفقیت حذف شد.');
+        flash('success' , 'دوره و جلسات آن با موفقیت حذف شدند.');
         header('Location: /teachline/public/teacher/courses');
         exit;
     }

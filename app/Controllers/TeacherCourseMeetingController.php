@@ -23,19 +23,16 @@ class TeacherCourseMeetingController
             exit;
         }
 
-        $course = $this->course->findByIdAndTeacherId($courseId, $teacherId);
+        $course = $this->course->findByIdAndTeacherId($courseId , $teacherId);
 
         if (!$course) {
             header('Location: /teachline/public/teacher/courses');
             exit;
         }
 
-        $meetings = $this->courseMeeting->findByCourseName(
-            $course['training_courses_name_mast']
-        );
+        $meetings = $this->courseMeeting->findByCourseId($courseId);
 
-        $this->view->render(
-            'teachers/course-meetings' , [
+        $this->view->render('teachers/course-meetings' , [
                 'course' => $course,
                 'meetings' => $meetings,
             ] , 'teacher'
@@ -51,7 +48,7 @@ class TeacherCourseMeetingController
             exit;
         }
 
-        $courseId = filter_input(INPUT_GET , 'id', FILTER_VALIDATE_INT);
+        $courseId = filter_input(INPUT_GET , 'id' , FILTER_VALIDATE_INT);
 
         if (!$courseId || $courseId <= 0) {
             header('Location: /teachline/public/teacher/courses');
@@ -98,20 +95,20 @@ class TeacherCourseMeetingController
         $targetPath = $uploadDirectory . $fileName;
 
         if (!move_uploaded_file($file['tmp_name'] , $targetPath)) {
-            flash('error', 'آپلود فایل انجام نشد.');
+            flash('error' , 'آپلود فایل انجام نشد.');
             header('Location: /teachline/public/teacher/course-meetings?id=' . $courseId);
             exit;
         }
 
         $link = $fileName;
         $this->courseMeeting->create([
-            'teacher_id' => $teacherId,
-            'title' => $title,
-            'link' => $link,
-            'course_name' => $course['training_courses_name_mast'],
+                'teacher_id' => $teacherId,
+                'course_id' => $courseId,
+                'title' => $title,
+                'link' => $link,
         ]);
 
-        flash('success', 'جلسه با موفقیت ثبت شد.');
+        flash('success' , 'جلسه با موفقیت ثبت شد.');
         header('Location: /teachline/public/teacher/course-meetings?id=' . $courseId);
         exit;
     }
@@ -125,23 +122,22 @@ class TeacherCourseMeetingController
             exit;
         }
 
-        $courseId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-        $meetingId = filter_input(INPUT_GET, 'meeting_id', FILTER_VALIDATE_INT);
+        $courseId = filter_input(INPUT_GET , 'id' , FILTER_VALIDATE_INT);
+        $meetingId = filter_input(INPUT_GET , 'meeting_id' , FILTER_VALIDATE_INT);
 
-            if (!$courseId || $courseId <= 0 || !$meetingId || $meetingId <= 0) {
+        if (!$courseId || $courseId <= 0 || !$meetingId || $meetingId <= 0) {
             header('Location: /teachline/public/teacher/courses');
             exit;
         }
 
-        $course = $this->course->findByIdAndTeacherId($courseId, $teacherId);
+        $course = $this->course->findByIdAndTeacherId($courseId , $teacherId);
 
         if (!$course) {
             header('Location: /teachline/public/teacher/courses');
             exit;
         }
 
-        $courseName = $course['training_courses_name_mast'];
-        $meeting = $this->courseMeeting->findByIdAndCourseName($meetingId , $courseName);
+        $meeting = $this->courseMeeting->findByIdAndCourseId($meetingId , $courseId);
 
         if (!$meeting) {
             flash('error' , 'جلسه مورد نظر پیدا نشد.');
@@ -149,7 +145,7 @@ class TeacherCourseMeetingController
             exit;
         }
 
-        $deleted = $this->courseMeeting->deleteByIdAndCourseName($meetingId , $courseName);
+        $deleted = $this->courseMeeting->deleteByIdAndCourseId($meetingId , $courseId);
 
         if (!$deleted) {
             flash('error' , 'حذف جلسه انجام نشد.');
@@ -164,7 +160,7 @@ class TeacherCourseMeetingController
             unlink($filePath);
         }
 
-        flash('success', 'جلسه و فایل ویدیویی با موفقیت حذف شدند.');
+        flash('success' , 'جلسه و فایل ویدیویی با موفقیت حذف شدند.');
         header('Location: /teachline/public/teacher/course-meetings?id=' . $courseId);
         exit;
     }

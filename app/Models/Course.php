@@ -43,11 +43,11 @@ class Course extends Model
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function findMeetingsByCourseName(string $courseName):?array
+    public function findMeetingsByCourseId(int $courseId): array
     {
-        $sql = "SELECT * FROM training_course_meetings_mast WHERE training_course_meetings_course_name_mast = :course_name";
+        $sql = "SELECT * FROM training_course_meetings_mast WHERE course_id_training_course_meetings_mast = :course_id";
         $statement = $this->connection->prepare($sql);
-        $statement->execute([':course_name'=>$courseName]);
+        $statement->execute(['course_id' => $courseId]);
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 

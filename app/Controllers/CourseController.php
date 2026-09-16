@@ -19,7 +19,14 @@ class CourseController
             throw new \InvalidArgumentException("Course not found.");
         }
 
-        $meetings = $this->course->findMeetingsByCourseName($courseName);
+        $meetings = $this->course->findMeetingsByCourseId((int) $course['id_training_courses_mast']);
+        echo '<pre>';
+        var_dump([
+            'course_id' => $course['id_training_courses_mast'],
+            'course_name' => $course['training_courses_name_mast'],
+            'meetings' => $meetings
+        ]);
+        exit;
         $tags = array_filter(array_map('trim' , explode(',' , $course['training_courses_tag_mast'] ?? '')));
         $this->view->render("courses/detail" , [
             'title' => $courseName,
