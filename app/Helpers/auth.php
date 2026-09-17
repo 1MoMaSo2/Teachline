@@ -7,7 +7,7 @@ function is_logged_in(): bool
 function require_login(): void
 {
     if (!is_logged_in()) {
-        flash('error' , 'برای دسترسی به این بخش ابتدا وارد شوید');
+        flash('warning' , 'برای دسترسی به این بخش ابتدا وارد شوید');
         header('Location: ' . base_url('/login'));
         exit;
     }
@@ -18,6 +18,15 @@ function require_teacher(): void
     if (!is_logged_in() || ($_SESSION['user_type'] ?? null) !== 'teacher' || (int) ($_SESSION['teacher_id'] ?? 0) <= 0) {
         flash('warning' , 'برای دسترسی به بخش مدرس ابتدا وارد حساب مدرس شوید.');
         header('Location: ' . base_url('/login'));
+        exit;
+    }
+}
+
+function require_admin(): void
+{
+    if (empty($_SESSION['admin_login']) || (int) ($_SESSION['admin_id'] ?? 0) <= 0) {
+        flash('warning' , 'برای دسترسی به پنل مدیریت ابتدا وارد حساب مدیر شوید.');
+        header('Location: ' . base_url('/admin/login'));
         exit;
     }
 }

@@ -4,6 +4,7 @@ use App\Core\Router;
 use App\Core\View;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Admin;
 use App\Models\Course;
 use App\Models\Home;
 use App\Models\EducationBasic;
@@ -15,6 +16,8 @@ use App\Controllers\TeacherCourseController;
 use App\Controllers\HomeController;
 use App\Controllers\AuthController;
 use App\Controllers\TeacherCourseMeetingController;
+use App\Controllers\Admin\AdminAuthController;
+use App\Controllers\Admin\AdminDashboardController;
 use App\Services\MailService;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -28,6 +31,7 @@ $database = new Database();
 $connection = $database->getConnection();
 $student = new Student($connection);
 $teacher = new Teacher($connection);
+$admin = new Admin($connection);
 $course = new Course($connection);
 $courseMeeting = new CourseMeeting($connection);
 $home = new Home($connection);
@@ -41,8 +45,10 @@ $teacherCourseController = new TeacherCourseController($course , $courseMeeting 
 $teacherCourseMettingController = new TeacherCourseMeetingController($course , $courseMeeting , $view);
 $homeController = new HomeController($home , $view);
 $authController = new AuthController($student , $teacher , $view , $mailService , $educationBasic , $fieldStudy);
+$adminAuthController = new AdminAuthController($admin , $view);
+$adminDashboardController = new AdminDashboardController($view);
 
 $router = new Router();
 $routes = require __DIR__ . '/routes/web.php';
-$routes($router , $courseController , $homeController , $authController , $teacherCourseController , $teacherCourseMettingController);
+$routes($router , $courseController , $homeController , $authController , $teacherCourseController , $teacherCourseMettingController , $adminAuthController , $adminDashboardController);
 return $router;

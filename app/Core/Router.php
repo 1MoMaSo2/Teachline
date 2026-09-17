@@ -54,6 +54,11 @@ class Router
             return;
         }
 
+        if ($middleware === 'admin_auth') {
+            require_admin();
+            return;
+        }
+
         if ($middleware) {
             $middleware();
         }

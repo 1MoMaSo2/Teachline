@@ -5,8 +5,10 @@ use App\Controllers\HomeController;
 use App\Controllers\AuthController;
 use App\Controllers\TeacherCourseController;
 use App\Controllers\TeacherCourseMeetingController;
+use App\Controllers\Admin\AdminAuthController;
+use App\Controllers\Admin\AdminDashboardController;
 
-return function (Router $router , CourseController $courseController , HomeController $homeController , AuthController $authController , TeacherCourseController $teacherCourseController , TeacherCourseMeetingController $teacherCourseMeetingController):void {
+return function (Router $router , CourseController $courseController , HomeController $homeController , AuthController $authController , TeacherCourseController $teacherCourseController , TeacherCourseMeetingController $teacherCourseMeetingController , AdminAuthController $adminAuthController , AdminDashboardController $adminDashboardController):void {
     $router->get('/course-detail' , [$courseController , 'detail']);
     $router->get('/course-search' , [$courseController , 'search']);
     $router->get('/course-category/{education}/{type}' , [$courseController , 'category']);
@@ -20,6 +22,10 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->post('/register/teacher' , [$authController , 'registerTeacher']);
     $router->get('/activate' , [$authController , 'activate']);
     $router->get('/logout' , [$authController , 'logout']);
+    $router->get('/admin/login' , [$adminAuthController , 'login']);
+    $router->post('/admin/login' , [$adminAuthController , 'login']);
+    $router->get('/admin/logout' , [$adminAuthController , 'logout']);
+    $router->get('/admin' , [$adminDashboardController , 'index'] , 'admin_auth');
 
     $router->get('/teacher/courses' , [$teacherCourseController , 'index'] , 'teacher_auth');
     $router->get('/teacher/create-course' , [$teacherCourseController , 'create'] , 'teacher_auth');
