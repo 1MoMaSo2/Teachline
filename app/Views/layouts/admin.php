@@ -26,10 +26,8 @@
 <script src="<?= base_url('/assets/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= base_url('/assets/js/scripts.js') ?>"></script>
 <script src="<?= base_url('/assets/js/jquery.js') ?>"></script>
-
 <script src="<?= base_url('/assets/js/simple-datatables@latest.js') ?>"></script>
 <script src="<?= base_url('/assets/js/simple-datatables@demo.js') ?>"></script>
-
 <script src="<?= base_url('/assets/js/persian-date.js') ?>"></script>
 <script src="<?= base_url('/assets/js/persian-datepicker.js') ?>"></script>
 

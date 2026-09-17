@@ -46,7 +46,7 @@ $teacherCourseMettingController = new TeacherCourseMeetingController($course , $
 $homeController = new HomeController($home , $view);
 $authController = new AuthController($student , $teacher , $view , $mailService , $educationBasic , $fieldStudy);
 $adminAuthController = new AdminAuthController($admin , $view);
-$adminDashboardController = new AdminDashboardController($view);
+$adminDashboardController = new AdminDashboardController($view , $course , $courseMeeting , $student , $teacher);
 
 $router = new Router();
 $routes = require __DIR__ . '/routes/web.php';

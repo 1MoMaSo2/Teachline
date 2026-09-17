@@ -43,6 +43,14 @@ abstract class Model
         return $statment->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function count(): int
+    {
+        $sql = "SELECT COUNT(*) FROM $this->table";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute();
+        return (int) $statement->fetchColumn();
+    }
+
     public function findBy(string $column , mixed $value):? array
     {
         if(!$this->isAllowedColumn($column)){
