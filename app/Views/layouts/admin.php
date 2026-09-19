@@ -3,11 +3,14 @@
 
 <head>
     <?php require_once __DIR__ . '/../partials/admin-head.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="nav-fixed">
 
 <?php require_once __DIR__ . '/../partials/admin-header.php'; ?>
+
+<?php require_once __DIR__ . '/../partials/flash.php'; ?>
 
 <div id="layoutSidenav">
 
@@ -23,6 +26,7 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<?= base_url('/assets/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?= base_url('/assets/js/scripts.js') ?>"></script>
 <script src="<?= base_url('/assets/js/jquery.js') ?>"></script>

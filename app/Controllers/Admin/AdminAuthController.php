@@ -37,6 +37,7 @@ class AdminAuthController
             $_SESSION['admin_email'] = $admin['admin_email_mast'];
             $_SESSION['admin_role'] = (int) $admin['admin_role_mast'];
 
+            flash('success' , 'با موفقیت وارد پنل مدیریت شدید');
             header('Location: ' . base_url('/admin'));
             exit;
         }

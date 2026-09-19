@@ -17,8 +17,6 @@
 
 <body>
 
-<?php $flash = getFlash(); ?>
-
 <div class="admin-login-wrapper">
 
     <div class="admin-login-container">
@@ -180,7 +178,7 @@
 
 </div>
 
-<script src="<?= base_url('/assets/js/sweetalert2.all.min.js') ?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <?php require_once __DIR__ . '/../../partials/flash.php'; ?>
 
