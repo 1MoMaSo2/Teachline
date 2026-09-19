@@ -61,4 +61,11 @@ class CourseMeeting extends Model
         ]);
         return $stmt->rowCount() > 0;
     }
+
+    public function deleteByCourseId(int $courseId): bool
+    {
+        $sql = "DELETE FROM {$this->table} WHERE course_id_training_course_meetings_mast = :course_id";
+        $stmt = $this->connection->prepare($sql);
+        return $stmt->execute(['course_id' => $courseId]);
+    }
 }

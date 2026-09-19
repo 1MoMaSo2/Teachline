@@ -7,8 +7,9 @@ use App\Controllers\TeacherCourseController;
 use App\Controllers\TeacherCourseMeetingController;
 use App\Controllers\Admin\AdminAuthController;
 use App\Controllers\Admin\AdminDashboardController;
+use App\Controllers\Admin\AdminCourseController;
 
-return function (Router $router , CourseController $courseController , HomeController $homeController , AuthController $authController , TeacherCourseController $teacherCourseController , TeacherCourseMeetingController $teacherCourseMeetingController , AdminAuthController $adminAuthController , AdminDashboardController $adminDashboardController):void {
+return function (Router $router , CourseController $courseController , HomeController $homeController , AuthController $authController , TeacherCourseController $teacherCourseController , TeacherCourseMeetingController $teacherCourseMeetingController , AdminAuthController $adminAuthController , AdminDashboardController $adminDashboardController , AdminCourseController $adminCourseController):void {
     $router->get('/course-detail' , [$courseController , 'detail']);
     $router->get('/course-search' , [$courseController , 'search']);
     $router->get('/course-category/{education}/{type}' , [$courseController , 'category']);
@@ -25,7 +26,12 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->get('/admin/login' , [$adminAuthController , 'login']);
     $router->post('/admin/login' , [$adminAuthController , 'login']);
     $router->get('/admin/logout' , [$adminAuthController , 'logout']);
+
     $router->get('/admin' , [$adminDashboardController , 'index'] , 'admin_auth');
+    $router->get('/admin/courses' , [$adminCourseController , 'index'] , 'admin_auth');
+    $router->get('/admin/courses/pending' , [$adminCourseController , 'pending'] , 'admin_auth');
+    $router->post('/admin/courses/approve' , [$adminCourseController , 'approve'] , 'admin_auth');
+    $router->post('/admin/courses/reject' , [$adminCourseController , 'reject'] , 'admin_auth');
 
     $router->get('/teacher/courses' , [$teacherCourseController , 'index'] , 'teacher_auth');
     $router->get('/teacher/create-course' , [$teacherCourseController , 'create'] , 'teacher_auth');

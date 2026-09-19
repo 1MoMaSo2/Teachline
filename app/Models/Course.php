@@ -60,6 +60,28 @@ class Course extends Model
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function findPending(): array
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE training_courses_status_mast = 0 ORDER BY id_training_courses_mast DESC";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function approve(int $courseId): bool
+    {
+        $sql = "UPDATE {$this->table} SET training_courses_status_mast = 1 WHERE id_training_courses_mast = :course_id AND training_courses_status_mast = 0";
+        $stmt = $this->connection->prepare($sql);
+        return $stmt->execute(['course_id' => $courseId]);
+    }
+
+    public function deletePending(int $courseId): bool
+    {
+        $sql = "DELETE FROM {$this->table} WHERE id_training_courses_mast = :course_id AND training_courses_status_mast = 0";
+        $stmt = $this->connection->prepare($sql);
+        return $stmt->execute(['course_id' => $courseId]);
+    }
+
     public function findByTeacherId(int $teacherId): array
     {
         $sql = "SELECT * FROM {$this->table} WHERE teacher_id_training_courses_mast = :teacher_id AND training_courses_status_mast = 1 ORDER BY id_training_courses_mast DESC";

@@ -36,17 +36,56 @@
 
                 <!-- Course Management -->
                 <a
-                    class="nav-link collapsed"
-                    href="javascript:void(0);"
+                        class="nav-link collapsed"
+                        href="javascript:void(0);"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseCourses"
+                        aria-expanded="false"
+                        aria-controls="collapseCourses"
                 >
 
                     <div class="nav-link-icon">
                         <i class="bx bx-columns"></i>
                     </div>
 
-                    مدیریت دوره ها
+                    مدیریت دوره‌ها
+
+                    <div class="snav-collapse-arrow">
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
 
                 </a>
+
+
+                <!-- Course Submenu -->
+                <div
+                        class="collapse"
+                        id="collapseCourses"
+                        data-bs-parent="#accordionSidenav"
+                >
+
+                    <nav
+                            class="snav-menu-nested nav"
+                            id="accordionCourseMenu"
+                    >
+
+                        <a
+                                class="nav-link"
+                                href="<?= base_url('/admin/courses') ?>"
+                        >
+                            دوره‌های آموزشی
+                        </a>
+
+                        <a
+                                class="nav-link"
+                                href="<?= base_url('/admin/courses/pending') ?>"
+                        >
+                            دوره‌های در انتظار تأیید
+                        </a>
+
+                    </nav>
+
+                </div>
 
 
                 <!-- Teacher Management -->
