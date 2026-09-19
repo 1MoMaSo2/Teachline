@@ -4,9 +4,14 @@ class FieldStudy extends Model
 {
     protected string $table = 'field_study_mast';
 
+    protected array $fillable = [
+        'admin_id_field_study_mast',
+        'field_study_name_mast'
+    ];
+
     public function all(): array
     {
-        $sql = "SELECT id_field_study_mast , field_study_name_mast FROM {$this->table} ORDER BY id_field_study_mast ASC";
+        $sql = "SELECT id_field_study_mast, field_study_name_mast FROM {$this->table} ORDER BY id_field_study_mast DESC";
         $statement = $this->connection->prepare($sql);
         $statement->execute();
         return $statement->fetchAll();

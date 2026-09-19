@@ -20,6 +20,7 @@ use App\Controllers\Admin\AdminAuthController;
 use App\Controllers\Admin\AdminDashboardController;
 use App\Controllers\Admin\AdminCourseController;
 use App\Controllers\Admin\AdminEducationBasicController;
+use App\Controllers\Admin\AdminFieldStudyController;
 use App\Services\MailService;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -52,8 +53,9 @@ $adminAuthController = new AdminAuthController($admin , $view);
 $adminDashboardController = new AdminDashboardController($view , $course , $courseMeeting , $student , $teacher);
 $adminCourseController = new AdminCourseController($view , $course , $courseMeeting);
 $adminEducationBasicController = new AdminEducationBasicController($view , $educationBasic , $connection);
+$adminFieldStudyController = new AdminFieldStudyController($view , $fieldStudy , $connection);
 
 $router = new Router();
 $routes = require __DIR__ . '/routes/web.php';
-$routes($router , $courseController , $homeController , $authController , $teacherCourseController , $teacherCourseMettingController , $adminAuthController , $adminDashboardController , $adminCourseController , $adminEducationBasicController);
+$routes($router , $courseController , $homeController , $authController , $teacherCourseController , $teacherCourseMettingController , $adminAuthController , $adminDashboardController , $adminCourseController , $adminEducationBasicController , $adminFieldStudyController);
 return $router;
