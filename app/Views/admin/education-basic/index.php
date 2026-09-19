@@ -1,163 +1,126 @@
-<div class="container-xl px-4 mt-4">
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4 is-rtl">
 
-    <div class="page-header mb-4">
+    <div class="container-fluid px-4">
+
         <div class="page-header-content">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-auto">
+
+            <div class="row align-items-center justify-content-between pt-3">
+
+                <div class="col-auto mb-3">
+
                     <h1 class="page-header-title">
+
                         <div class="page-header-icon">
                             <i class="bx bx-book"></i>
                         </div>
-                        مدیریت پایه‌های تحصیلی
+
+                        لیست پایه تحصیلی
+
                     </h1>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-
-        <!-- Add Education Basic -->
-        <div class="col-xl-4 mb-4">
-
-            <div class="card shadow-sm">
-
-                <div class="card-header">
-                    افزودن پایه تحصیلی
                 </div>
 
-                <div class="card-body">
+                <div class="col-lg-2 col-md-6">
 
-                    <form
-                        action="<?= base_url('/admin/education-basic/store') ?>"
-                        method="POST"
-                    >
+                    <div class="mb-3">
 
-                        <div class="mb-3">
-
-                            <label
-                                for="educationBasicName"
-                                class="form-label"
-                            >
-                                نام پایه تحصیلی
-                            </label>
-
-                            <input
-                                type="text"
-                                name="name"
-                                id="educationBasicName"
-                                class="form-control"
-                                placeholder="مثلاً دهم"
-                            >
-
-                        </div>
-
+                        <!-- Add Button -->
                         <button
-                            type="submit"
-                            class="btn btn-primary"
+                                type="button"
+                                class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#backDropModal"
                         >
-                            <i class="bx bx-plus"></i>
-                            افزودن
+                            افزودن پایه تحصیلی
                         </button>
 
-                    </form>
 
-                </div>
+                        <!-- Add Modal -->
+                        <div
+                                class="modal fade"
+                                id="backDropModal"
+                                data-bs-backdrop="static"
+                                tabindex="-1"
+                        >
 
-            </div>
+                            <div class="modal-dialog">
 
-        </div>
-
-        <!-- Education Basics List -->
-        <div class="col-xl-8 mb-4">
-
-            <div class="card shadow-sm">
-
-                <div class="card-header">
-                    پایه‌های تحصیلی
-                </div>
-
-                <div class="card-body">
-
-                    <div class="table-responsive">
-
-                        <table class="table table-bordered align-middle">
-
-                            <thead>
-
-                            <tr>
-                                <th>#</th>
-                                <th>نام پایه تحصیلی</th>
-                                <th class="text-center">عملیات</th>
-                            </tr>
-
-                            </thead>
-
-                            <tbody>
-
-                            <?php if (empty($educationBasics)): ?>
-
-                            <tr>
-                                <td
-                                        colspan="3"
-                                        class="text-center"
+                                <form
+                                        method="POST"
+                                        action="<?= base_url('/admin/education-basic/store') ?>"
+                                        class="modal-content"
                                 >
-                                    هنوز پایه تحصیلی ثبت نشده است.
-                                </td>
 
-                            </tr>
+                                    <div class="modal-header">
 
-                            <?php else: ?>
+                                        <h5
+                                                class="modal-title"
+                                                id="backDropModalTitle"
+                                        >
+                                            افزودن پایه تحصیلی
+                                        </h5>
 
-                                <?php foreach ($educationBasics as $index => $educationBasic): ?>
+                                        <button
+                                                type="button"
+                                                class="btn-close"
+                                                data-bs-dismiss="modal"
+                                                aria-label="Close"
+                                        ></button>
 
-                                    <tr>
+                                    </div>
 
-                                        <td>
-                                            <?= $index + 1 ?>
-                                        </td>
 
-                                        <td>
-                                            <?= htmlspecialchars(
-                                                    $educationBasic['education_basic_name_mast']
-                                            ) ?>
-                                        </td>
+                                    <div class="modal-body">
 
-                                        <td class="text-center">
+                                        <div class="row g-2 mb-4">
 
-                                            <form
-                                                    action="<?= base_url('/admin/education-basic/delete') ?>"
-                                                    method="POST"
-                                                    class="d-inline"
-                                            >
+                                            <div class="col">
 
+                                                <label
+                                                        for="nameBackdrop"
+                                                        class="form-label"
+                                                >
+                                                    پایه تحصیلی
+                                                </label>
                                                 <input
-                                                        type="hidden"
-                                                        name="id"
-                                                        value="<?= (int) $educationBasic['id_education_basic_mast'] ?>"
+                                                        type="text"
+                                                        id="nameBackdrop"
+                                                        class="form-control"
+                                                        placeholder="پایه تحصیلی را وارد کنید"
+                                                        name="name"
                                                 >
 
-                                                <button
-                                                        type="submit"
-                                                        class="btn btn-sm btn-danger"
-                                                >
-                                                    <i class="bx bx-trash"></i>
-                                                    حذف
-                                                </button>
+                                            </div>
 
-                                            </form>
+                                        </div>
 
-                                        </td>
+                                    </div>
 
-                                    </tr>
 
-                                <?php endforeach; ?>
+                                    <div class="modal-footer">
 
-                            <?php endif; ?>
+                                        <button
+                                                type="button"
+                                                class="btn btn-label-secondary"
+                                                data-bs-dismiss="modal"
+                                        >
+                                            بستن
+                                        </button>
 
-                            </tbody>
+                                        <button
+                                                type="submit"
+                                                class="btn btn-primary"
+                                        >
+                                            افزودن
+                                        </button>
 
-                        </table>
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -169,4 +132,111 @@
 
     </div>
 
+</header>
+
+
+<div class="container-fluid px-4 is-rtl">
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <table id="datatablesSimple">
+
+                <thead>
+
+                <tr>
+
+                    <th>ردیف</th>
+
+                    <th>پایه تحصیلی</th>
+
+                    <th>عملیات</th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                <?php foreach ($educationBasics as $index => $educationBasic): ?>
+
+                <tr>
+
+                    <td>
+
+                        <div class="d-flex align-items-center">
+
+                            <?= $index + 1 ?>
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <?= htmlspecialchars(
+                                $educationBasic['education_basic_name_mast'],
+                                ENT_QUOTES,
+                                'UTF-8'
+                        ) ?>
+
+                    </td>
+
+
+                    <td>
+
+                        <a
+                                href="#"
+                                class="btn btn-datatable btn-icon btn-transparent-dark"
+                                title="حذف"
+                                onclick="confirmDelete(<?= (int) $educationBasic['id_education_basic_mast'] ?>); return false;"
+                        >
+                            <i class="bx bx-trash"></i>
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                <?php endforeach; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
 </div>
+
+
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: "آیا مطمئنی پاک شود ؟",
+            icon: "info",
+            showCancelButton: true,
+            cancelButtonText: "نه",
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "آره"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '<?= base_url('/admin/education-basic/delete') ?>';
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'id';
+                input.value = id;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        });
+    }
+</script>

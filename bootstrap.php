@@ -40,7 +40,6 @@ $home = new Home($connection);
 $educationBasic = new EducationBasic($connection);
 $fieldStudy = new FieldStudy($connection);
 $typeBook = new TypeBook($connection);
-$educationBasic = new EducationBasic($connection);
 
 $view = new View();
 $mailService = new MailService();

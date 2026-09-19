@@ -4,6 +4,11 @@ class EducationBasic extends Model
 {
     protected string $table = 'education_basic_mast';
 
+    protected array $fillable = [
+        'admin_id_education_basic_mast',
+        'education_basic_name_mast'
+    ];
+
     public function all(): array
     {
         $sql = "SELECT id_education_basic_mast , education_basic_name_mast FROM {$this->table} ORDER BY id_education_basic_mast ASC";
