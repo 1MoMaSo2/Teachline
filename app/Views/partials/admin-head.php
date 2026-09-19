@@ -9,5 +9,4 @@
 <link rel="stylesheet" href="<?= base_url('/assets/css/persian-datepicker.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/assets/css/data-table.css') ?>">
 
-<link rel="shortcut icon"
-      href="<?= base_url('/assets/img/logo_teachline.svg') ?>">
+<link rel="shortcut icon" href="<?= base_url('/assets/img/logo_teachline.svg') ?>">

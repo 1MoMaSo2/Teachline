@@ -16,7 +16,7 @@ class AdminAuthController
             if ($email === '' || $password === '') {
                 $this->view->render('admin/auth/login', [
                     'error' => 'ایمیل و رمز عبور الزامی هستند.'
-                ]);
+                ] , 'none');
                 return;
             }
 
@@ -25,7 +25,7 @@ class AdminAuthController
             if (!$admin) {
                 $this->view->render('admin/auth/login', [
                     'error' => 'ایمیل یا رمز عبور صحیح نیست.'
-                ]);
+                ] , 'none');
                 return;
             }
 
@@ -41,7 +41,7 @@ class AdminAuthController
             exit;
         }
 
-        $this->view->render('admin/auth/login');
+        $this->view->render('admin/auth/login' , [] , 'none');
     }
 
     public function logout(): void
