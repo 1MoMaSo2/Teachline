@@ -5,7 +5,7 @@ class TypeBook extends Model
     protected string $table = 'type_book_mast';
 
     protected array $fillable = [
-        'admin_id_field_study_mast',
+        'admin_id_type_book_mast',
         'type_book_mast'
     ];
 
