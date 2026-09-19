@@ -10,8 +10,9 @@ use App\Controllers\Admin\AdminDashboardController;
 use App\Controllers\Admin\AdminCourseController;
 use App\Controllers\Admin\AdminEducationBasicController;
 use App\Controllers\Admin\AdminFieldStudyController;
+use App\Controllers\Admin\AdminTypeBookController;
 
-return function (Router $router , CourseController $courseController , HomeController $homeController , AuthController $authController , TeacherCourseController $teacherCourseController , TeacherCourseMeetingController $teacherCourseMeetingController , AdminAuthController $adminAuthController , AdminDashboardController $adminDashboardController , AdminCourseController $adminCourseController , AdminEducationBasicController $adminEducationBasicController , AdminFieldStudyController $adminFieldStudyController):void {
+return function (Router $router , CourseController $courseController , HomeController $homeController , AuthController $authController , TeacherCourseController $teacherCourseController , TeacherCourseMeetingController $teacherCourseMeetingController , AdminAuthController $adminAuthController , AdminDashboardController $adminDashboardController , AdminCourseController $adminCourseController , AdminEducationBasicController $adminEducationBasicController , AdminFieldStudyController $adminFieldStudyController , AdminTypeBookController $adminTypeBookController):void {
     $router->get('/course-detail' , [$courseController , 'detail']);
     $router->get('/course-search' , [$courseController , 'search']);
     $router->get('/course-category/{education}/{type}' , [$courseController , 'category']);
@@ -40,6 +41,9 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->get('/admin/field-study' , [$adminFieldStudyController , 'index'] , 'admin_auth');
     $router->post('/admin/field-study/store' , [$adminFieldStudyController , 'store'] , 'admin_auth');
     $router->post('/admin/field-study/delete' , [$adminFieldStudyController , 'delete'] , 'admin_auth');
+    $router->get('/admin/type-book' , [$adminTypeBookController , 'index'] , 'admin_auth');
+    $router->post('/admin/type-book/store' , [$adminTypeBookController , 'store'] , 'admin_auth');
+    $router->post('/admin/type-book/delete' , [$adminTypeBookController , 'delete'] , 'admin_auth');
 
     $router->get('/teacher/courses' , [$teacherCourseController , 'index'] , 'teacher_auth');
     $router->get('/teacher/create-course' , [$teacherCourseController , 'create'] , 'teacher_auth');

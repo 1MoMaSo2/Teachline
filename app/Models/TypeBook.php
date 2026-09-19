@@ -4,9 +4,14 @@ class TypeBook extends Model
 {
     protected string $table = 'type_book_mast';
 
+    protected array $fillable = [
+        'admin_id_field_study_mast',
+        'type_book_mast'
+    ];
+
     public function all(): array
     {
-        $sql = "SELECT type_book_mast FROM {$this->table} ORDER BY type_book_mast ASC";
+        $sql = "SELECT id_type_book_mast, type_book_mast FROM {$this->table} ORDER BY id_type_book_mast DESC";
         $statement = $this->connection->prepare($sql);
         $statement->execute();
         return $statement->fetchAll();
