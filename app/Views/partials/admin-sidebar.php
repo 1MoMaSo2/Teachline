@@ -172,8 +172,8 @@
 
                 <!-- Education Basics -->
                 <a
-                    class="nav-link"
-                    href="javascript:void(0);"
+                        class="nav-link"
+                        href="<?= base_url('/admin/education-basic') ?>"
                 >
 
                     <div class="nav-link-icon">
@@ -187,8 +187,8 @@
 
                 <!-- Field Studies -->
                 <a
-                    class="nav-link"
-                    href="javascript:void(0);"
+                        class="nav-link"
+                        href="<?= base_url('/admin/field-study') ?>"
                 >
 
                     <div class="nav-link-icon">
@@ -202,8 +202,8 @@
 
                 <!-- Book Types -->
                 <a
-                    class="nav-link"
-                    href="javascript:void(0);"
+                        class="nav-link"
+                        href="<?= base_url('/admin/type-book') ?>"
                 >
 
                     <div class="nav-link-icon">
