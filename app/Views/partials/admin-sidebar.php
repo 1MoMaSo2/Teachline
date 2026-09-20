@@ -151,14 +151,14 @@
                                     class="nav-link"
                                     href="javascript:void(0);"
                                 >
-                                    لیست دبیران تایید شده
+                                     دبیران تأیید شده
                                 </a>
 
                                 <a
                                     class="nav-link"
-                                    href="javascript:void(0);"
+                                    href="<?= base_url('admin/teachers/pending') ?>"
                                 >
-                                    لیست دبیران در انتظار
+                                     دبیران در انتظار تأیید
                                 </a>
 
                             </nav>

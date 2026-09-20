@@ -33,6 +33,14 @@ class Teacher extends User
         return $this->findBy('teacher_phone_number_mast', $phone);
     }
 
+    public function findPending(): array
+    {
+        $sql = "SELECT * FROM $this->table WHERE teacher_status_mast = :status ORDER BY id_teacher_mast DESC";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([':status' => 0]);
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function verifyPassword(string $email , string $password): ?array
     {
         $teacher = $this->findByEmail($email);
