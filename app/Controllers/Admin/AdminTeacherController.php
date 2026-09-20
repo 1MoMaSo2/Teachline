@@ -71,6 +71,7 @@ class AdminTeacherController
             return;
         }
 
+        flash('success' , 'دبیر با موفقیت حذف شد.');
         header('Location: ' . base_url('/admin/teachers/pending'));
         exit;
     }

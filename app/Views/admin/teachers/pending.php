@@ -174,6 +174,7 @@
                                             action="<?= base_url('/admin/teachers/delete') ?>"
                                             method="POST"
                                             class="d-inline delete-teacher-form"
+                                            onsubmit="return confirmDeleteTeacher(event, this)"
                                     >
                                         <input
                                                 type="hidden"
