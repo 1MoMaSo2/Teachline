@@ -49,143 +49,181 @@
 
             <?php else: ?>
 
-            <div class="table-responsive">
+                <div class="table-responsive">
 
-                <table id="datatablesSimple" class="table table-bordered table-hover align-middle">
+                    <table id="datatablesSimple" class="table table-bordered table-hover align-middle">
 
-                    <thead>
-                    <tr>
-                        <th>ردیف</th>
-                        <th>نام و نام خانوادگی</th>
-                        <th>ایمیل</th>
-                        <th>شماره تماس</th>
-                        <th>مدرک</th>
-                        <th>رشته تحصیلی</th>
-                        <th>سابقه تدریس</th>
-                        <th>تاریخ ثبت‌نام</th>
-                        <th>وضعیت</th>
-                        <th>عملیات</th>
-                    </tr>
-                    </thead>
+                        <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام و نام خانوادگی</th>
+                            <th>ایمیل</th>
+                            <th>شماره تماس</th>
+                            <th>مدرک</th>
+                            <th>رشته تحصیلی</th>
+                            <th>سابقه تدریس</th>
+                            <th>تاریخ ثبت‌نام</th>
+                            <th>وضعیت</th>
+                            <th>عملیات</th>
+                        </tr>
+                        </thead>
 
-                    <tbody>
+                        <tbody>
 
-                    <?php foreach ($teachers as $index => $teacher): ?>
+                        <?php foreach ($teachers as $index => $teacher): ?>
 
-                    <?php
-                    $createdAt = $teacher['teacher_date_created_account_mast'] ?? null;
+                            <?php
+                            $createdAt = $teacher['teacher_date_created_account_mast'] ?? null;
 
-                    if (is_numeric($createdAt)) {
-                        $createdAt = date('Y/m/d H:i', (int) $createdAt);
-                    }
-                    ?>
+                            if (is_numeric($createdAt)) {
+                                $createdAt = date('Y/m/d H:i', (int)$createdAt);
+                            }
+                            ?>
 
-                    <tr>
+                            <tr>
 
-                        <td>
-                            <?= $index + 1 ?>
-                        </td>
+                                <td>
+                                    <?= $index + 1 ?>
+                                </td>
 
-                        <td>
-                            <?= htmlspecialchars(
-                                $teacher['teacher_full_name_mast'] ?? '',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
-                        </td>
+                                <td>
+                                    <?= htmlspecialchars(
+                                            $teacher['teacher_full_name_mast'] ?? '',
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                    ) ?>
+                                </td>
 
-                        <td>
-                            <?= htmlspecialchars(
-                                $teacher['teacher_email_mast'] ?? '',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
-                        </td>
+                                <td>
+                                    <?= htmlspecialchars(
+                                            $teacher['teacher_email_mast'] ?? '',
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                    ) ?>
+                                </td>
 
-                        <td>
-                            <?= htmlspecialchars(
-                                $teacher['teacher_phone_number_mast'] ?? '',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
-                        </td>
+                                <td>
+                                    <?= htmlspecialchars(
+                                            $teacher['teacher_phone_number_mast'] ?? '',
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                    ) ?>
+                                </td>
 
-                        <td>
-                            <?= htmlspecialchars(
-                                $teacher['teacher_degree_mast'] ?? '',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
-                        </td>
-                        <td>
-                            <?= htmlspecialchars(
-                                $teacher['teacher_field_study_mast'] ?? '',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
-                        </td>
+                                <td>
+                                    <?= htmlspecialchars(
+                                            $teacher['teacher_degree_mast'] ?? '',
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                    ) ?>
+                                </td>
+                                <td>
+                                    <?= htmlspecialchars(
+                                            $teacher['teacher_field_study_mast'] ?? '',
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                    ) ?>
+                                </td>
 
-                        <td>
-                            <?= htmlspecialchars(
-                                $teacher['teacher_teaching_history_mast'] ?? '',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
-                        </td>
+                                <td>
+                                    <?= htmlspecialchars(
+                                            $teacher['teacher_teaching_history_mast'] ?? '',
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                    ) ?>
+                                </td>
 
-                        <td>
-                            <?= htmlspecialchars(
-                                $createdAt ?? '',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
-                        </td>
+                                <td>
+                                    <?= htmlspecialchars(
+                                            $createdAt ?? '',
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                    ) ?>
+                                </td>
 
-                        <td>
+                                <td>
                                     <span class="badge bg-warning text-dark">
                                         در انتظار تأیید
                                     </span>
-                        </td>
+                                </td>
 
-                        <td>
+                                <td>
 
-                            <form
-                                    action="<?= base_url('/admin/teachers/approve') ?>"
-                                    method="POST"
-                            >
+                                    <form
+                                            action="<?= base_url('/admin/teachers/approve') ?>"
+                                            method="POST"
+                                    >
 
-                                <input
-                                        type="hidden"
-                                        name="id"
-                                        value="<?= (int) $teacher['id_teacher_mast'] ?>"
-                                >
+                                        <input
+                                                type="hidden"
+                                                name="id"
+                                                value="<?= (int)$teacher['id_teacher_mast'] ?>"
+                                        >
 
-                                <button
-                                        type="submit"
-                                        class="btn btn-success btn-sm"
-                                >
-                                    <i class="bx bx-check me-1"></i>
-                                    تأیید دبیر
-                                </button>
+                                        <button
+                                                type="submit"
+                                                class="btn btn-success btn-sm"
+                                        >
+                                            <i class="bx bx-check me-1"></i>
+                                            تأیید دبیر
+                                        </button>
 
-                            </form>
+                                    </form>
 
-                        </td>
+                                    <form
+                                            action="<?= base_url('/admin/teachers/delete') ?>"
+                                            method="POST"
+                                            class="d-inline delete-teacher-form"
+                                    >
+                                        <input
+                                                type="hidden"
+                                                name="id"
+                                                value="<?= (int) $teacher['id_teacher_mast'] ?>"
+                                        >
 
-                    </tr>
+                                        <button
+                                                type="submit"
+                                                class="btn btn-danger btn-sm"
+                                        >
+                                            <i class="bx bx-trash me-1"></i>
+                                            حذف دبیر
+                                        </button>
+                                    </form>
 
-                    <?php endforeach; ?>
+                                </td>
 
-                    </tbody>
+                            </tr>
 
-                </table>
+                        <?php endforeach; ?>
 
-            </div>
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             <?php endif; ?>
 
         </div>
 
     </div>
-
+    <script>
+        function confirmDeleteTeacher(event, form) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'حذف دبیر',
+                text: 'آیا از حذف این دبیر مطمئن هستید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'بله، حذف شود',
+                cancelButtonText: 'انصراف',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+            return false;
+        }
+    </script>
 </section>

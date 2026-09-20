@@ -47,6 +47,7 @@ return function (Router $router , CourseController $courseController , HomeContr
     $router->post('/admin/type-book/delete' , [$adminTypeBookController , 'delete'] , 'admin_auth');
     $router->get('/admin/teachers/pending' , [$adminTeacherController , 'pending'] , 'admin_auth');
     $router->post('/admin/teachers/approve' , [$adminTeacherController , 'approve'] , 'admin_auth');
+    $router->post('/admin/teachers/delete' , [$adminTeacherController , 'delete'] , 'admin_auth');
 
     $router->get('/teacher/courses' , [$teacherCourseController , 'index'] , 'teacher_auth');
     $router->get('/teacher/create-course' , [$teacherCourseController , 'create'] , 'teacher_auth');
