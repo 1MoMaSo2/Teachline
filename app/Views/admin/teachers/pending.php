@@ -64,6 +64,7 @@
                         <th>سابقه تدریس</th>
                         <th>تاریخ ثبت‌نام</th>
                         <th>وضعیت</th>
+                        <th>عملیات</th>
                     </tr>
                     </thead>
 
@@ -144,6 +145,31 @@
                                     <span class="badge bg-warning text-dark">
                                         در انتظار تأیید
                                     </span>
+                        </td>
+
+                        <td>
+
+                            <form
+                                    action="<?= base_url('/admin/teachers/approve') ?>"
+                                    method="POST"
+                            >
+
+                                <input
+                                        type="hidden"
+                                        name="id"
+                                        value="<?= (int) $teacher['id_teacher_mast'] ?>"
+                                >
+
+                                <button
+                                        type="submit"
+                                        class="btn btn-success btn-sm"
+                                >
+                                    <i class="bx bx-check me-1"></i>
+                                    تأیید دبیر
+                                </button>
+
+                            </form>
+
                         </td>
 
                     </tr>
