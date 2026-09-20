@@ -214,20 +214,25 @@ $old = $old ?? [];
                                             name="gender"
                                             id="gender"
                                             class="form-select form-select-lg border-0 bg-light"
+                                            style="direction: rtl; text-align: right"
                                             required
                                     >
 
-                                        <option value="">
+                                        <option value="" style="direction: rtl; text-align: right">
                                             انتخاب جنسیت
                                         </option>
 
                                         <option value="مرد"
-                                                <?= (($old['gender'] ?? '') === 'مرد') ? 'selected' : '' ?>>
+                                                <?= (($old['gender'] ?? '') === 'مرد') ? 'selected' : '' ?>
+                                                style="direction: rtl; text-align: right"
+                                        >
                                             مرد
                                         </option>
 
                                         <option value="زن"
-                                                <?= (($old['gender'] ?? '') === 'زن') ? 'selected' : '' ?>>
+                                                <?= (($old['gender'] ?? '') === 'زن') ? 'selected' : '' ?>
+                                                style="direction: rtl; text-align: right"
+                                        >
                                             زن
                                         </option>
 

@@ -75,7 +75,7 @@
                     $createdAt = $teacher['teacher_date_created_account_mast'] ?? null;
 
                     if (is_numeric($createdAt)) {
-                        $createdAt = date('Y/m/d H:i', (int)$createdAt);
+                        $createdAt = date('Y/m/d , H:i', (int)$createdAt);
                     }
                     ?>
 

@@ -216,10 +216,11 @@ $old = $old ?? [];
                                         name="education_basic"
                                         id="education_basic"
                                         class="form-select form-select-lg border-0 bg-light"
+                                        style="direction: rtl; text-align: right"
                                         required
                                     >
 
-                                        <option value="">
+                                        <option value="" style="direction: rtl; text-align: right">
                                             انتخاب مقطع تحصیلی
                                         </option>
 
@@ -228,6 +229,7 @@ $old = $old ?? [];
                                             <option
                                                     value="<?= htmlspecialchars($education['education_basic_name_mast']) ?>"
                                                     <?= (($old['education_basic'] ?? '') === $education['education_basic_name_mast']) ? 'selected' : '' ?>
+                                                    style="direction: rtl; text-align: right"
                                             >
                                                 <?= htmlspecialchars($education['education_basic_name_mast']) ?>
                                             </option>
@@ -256,10 +258,11 @@ $old = $old ?? [];
                                         name="field_study"
                                         id="field_study"
                                         class="form-select form-select-lg border-0 bg-light"
+                                        style="direction: rtl; text-align: right"
                                         required
                                     >
 
-                                        <option value="">
+                                        <option value="" style="direction: rtl; text-align: right">
                                             انتخاب رشته تحصیلی
                                         </option>
 
@@ -268,6 +271,7 @@ $old = $old ?? [];
                                             <option
                                                     value="<?= htmlspecialchars($field['field_study_name_mast']) ?>"
                                                     <?= (($old['field_study'] ?? '') === $field['field_study_name_mast']) ? 'selected' : '' ?>
+                                                    style="direction: rtl; text-align: right"
                                             >
                                                 <?= htmlspecialchars($field['field_study_name_mast']) ?>
                                             </option>
