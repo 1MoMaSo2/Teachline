@@ -15,6 +15,15 @@ class AdminTeacherController
         );
     }
 
+    public function approved(): void
+    {
+        $teachers = $this->teacher->findApproved();
+        $this->view->render('admin/teachers/approved', [
+            'teachers' => $teachers],
+            'admin'
+        );
+    }
+
     public function approve(): void
     {
         $teacherId = filter_input(INPUT_POST , 'id' , FILTER_VALIDATE_INT);

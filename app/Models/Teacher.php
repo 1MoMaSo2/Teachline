@@ -41,6 +41,14 @@ class Teacher extends User
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function findApproved(): array
+    {
+        $sql = "SELECT * FROM $this->table WHERE teacher_status_mast = :status ORDER BY id_teacher_mast DESC";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([':status' => 1]);
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function verifyPassword(string $email , string $password): ?array
     {
         $teacher = $this->findByEmail($email);

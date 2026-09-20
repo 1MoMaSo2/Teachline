@@ -87,15 +87,14 @@
 
                 </div>
 
-
                 <!-- Teacher Management -->
                 <a
-                    class="nav-link collapsed"
-                    href="javascript:void(0);"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseTeachers"
-                    aria-expanded="false"
-                    aria-controls="collapseTeachers"
+                        class="nav-link collapsed"
+                        href="javascript:void(0);"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseTeachers"
+                        aria-expanded="false"
+                        aria-controls="collapseTeachers"
                 >
 
                     <div class="nav-link-icon">
@@ -113,57 +112,29 @@
 
                 <!-- Teacher Submenu -->
                 <div
-                    class="collapse"
-                    id="collapseTeachers"
-                    data-bs-parent="#accordionSidenav"
+                        class="collapse"
+                        id="collapseTeachers"
+                        data-bs-parent="#accordionSidenav"
                 >
 
                     <nav
-                        class="snav-menu-nested nav accordion"
-                        id="accordionTeacherMenu"
+                            class="snav-menu-nested nav"
+                            id="accordionTeacherMenu"
                     >
 
                         <a
-                            class="nav-link collapsed"
-                            href="javascript:void(0);"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#teacherManagement"
-                            aria-expanded="false"
-                            aria-controls="teacherManagement"
+                                class="nav-link"
+                                href="<?= base_url('/admin/teachers/approved') ?>"
                         >
-
-                            دبیران
-
-                            <div class="snav-collapse-arrow">
-                                <i class="bx bx-chevron-down"></i>
-                            </div>
-
+                            دبیران تأیید شده
                         </a>
-                        <div
-                            class="collapse"
-                            id="teacherManagement"
-                            data-bs-parent="#accordionTeacherMenu"
+
+                        <a
+                                class="nav-link"
+                                href="<?= base_url('/admin/teachers/pending') ?>"
                         >
-
-                            <nav class="snav-menu-nested nav">
-
-                                <a
-                                    class="nav-link"
-                                    href="javascript:void(0);"
-                                >
-                                     دبیران تأیید شده
-                                </a>
-
-                                <a
-                                    class="nav-link"
-                                    href="<?= base_url('admin/teachers/pending') ?>"
-                                >
-                                     دبیران در انتظار تأیید
-                                </a>
-
-                            </nav>
-
-                        </div>
+                            دبیران در انتظار تأیید
+                        </a>
 
                     </nav>
 
