@@ -74,10 +74,6 @@
 
                             <?php
                             $createdAt = $teacher['teacher_date_created_account_mast'] ?? null;
-
-                            if (is_numeric($createdAt)) {
-                                $createdAt = date('Y/m/d H:i', (int)$createdAt);
-                            }
                             ?>
 
                             <tr>
@@ -134,11 +130,11 @@
                                 </td>
 
                                 <td>
-                                    <?= htmlspecialchars(
-                                            $createdAt ?? '',
+                                    <?= htmlspecialchars($createdAt !== null
+                                            ? jalali_date('Y/m/d , ساعت H:i', (int) $createdAt) : '-',
                                             ENT_QUOTES,
-                                            'UTF-8'
-                                    ) ?>
+                                            'UTF-8')
+                                    ?>
                                 </td>
 
                                 <td>

@@ -74,16 +74,6 @@
 
                     <?php
                     $createdAt = $course['training_courses_date_created_course_mast'] ?? null;
-
-                    if (is_numeric($createdAt)) {
-                        $createdAt = date('Y/m/d', (int) $createdAt);
-                    } elseif (!empty($createdAt)) {
-                        $createdAt = date('Y/m/d', strtotime($createdAt));
-                    } else {
-                        $createdAt = '-';
-                    }
-
-                    $status = (int) ($course['training_courses_status_mast'] ?? 0);
                     ?>
 
                     <tr>
@@ -133,24 +123,29 @@
 
                         <td>
 
+                            <?php $status = (int) ($course['training_courses_status_mast'] ?? 0); ?>
+
                             <?php if ($status === 1): ?>
 
                                 <span class="badge bg-success">
-                                            فعال
-                                        </span>
+                                فعال
+                            </span>
 
                             <?php else: ?>
 
                                 <span class="badge bg-secondary">
-                                            غیرفعال
-                                        </span>
+                                غیرفعال
+                            </span>
 
                             <?php endif; ?>
 
                         </td>
-
                         <td>
-                            <?= htmlspecialchars($createdAt, ENT_QUOTES, 'UTF-8') ?>
+                            <?= htmlspecialchars($createdAt !== null
+                                    ? jalali_date('Y/m/d , ساعت H:i', (int) $createdAt) : '-',
+                                    ENT_QUOTES,
+                                    'UTF-8')
+                            ?>
                         </td>
 
                     </tr>

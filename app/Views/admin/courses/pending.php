@@ -74,14 +74,6 @@
 
                             <?php
                             $createdAt = $course['training_courses_date_created_course_mast'] ?? null;
-
-                            if (is_numeric($createdAt)) {
-                                $createdAt = date('Y/m/d', (int)$createdAt);
-                            } elseif (!empty($createdAt)) {
-                                $createdAt = date('Y/m/d', strtotime($createdAt));
-                            } else {
-                                $createdAt = '-';
-                            }
                             ?>
                             <tr>
 
@@ -130,11 +122,11 @@
                                 </td>
 
                                 <td>
-                                    <?= htmlspecialchars(
-                                            $createdAt,
+                                    <?= htmlspecialchars($createdAt !== null
+                                            ? jalali_date('Y/m/d , ساعت H:i', (int) $createdAt) : '-',
                                             ENT_QUOTES,
-                                            'UTF-8'
-                                    ) ?>
+                                            'UTF-8')
+                                    ?>
                                 </td>
 
                                 <td>
