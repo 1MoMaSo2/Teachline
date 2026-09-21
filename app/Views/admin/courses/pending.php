@@ -62,7 +62,6 @@
                             <th>مقطع</th>
                             <th>رشته</th>
                             <th>نوع دوره</th>
-                            <th>تعداد جلسات</th>
                             <th>تاریخ ایجاد</th>
                             <th>عملیات</th>
                         </tr>
@@ -115,10 +114,6 @@
                                             ENT_QUOTES,
                                             'UTF-8'
                                     ) ?>
-                                </td>
-
-                                <td>
-                                    <?= (int)($course['training_courses_lesson_mast'] ?? 0) ?>
                                 </td>
 
                                 <td>
