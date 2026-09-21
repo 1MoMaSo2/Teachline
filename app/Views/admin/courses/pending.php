@@ -158,6 +158,7 @@
                                             action="<?= base_url('/admin/courses/reject') ?>"
                                             method="POST"
                                             class="d-inline"
+                                            onsubmit="return confirmDeleteTeacher(event, this)"
                                     >
                                         <input
                                                 type="hidden"
@@ -192,4 +193,23 @@
 
     </div>
 
+    <script>
+        function confirmDeleteTeacher(event, form) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'رد کردن دوره',
+                text: 'آیا از حذف این دوره مطمئن هستید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'بله، حذف شود',
+                cancelButtonText: 'انصراف',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+            return false;
+        }
+    </script>
 </div>
