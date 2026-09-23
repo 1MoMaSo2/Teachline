@@ -3,344 +3,622 @@
 # 🎓 TeachLine — پلتفرم آموزش آنلاین هنرستان
 
 <p align="center">
-  <strong>یادگیری، مدیریت و انتشار محتوای آموزشی؛ ساده، متمرکز و قابل توسعه.</strong>
+  <strong>یک پلتفرم آموزشی فارسی، راست‌چین و چندنقشی برای مدیریت دوره‌های آموزشی، مدرس‌ها، هنرجویان و محتوای آموزشی.</strong>
 </p>
 
 <p align="center">
-  یک سامانه آموزشی فارسی و راست‌چین برای مدیریت دوره‌های آموزشی هنرستان، هنرجویان، مدرس‌ها و محتوای دوره.
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
-  <img src="https://img.shields.io/badge/MySQL%20%2F%20MariaDB-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="Database">
+  <img src="https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/MVC-Architecture-6DB33F?style=for-the-badge" alt="MVC">
   <img src="https://img.shields.io/badge/PDO-Data%20Access-8892BF?style=for-the-badge" alt="PDO">
+  <img src="https://img.shields.io/badge/Composer-Dependency%20Management-885630?style=for-the-badge&logo=composer&logoColor=white" alt="Composer">
   <img src="https://img.shields.io/badge/Bootstrap-UI-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap">
   <img src="https://img.shields.io/badge/RTL-Persian-00A98F?style=for-the-badge" alt="RTL">
 </p>
 
 ---
 
-## ✨ معرفی
+## 📌 معرفی پروژه
 
-**TeachLine** یک پروژه آموزشی/کاربردی برای ساخت یک پلتفرم آموزش آنلاین با تمرکز بر فضای آموزشی هنرستان است.
+**TeachLine** یک پلتفرم آموزش آنلاین با تمرکز بر فضای آموزشی هنرستان است که با **PHP** و **MySQL** توسعه داده شده است.
 
-ایده اصلی پروژه این است که سه گروه اصلی در یک سیستم واحد با یکدیگر کار کنند:
+این پروژه در ابتدا به‌صورت یک پروژه PHP ساده شروع شد و در ادامه به‌صورت مرحله‌به‌مرحله به سمت یک ساختار **MVC**، شی‌ءگرا و قابل توسعه حرکت کرده است.
 
-- 👨‍🎓 **هنرجو** → ثبت‌نام، ورود و مشاهده دوره‌ها و محتوای آموزشی
-- 👨‍🏫 **مدرس** → ایجاد، ویرایش و مدیریت دوره‌ها و جلسات آموزشی
-- 🛡️ **مدیر** → مدیریت مدرس‌ها، دوره‌ها، پایه‌ها، رشته‌ها و محتوای سامانه
+هدف اصلی پروژه فقط ساخت چند صفحه آموزشی نیست؛ بلکه پیاده‌سازی یک سیستم چندنقشی واقعی با تمرکز بر مفاهیم Backend، معماری نرم‌افزار، احراز هویت، مدیریت دسترسی، پایگاه داده و امنیت است.
 
-TeachLine در حال حاضر به‌صورت یک **PHP Monolithic Web Application** پیاده‌سازی شده و برای اجرا روی محیط‌های لوکال مانند **Laragon / XAMPP** مناسب است.
+TeachLine سه نقش اصلی دارد:
 
-> [!NOTE]
-> این مخزن نسخه فعلی پروژه را نمایش می‌دهد و برخی بخش‌ها هنوز جای توسعه، بهینه‌سازی و بازطراحی معماری دارند.
+- 👨‍🎓 **Student** — هنرجو
+- 👨‍🏫 **Teacher** — مدرس
+- 🛡️ **Admin** — مدیر سیستم
 
 ---
 
-## 🎯 چرا TeachLine؟
+# 🎯 اهداف پروژه
 
-TeachLine فقط یک صفحه لیست دوره نیست؛ ساختار پروژه از ابتدا با نگاه به یک **سیستم آموزشی چندنقشی** طراحی شده است.
+TeachLine با اهداف زیر توسعه داده شده است:
 
-### جریان کلی سیستم
+- یادگیری عملی PHP و PHP OOP
+- پیاده‌سازی معماری MVC بدون استفاده از Framework
+- طراحی Routing و Front Controller
+- کار با MySQL و PDO
+- پیاده‌سازی Authentication و Session Management
+- پیاده‌سازی Authorization و Middleware
+- مدیریت CRUD
+- کار با روابط بین جداول
+- مدیریت فایل و محتوای ویدیویی
+- ارسال ایمیل و فعال‌سازی حساب
+- رعایت اصول امنیتی Backend
+- استفاده از Composer و Package Management
+- آماده‌سازی پروژه برای توسعه و نگهداری بلندمدت
+- ایجاد یک پروژه قابل ارائه به‌عنوان Portfolio
+
+---
+
+# 👥 نقش‌های اصلی سیستم
+
+## 👨‍🎓 Student
+
+هنرجو می‌تواند:
+
+- ثبت‌نام کند
+- وارد حساب کاربری شود
+- حساب خود را از طریق Email Activation فعال کند
+- اطلاعات آموزشی خود مانند پایه و رشته را مدیریت کند
+- دوره‌های آموزشی را مشاهده کند
+- جزئیات دوره را مشاهده کند
+- جلسات آموزشی دوره را مشاهده کند
+- دوره‌ها را جست‌وجو کند
+- از حساب خود خارج شود
+
+---
+
+## 👨‍🏫 Teacher
+
+مدرس دارای پنل اختصاصی خود است و می‌تواند:
+
+- ثبت‌نام کند
+- وارد پنل مدرس شود
+- داشبورد اختصاصی داشته باشد
+- دوره آموزشی ایجاد کند
+- دوره‌های خود را مشاهده کند
+- دوره را ویرایش کند
+- دوره را حذف کند
+- جلسات دوره را مدیریت کند
+- محتوای ویدیویی دوره را مدیریت کند
+
+### تأیید دوره
+
+دوره ایجادشده توسط مدرس تا زمانی که توسط Admin تأیید نشده باشد، در بخش دوره‌های تأییدشده مدرس قرار نمی‌گیرد.
+
+پس از تأیید Admin:
 
 ```text
-                    ┌────────────────────┐
-                    │      TeachLine     │
-                    │  Learning Platform │
-                    └─────────┬──────────┘
-                              │
-              ┌───────────────┼───────────────┐
-              │               │               │
-              ▼               ▼               ▼
-        👨‍🎓 Student      👨‍🏫 Instructor    🛡️ Admin
-              │               │               │
-              ▼               ▼               ▼
-        Browse Courses   Manage Courses   Manage System
-        Course Details   Course Meetings  Approve Content
-        Account          Edit / Delete    Manage Categories
+Teacher
+   │
+   ▼
+Create Course
+   │
+   ▼
+Pending
+   │
+   ▼
+Admin Review
+   │
+   ▼
+Approved
+   │
+   ├── Course
+   ├── Meetings
+   └── Video Content
 ```
+
+این جریان باعث می‌شود محتوای آموزشی قبل از انتشار عمومی توسط مدیر سیستم بررسی شود.
 
 ---
 
-## 🚀 قابلیت‌ها
+# 🛡️ Admin
 
-### 👨‍🎓 بخش هنرجو
+Admin مرکز کنترل سیستم است و بخش مدیریتی جداگانه‌ای دارد.
 
-- ثبت‌نام هنرجو
-- ورود به حساب
-- فعال‌سازی حساب از طریق کد ایمیل
-- انتخاب پایه تحصیلی
-- انتخاب رشته
-- مشاهده دسته‌بندی دوره‌ها
-- مشاهده جزئیات دوره
-- مشاهده جلسات آموزشی
-- جست‌وجوی محتوا
-- خروج از حساب
+قابلیت‌های اصلی Admin شامل:
 
-### 👨‍🏫 بخش مدرس
-
-- ثبت‌نام مدرس
-- ورود مدرس
-- داشبورد اختصاصی
-- ایجاد دوره
-- ویرایش دوره
-- حذف دوره
-- مدیریت جلسات دوره
-- افزودن محتوای آموزشی به دوره
-- مشاهده دوره‌های ایجادشده
-
-### 🛡️ بخش مدیریت
-
+- ورود اختصاصی Admin
 - داشبورد مدیریتی
 - مشاهده آمار کلی سیستم
 - مدیریت مدرس‌ها
 - بررسی مدرس‌های در انتظار تأیید
 - مشاهده مدرس‌های تأییدشده
+- مدیریت دوره‌های آموزشی
 - بررسی دوره‌های در انتظار تأیید
 - تأیید دوره‌ها
 - مدیریت پایه‌های تحصیلی
-- مدیریت رشته‌های تحصیلی
-- مدیریت نوع کتاب/محتوا
-- مدیریت حساب مدیر
+- مدیریت رشته‌ها
+- مدیریت نوع کتاب / محتوا
+- مدیریت اطلاعات مدیریتی مرتبط با این بخش‌ها
 
-### 🎨 رابط کاربری
-
-- رابط کاربری فارسی
-- پشتیبانی از RTL
-- استفاده از فونت Vazirmatn
-- طراحی Responsive
-- صفحات اختصاصی برای نقش‌های مختلف
-- استفاده از Bootstrap و کتابخانه‌های UI
-- داشبوردهای مدیریتی و مدرس
-
----
-
-## 🧰 تکنولوژی‌های استفاده‌شده
-
-| Technology | کاربرد |
-|---|---|
-| **PHP** | منطق سمت سرور |
-| **PDO** | ارتباط با پایگاه داده |
-| **MySQL / MariaDB** | ذخیره‌سازی اطلاعات |
-| **HTML5** | ساختار صفحات |
-| **CSS3** | استایل و طراحی |
-| **JavaScript** | تعاملات سمت کاربر |
-| **Bootstrap** | رابط کاربری Responsive |
-| **PHPMailer** | ارسال ایمیل |
-| **Vazirmatn** | تایپوگرافی فارسی |
-| **ApexCharts / Chart.js** | نمودارهای داشبورد |
-| **jQuery** | برخی تعاملات و پلاگین‌ها |
-
----
-
-# 📁 ساختار پروژه
-
-ساختار اصلی مخزن به‌صورت کلی:
+ساختار کلی:
 
 ```text
-teachline/
+Admin Dashboard
+       │
+       ├── Teachers
+       │      ├── Pending
+       │      └── Approved
+       │
+       ├── Courses
+       │      ├── Pending
+       │      └── Approved
+       │
+       ├── Education Basics
+       │
+       ├── Fields of Study
+       │
+       ├── Book / Content Types
+       │
+       └── System Statistics
+```
+
+---
+
+# 🏗️ معماری پروژه
+
+TeachLine در حال حاضر با یک معماری **MVC سفارشی و بدون Framework** توسعه داده می‌شود.
+
+ساختار کلی:
+
+```text
+Browser
+   │
+   ▼
+public/index.php
+   │
+   ▼
+Bootstrap / Routing
+   │
+   ▼
+Controller
+   │
+   ├──────────────► Model
+   │                    │
+   │                    ▼
+   │                  PDO
+   │                    │
+   │                    ▼
+   │                 MySQL
+   │
+   ▼
+View
+   │
+   ▼
+Layout / UI
+```
+
+### اجزای اصلی معماری
+
+#### Front Controller
+
+درخواست‌های اصلی پروژه از طریق:
+
+```text
+public/index.php
+```
+
+وارد سیستم می‌شوند.
+
+#### Routing
+
+مسیرها در:
+
+```text
+routes/
+```
+
+مدیریت می‌شوند.
+
+Router مسئول تشخیص Route و ارسال درخواست به Controller مناسب است.
+
+#### Controllers
+
+Controllerها مسئول دریافت Request، اجرای منطق مربوط به درخواست و ارسال داده مناسب به View هستند.
+
+#### Models
+
+Modelها مسئول ارتباط با Database و اجرای Queryهای مربوط به Entityها هستند.
+
+#### Views
+
+Viewها مسئول نمایش اطلاعات و UI هستند.
+
+#### Layouts
+
+برای جلوگیری از تکرار ساختار صفحات، Layoutهای جداگانه برای بخش‌های مختلف پروژه استفاده شده‌اند.
+
+از جمله:
+
+```text
+Student / Public Layout
+Teacher Layout
+Admin Layout
+```
+
+---
+
+# 📁 ساختار فعلی پروژه
+
+ساختار اصلی پروژه به‌صورت کلی:
+
+```text
+TeachLine/
 │
-├── admin/                       # 🛡️ پنل مدیریت
-│   ├── admin-dashboard.php
-│   ├── admin-sign-in.php
-│   ├── admin-accept-courses-list.php
-│   ├── admin-accept-instructors-list.php
-│   ├── admin-add-education-basic.php
-│   ├── admin-add-field-study.php
-│   ├── admin-add-type-book.php
-│   ├── include/
-│   └── assets/
+├── app/
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Views/
+│   │   ├── layouts/
+│   │   ├── admin/
+│   │   ├── teachers/
+│   │   ├── students/
+│   │   └── ...
+│   │
+│   └── ...
 │
-├── instructor/                  # 👨‍🏫 پنل مدرس
-│   ├── instructor-dashboard.php
-│   ├── instructor-sign-in.php
-│   ├── instructor-sign-up.php
-│   ├── instructor-create-course.php
-│   ├── instructor-edit-course.php
-│   ├── instructor-delete-course.php
-│   └── instructor-manage-course-meetings.php
-│
-├── include/                     # ⚙️ فایل‌های مشترک
-│   └── database/
-│       └── connect.php
-│
-├── assets/                      # 🎨 منابع Front-end
+├── assets/
 │   ├── css/
 │   ├── js/
 │   ├── img/
 │   ├── vendor/
-│   └── fonts/
+│   └── upload/
 │
-├── script/                      # 🧩 اسکریپت‌ها و کتابخانه‌ها
+├── public/
+│   └── index.php
 │
-├── PHPMailer/                   # ✉️ سیستم ارسال ایمیل
+├── routes/
+│   └── ...
 │
-├── index.php                    # 🏠 صفحه اصلی
-├── sign-up.php                  # 📝 ثبت‌نام هنرجو
-├── sign-in.php                  # 🔐 ورود هنرجو
-├── course-categories.php        # 📚 دسته‌بندی دوره‌ها
-├── course-detail.php            # 📖 جزئیات دوره
-├── search-content.php            # 🔎 جست‌وجو
+├── script/
 │
-├── tenth-general-category.php
-├── tenth-specialized-category.php
-├── eleventh-general-category.php
-├── eleventh-specialized-category.php
-├── twelfth-general-category.php
-├── twelfth-specialized-category.php
-│
-└── mast_teachline.sql            # 🗄️ ساختار و داده اولیه دیتابیس
+├── bootstrap.php
+├── composer.json
+├── composer.lock
+├── mast_teachline.sql
+└── README.md
 ```
+
+> ساختار بالا نمای کلی معماری فعلی پروژه است و ممکن است با ادامه توسعه، پوشه‌ها و فایل‌های داخلی آن گسترش پیدا کنند.
 
 ---
 
-# 🗄️ ساختار دیتابیس
+# 🧰 تکنولوژی‌ها و ابزارها
 
-پایگاه داده اصلی پروژه:
+| Technology | کاربرد |
+|---|---|
+| **PHP 8.3** | Backend و منطق سمت سرور |
+| **PHP OOP** | طراحی شی‌ءگرا |
+| **MVC** | معماری برنامه |
+| **MySQL** | پایگاه داده |
+| **PDO** | ارتباط با Database |
+| **HTML5** | ساختار صفحات |
+| **CSS3** | طراحی رابط کاربری |
+| **JavaScript** | تعاملات سمت کاربر |
+| **Bootstrap** | UI و Responsive Design |
+| **Composer** | مدیریت Dependencies |
+| **PHPMailer** | ارسال Email از طریق SMTP |
+| **Dotenv** | مدیریت Environment Variables |
+| **SweetAlert2** | نمایش پیام‌های کاربری |
+| **Vazirmatn** | تایپوگرافی فارسی |
+| **Git** | Version Control |
+| **GitHub** | Repository و Version History |
+| **Laragon** | Local Development Environment |
+| **PhpStorm** | IDE |
 
-```text
-mast_teachline
-```
+---
 
-فایل SQL پروژه:
+# 🗄️ Database
+
+TeachLine از **MySQL** برای ذخیره اطلاعات استفاده می‌کند.
+
+فایل ساختار Database در Repository:
 
 ```text
 mast_teachline.sql
 ```
 
-برخی از جدول‌های اصلی:
+برخی از Entityهای اصلی سیستم شامل:
 
 ```text
-admin_mast
-student_mast
-teacher_mast
+Admin
+Student
+Teacher
 
-education_basic_mast
-field_study_mast
-type_book_mast
+Education Basic
+Field Study
+Type Book
 
-training_courses_mast
-training_course_meetings_mast
+Course
+Course Meeting
 ```
 
-### رابطه مفهومی داده‌ها
+رابطه مفهومی:
 
 ```text
 Admin
  │
- ├── Education Basics
- ├── Fields of Study
- ├── Book / Content Types
- │
+ ├── Education Basic
+ ├── Field Study
+ ├── Type Book
  ├── Teachers
  │      │
  │      └── Courses
- │              │
- │              └── Course Meetings
+ │             │
+ │             └── Course Meetings
  │
  └── Course Approval
 
 Student
  │
  ├── Education Basic
- ├── Field of Study
- └── Courses / Learning Content
+ ├── Field Study
+ └── Courses
 ```
 
 ---
 
-# ⚙️ نصب و راه‌اندازی
+# 🔐 Authentication & Authorization
 
-## 1. پیش‌نیازها
+TeachLine دارای سیستم‌های Authentication جداگانه برای نقش‌های اصلی است:
 
-برای اجرای پروژه به موارد زیر نیاز دارید:
+```text
+Student Authentication
+Teacher Authentication
+Admin Authentication
+```
 
-- PHP 8.2 یا بالاتر
-- MySQL یا MariaDB
-- Apache یا وب‌سرور مشابه
-- PDO و PDO MySQL
-- مرورگر مدرن
-- Git (اختیاری)
-- Composer (برای مدیریت وابستگی‌های Composer در صورت نیاز)
+Session برای نگهداری وضعیت ورود کاربران استفاده می‌شود.
 
-> نسخه SQL موجود در مخزن با محیطی شامل **PHP 8.2.12** و **MariaDB 10.4.32** تولید شده است.
+همچنین دسترسی به بخش‌های مختلف سیستم بر اساس نقش کاربر کنترل می‌شود.
+
+برای مثال:
+
+```text
+Student
+   └── Student Routes
+
+Teacher
+   └── Teacher Routes
+
+Admin
+   └── Admin Routes
+```
+
+کاربر احراز هویت‌نشده نباید بتواند مستقیماً وارد پنل‌های محافظت‌شده شود.
 
 ---
 
-## 2. دریافت پروژه
+# 🔒 Security
+
+امنیت یکی از بخش‌های مهم مسیر توسعه TeachLine است.
+
+در پروژه روی مفاهیمی مانند موارد زیر کار شده است:
+
+- Password Hashing
+- Prepared Statements
+- PDO
+- Session Authentication
+- Authorization
+- Middleware
+- Server-side Validation
+- Flash Messages
+- جلوگیری از نمایش مستقیم Errorهای حساس
+- کنترل دسترسی به بخش‌های مختلف
+
+همچنین موارد زیر در مسیر توسعه و تقویت امنیت قرار دارند:
+
+- CSRF Protection
+- Secure Cookie Configuration
+- Rate Limiting
+- Secure File Upload Validation
+- Production Error Handling
+- تکمیل Security Headers
+- بررسی نهایی Access Control
+
+> TeachLine یک پروژه در حال توسعه است و نباید در وضعیت فعلی به‌عنوان یک سیستم Production-ready معرفی شود.
+
+---
+
+# ✉️ Email & Account Activation
+
+TeachLine برای ارسال ایمیل از **PHPMailer** و SMTP استفاده می‌کند.
+
+یکی از کاربردهای آن فعال‌سازی حساب کاربر از طریق Email Activation است.
+
+جریان کلی:
+
+```text
+Register
+   │
+   ▼
+Activation Code
+   │
+   ▼
+Email
+   │
+   ▼
+User Activation
+   │
+   ▼
+Account Active
+```
+
+تنظیمات حساس Email نباید داخل Source Code یا Repository عمومی قرار بگیرند.
+
+---
+
+# 📚 Course Management
+
+مدیریت دوره یکی از بخش‌های اصلی TeachLine است.
+
+دوره‌ها می‌توانند شامل:
+
+- اطلاعات دوره
+- مدرس
+- پایه تحصیلی
+- رشته
+- نوع محتوا
+- جلسات آموزشی
+- محتوای ویدیویی
+
+باشند.
+
+جریان کلی:
+
+```text
+Teacher
+   │
+   ▼
+Create Course
+   │
+   ▼
+Admin Review
+   │
+   ├── Approve
+   │
+   └── Reject
+```
+
+دوره‌های تأییدنشده نباید به‌عنوان دوره تأییدشده مدرس در نظر گرفته شوند.
+
+---
+
+# 🎥 Course Meetings & Video Content
+
+هر دوره می‌تواند شامل جلسات آموزشی باشد.
+
+ساختار مفهومی:
+
+```text
+Course
+ │
+ ├── Meeting 1
+ │      └── Video
+ │
+ ├── Meeting 2
+ │      └── Video
+ │
+ └── Meeting 3
+        └── Video
+```
+
+مدیریت جلسات و محتوای ویدیویی از طریق پنل مدرس انجام می‌شود.
+
+فایل‌های ویدیویی در مسیر Upload مربوط به پروژه نگهداری می‌شوند و هنگام حذف Course باید وابستگی‌های مربوط به جلسات و فایل‌های آن نیز به‌درستی مدیریت شوند.
+
+---
+
+# 🔎 Course Search
+
+TeachLine دارای قابلیت جست‌وجوی دوره است.
+
+کاربر می‌تواند دوره‌ها را بر اساس عبارت جست‌وجو پیدا کند و نتایج به‌صورت Card نمایش داده می‌شوند.
+
+---
+
+# 🎨 User Interface
+
+TeachLine یک رابط کاربری:
+
+- فارسی
+- RTL
+- Responsive
+- مبتنی بر Bootstrap
+- دارای Layoutهای جداگانه برای نقش‌های مختلف
+
+دارد.
+
+یکی از اصول مهم توسعه پروژه این است که **تغییرات Backend و معماری نباید بدون دلیل ظاهر UI موجود را خراب کنند.**
+
+بنابراین در Refactoringهای آینده، حفظ ظاهر و تجربه کاربری صفحات موجود یک Constraint مهم پروژه است.
+
+---
+
+# 🧩 Composer
+
+مدیریت Dependencies پروژه با Composer انجام می‌شود.
+
+فایل‌های اصلی:
+
+```text
+composer.json
+composer.lock
+```
+
+پس از Clone پروژه:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/teachline.git
-cd teachline
+composer install
 ```
 
-یا مخزن را به‌صورت ZIP دریافت و Extract کنید.
+را اجرا کنید.
+
+پوشه:
+
+```text
+vendor/
+```
+
+نباید در Git Commit شود.
 
 ---
 
-## 3. قرار دادن پروژه در Web Root
+# ⚙️ Environment Configuration
 
-### Laragon
+اطلاعات حساس و تنظیمات محیطی پروژه باید خارج از Source Code نگهداری شوند.
 
-پروژه را داخل:
+نمونه:
 
-```text
-C:\laragon\www\
+```env
+APP_ENV=development
+
+DB_HOST=localhost
+DB_NAME=mast_teachline
+DB_USER=root
+DB_PASSWORD=
+
+MAIL_HOST=smtp.example.com
+MAIL_PORT=587
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
 ```
 
-قرار دهید.
-
-مثلاً:
-
-```text
-C:\laragon\www\teachline
-```
-
-سپس Laragon را اجرا کنید و Apache و MySQL/MariaDB را Start کنید.
-
-### XAMPP
-
-پروژه را داخل:
-
-```text
-C:\xampp\htdocs\
-```
-
-قرار دهید.
-
-مثلاً:
-
-```text
-C:\xampp\htdocs\teachline
-```
-
-سپس Apache و MySQL را Start کنید.
+فایل `.env` نباید وارد Repository شود.
 
 ---
 
-# 🗃️ 4. ساخت دیتابیس
+# 🚀 نصب و اجرای پروژه
 
-phpMyAdmin را باز کنید:
+## 1. Clone
 
-```text
-http://localhost/phpmyadmin
+```bash
+git clone https://github.com/1MoMaSo2/Teachline.git
+cd Teachline
 ```
 
-یک دیتابیس با نام زیر بسازید:
+## 2. نصب Dependencies
+
+```bash
+composer install
+```
+
+## 3. ساخت Database
+
+در phpMyAdmin یک Database ایجاد کنید:
 
 ```text
 mast_teachline
 ```
 
-ترجیحاً Collation را روی یکی از حالت‌های UTF-8 مانند:
-
-```text
-utf8mb4_unicode_ci
-```
-
-قرار دهید.
-
-سپس فایل:
+سپس:
 
 ```text
 mast_teachline.sql
@@ -348,535 +626,230 @@ mast_teachline.sql
 
 را Import کنید.
 
-> فایل SQL پروژه در حال حاضر ساختار جداول و داده‌های اولیه را نیز شامل می‌شود.
+## 4. تنظیم Environment
+
+فایل `.env` را بر اساس محیط Local خود تنظیم کنید.
+
+## 5. اجرای پروژه
+
+پروژه برای محیط توسعه با **Laragon** قابل اجرا است.
+
+ساختار مسیر نمونه:
+
+```text
+C:\laragon\www\teachline
+```
+
+و Front Controller پروژه:
+
+```text
+public/index.php
+```
+
+است.
 
 ---
 
-# 🔌 5. تنظیم اتصال دیتابیس
+# 🧪 Development Status
 
-فایل زیر مسئول اتصال PHP به دیتابیس است:
+TeachLine یک پروژه **در حال توسعه و Refactoring** است.
 
-```text
-include/database/connect.php
-```
-
-ساختار اتصال فعلی برای محیط لوکال:
-
-```php
-$servername = "mysql:host=localhost;dbname=mast_teachline";
-$username = "root";
-$password = "";
-```
-
-اگر اطلاعات MySQL شما متفاوت است، همین فایل را متناسب با محیط خود تغییر دهید.
-
-### پیشنهاد برای نسخه‌های آینده
-
-بهتر است اطلاعات اتصال از کد خارج شده و از `.env` استفاده شود:
-
-```env
-DB_HOST=localhost
-DB_NAME=mast_teachline
-DB_USER=root
-DB_PASSWORD=
-```
-
-و `.env` هرگز وارد Git نشود.
-
----
-
-# 🌐 6. اجرای پروژه
-
-پس از اجرای Apache و MySQL:
-
-### Laragon
-
-```text
-http://teachline.test
-```
-
-یا در صورت استفاده از مسیر مستقیم:
-
-```text
-http://localhost/teachline
-```
-
-### XAMPP
-
-```text
-http://localhost/teachline
-```
-
-صفحه اصلی پروژه:
-
-```text
-index.php
-```
-
----
-
-# 🔐 حساب‌های سیستم
-
-فایل SQL فعلی یک حساب مدیریتی اولیه ایجاد می‌کند.
-
-> ⚠️ این اطلاعات صرفاً برای **محیط توسعه** هستند. بعد از نصب، رمز عبور حساب مدیر را تغییر دهید و قبل از Deploy روی سرور عمومی، حساب پیش‌فرض را حذف یا غیرفعال کنید.
-
-همچنین حساب‌های هنرجو و مدرس از طریق فرم‌های ثبت‌نام خود سیستم ساخته می‌شوند.
-
----
-
-# ✉️ تنظیم ارسال ایمیل
-
-TeachLine برای ارسال ایمیل از **PHPMailer** و SMTP استفاده می‌کند.
-
-مسیر:
-
-```text
-PHPMailer/
-```
-
-برای محیط واقعی باید تنظیمات SMTP را از کد خارج کنید و در Environment Variables نگه دارید.
-
-نمونه:
-
-```env
-MAIL_HOST=smtp.example.com
-MAIL_PORT=587
-MAIL_USERNAME=your-email@example.com
-MAIL_PASSWORD=your-secret
-MAIL_ENCRYPTION=tls
-```
-
-> [!IMPORTANT]
-> هیچ Password، SMTP Credential، API Key یا Secret را داخل فایل‌های PHP یا GitHub قرار ندهید.
-
----
-
-# 🧭 نحوه استفاده
-
-## 👨‍🎓 هنرجو
-
-جریان پیشنهادی:
-
-```text
-ثبت‌نام
-   ↓
-تکمیل اطلاعات
-   ↓
-دریافت کد فعال‌سازی ایمیل
-   ↓
-فعال‌سازی حساب
-   ↓
-ورود
-   ↓
-انتخاب پایه / رشته
-   ↓
-مشاهده دوره‌ها
-   ↓
-مشاهده جزئیات دوره
-   ↓
-مشاهده جلسات آموزشی
-```
-
----
-
-## 👨‍🏫 مدرس
-
-```text
-ثبت‌نام مدرس
-   ↓
-بررسی توسط مدیر
-   ↓
-تأیید مدرس
-   ↓
-ورود به پنل مدرس
-   ↓
-ایجاد دوره
-   ↓
-افزودن جلسات
-   ↓
-ویرایش / مدیریت دوره
-   ↓
-ارسال برای بررسی
-   ↓
-تأیید توسط مدیر
-```
-
----
-
-## 🛡️ مدیر
-
-مدیر مرکز کنترل سیستم است:
-
-```text
-Admin Dashboard
-      │
-      ├── مدیریت مدرس‌ها
-      │      ├── Waiting
-      │      └── Approved
-      │
-      ├── مدیریت دوره‌ها
-      │      ├── Waiting
-      │      └── Approved
-      │
-      ├── مدیریت پایه‌ها
-      ├── مدیریت رشته‌ها
-      ├── مدیریت نوع کتاب
-      └── مشاهده آمار سیستم
-```
-
----
-
-# 🧱 معماری فعلی پروژه
-
-TeachLine در نسخه فعلی یک معماری **PHP Monolithic** دارد.
-
-به‌صورت مفهومی:
-
-```text
-┌─────────────────────────────────────────────┐
-│                 Browser / UI                │
-│          HTML + CSS + JS + Bootstrap        │
-└──────────────────────┬──────────────────────┘
-                       │
-                       ▼
-┌─────────────────────────────────────────────┐
-│                PHP Application              │
-│                                             │
-│  Student │ Instructor │ Admin │ Shared Code │
-└──────────────────────┬──────────────────────┘
-                       │
-                       ▼
-┌─────────────────────────────────────────────┐
-│                     PDO                     │
-└──────────────────────┬──────────────────────┘
-                       │
-                       ▼
-┌─────────────────────────────────────────────┐
-│               MySQL / MariaDB               │
-└─────────────────────────────────────────────┘
-```
-
-این ساختار برای یادگیری PHP، SQL، Session، Authentication، CRUD و مفاهیم Backend مناسب است؛ اما برای رشد پروژه، مهاجرت به معماری MVC و سپس Laravel می‌تواند مسیر منطقی بعدی باشد.
-
----
-
-# 🧪 وضعیت فعلی پروژه
+وضعیت کلی:
 
 | بخش | وضعیت |
 |---|---|
-| Landing / Home | ✅ |
 | Student Authentication | ✅ |
-| Instructor Authentication | ✅ |
+| Teacher Authentication | ✅ |
 | Admin Authentication | ✅ |
-| Course Management | ✅ |
-| Course Meetings | ✅ |
-| Search | ✅ |
-| Education Categories | ✅ |
+| Student Area | ✅ |
+| Teacher Dashboard | ✅ |
 | Admin Dashboard | ✅ |
-| Instructor Dashboard | ✅ |
-| Email Verification | ✅ |
+| Course Management | ✅ |
+| Course Approval | ✅ |
+| Course Meetings | ✅ |
+| Video Management | ✅ |
+| Course Search | ✅ |
+| Email Activation | ✅ |
+| Composer | ✅ |
 | PDO Database Layer | ✅ |
-| Responsive UI | ✅ |
-| MVC Architecture | 🚧 در مسیر توسعه |
-| Environment Configuration | 🚧 |
-| Automated Tests | 🚧 |
-| REST API | 🚧 |
-| Laravel Migration | 🗺️ برنامه آینده |
-| Mobile App API | 🗺️ برنامه آینده |
-
-> وضعیت بالا بر اساس ساختار فعلی مخزن نوشته شده و به معنی کامل یا Production-ready بودن همه بخش‌ها نیست.
-
----
-
-# 🔒 امنیت
-
-اگر قصد دارید این پروژه را روی GitHub عمومی یا یک سرور واقعی قرار دهید، این بخش را جدی بگیرید.
-
-### قبل از Public کردن Repository:
-
-- [ ] تمام Passwordها و Secretها از Source Code حذف شوند.
-- [ ] تنظیمات SMTP به Environment Variables منتقل شود.
-- [ ] رمز عبور پیش‌فرض Admin تغییر کند.
-- [ ] رمزهای کاربران با `password_hash()` ذخیره شوند.
-- [ ] برای ورود از Session امن استفاده شود.
-- [ ] CSRF Protection اضافه شود.
-- [ ] Validation سمت Server کامل شود.
-- [ ] Rate Limiting برای Login اضافه شود.
-- [ ] Error Messageهای دیتابیس به کاربر نمایش داده نشوند.
-- [ ] `.env` به `.gitignore` اضافه شود.
-- [ ] فایل‌های IDE مانند `.idea/` در Repository قرار نگیرند.
-- [ ] دسترسی مستقیم به فایل‌های حساس محدود شود.
-- [ ] Uploadها به‌صورت امن مدیریت شوند.
-
-> [!CAUTION]
-> **اگر این Repository را Public می‌کنید، قبل از Push حتماً Source Code را برای Credential و Secret بررسی کنید.** اطلاعات SMTP یا رمزهای واقعی را حتی در Commitهای قبلی هم نباید نگه داشت؛ اگر قبلاً Push شده‌اند باید Credential مربوطه را Rotate/Revoke کنید.
-
----
-
-# 🧹 پیشنهاد `.gitignore`
-
-برای نسخه‌های بعدی پیشنهاد می‌شود حداقل موارد زیر در `.gitignore` باشند:
-
-```gitignore
-# Environment
-.env
-.env.*
-!.env.example
-
-# IDE
-.idea/
-.vscode/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
-# PHP
-vendor/
-
-# Temporary files
-*.tmp
-*.temp
-
-# Local configuration
-config.local.php
-```
+| MVC Structure | 🚧 در حال توسعه |
+| Security Hardening | 🚧 در حال توسعه |
+| Automated Tests | 🗺️ برنامه آینده |
+| REST API | 🗺️ برنامه آینده |
+| Laravel | 🗺️ برنامه آینده |
 
 ---
 
 # 🛣️ Roadmap
 
-TeachLine می‌تواند از یک پروژه PHP ساده به یک پلتفرم آموزشی کامل‌تر تبدیل شود.
+## Phase 1 — MVC Refactoring
 
-### Phase 01 — Clean Architecture
+- [x] Front Controller
+- [x] Routing
+- [x] Controllers
+- [x] Models
+- [x] Views
+- [x] Layouts
+- [x] Shared Components
+- [ ] تکمیل Refactoring تمام بخش‌های قدیمی
+- [ ] بهبود Separation of Concerns
 
-- [ ] انتقال پروژه به ساختار MVC
-- [ ] جداسازی Controller / Model / View
-- [ ] ایجاد Service Layer
-- [ ] ایجاد Repository Layer
-- [ ] مدیریت بهتر Routing
-- [ ] ایجاد Configuration مرکزی
+## Phase 2 — Backend Quality
 
-### Phase 02 — Security
+- [x] OOP
+- [x] PDO
+- [x] Composer
+- [x] Environment Configuration
+- [ ] Service Layer
+- [ ] Repository Layer در بخش‌های موردنیاز
+- [ ] تکمیل SOLID Refactoring
 
-- [ ] Password Hashing
+## Phase 3 — Security
+
+- [x] Password Hashing
+- [x] Prepared Statements
+- [x] Authentication
+- [x] Authorization
 - [ ] CSRF Protection
-- [ ] Input Validation
-- [ ] Authorization Policies
-- [ ] Secure Sessions
+- [ ] Secure Cookies
 - [ ] Rate Limiting
-- [ ] Secure File Upload
+- [ ] Secure Upload Validation
+- [ ] Production Error Handling
 
-### Phase 03 — API
+## Phase 4 — Testing
 
-- [ ] REST API
-- [ ] JSON Responses
-- [ ] Authentication Token
-- [ ] API Versioning
-- [ ] Course API
-- [ ] Student API
-- [ ] Instructor API
+- [ ] Unit Tests
+- [ ] Feature Tests
+- [ ] Authentication Tests
+- [ ] Authorization Tests
+- [ ] Course Management Tests
 
-### Phase 04 — Laravel
+## Phase 5 — Laravel
 
-- [ ] Migration به Laravel
-- [ ] Eloquent ORM
-- [ ] Laravel Validation
-- [ ] Laravel Authentication
-- [ ] Laravel Mail
-- [ ] Laravel Storage
-- [ ] Laravel API Resources
-
-### Phase 05 — Mobile
+پس از تثبیت معماری و تکمیل مسیر یادگیری PHP/MVC، یکی از مسیرهای آینده پروژه:
 
 ```text
-             TeachLine API
-                   │
-          ┌────────┴────────┐
-          ▼                 ▼
-     Web Application    Mobile App
-                           │
-                    React Native / Flutter
+TeachLine PHP MVC
+        │
+        ▼
+Laravel
+        │
+        ├── Eloquent
+        ├── Validation
+        ├── Authentication
+        ├── Mail
+        ├── Storage
+        └── API
 ```
 
----
-
-# 🤝 مشارکت در پروژه
-
-اگر قصد دارید در توسعه TeachLine مشارکت کنید:
-
-```bash
-git clone https://github.com/YOUR_USERNAME/teachline.git
-cd teachline
-```
-
-یک Branch جدید بسازید:
-
-```bash
-git checkout -b feature/my-feature
-```
-
-تغییرات را Commit کنید:
-
-```bash
-git add .
-git commit -m "feat: add my feature"
-```
-
-و سپس:
-
-```bash
-git push origin feature/my-feature
-```
-
-بعد از آن می‌توانید Pull Request ایجاد کنید.
-
-### پیشنهاد برای Commit Message
-
-```text
-feat: add course search
-fix: fix instructor authentication
-refactor: improve database connection
-security: protect admin authentication
-docs: update installation guide
-style: improve course card UI
-```
+هدف این مرحله استفاده از تجربه به‌دست‌آمده در PHP خام و MVC برای درک بهتر Laravel است.
 
 ---
 
 # 📸 Screenshots
 
-برای کامل‌تر شدن صفحه GitHub پیشنهاد می‌شود تصاویر واقعی پروژه در این بخش قرار بگیرند:
+برای نمایش بهتر پروژه، تصاویر واقعی بخش‌های اصلی در آینده در این قسمت قرار خواهند گرفت:
 
-```text
-docs/
-└── screenshots/
-    ├── home.png
-    ├── courses.png
-    ├── course-detail.png
-    ├── student-dashboard.png
-    ├── instructor-dashboard.png
-    └── admin-dashboard.png
-```
-
-سپس:
-
-```markdown
-![TeachLine Home](docs/screenshots/home.png)
-```
+- Home
+- Course Listing
+- Course Detail
+- Student Area
+- Teacher Dashboard
+- Teacher Course Management
+- Admin Dashboard
+- Admin Course Management
 
 ---
 
-# 📌 نکات مهم برای توسعه‌دهندگان
+# 🧠 چیزهایی که این پروژه برای من فراهم کرده است
 
-### Database
+TeachLine فقط یک پروژه CRUD نیست.
 
-اتصال دیتابیس در:
-
-```text
-include/database/connect.php
-```
-
-متمرکز شده است.
-
-### Student Pages
-
-صفحات عمومی و هنرجو عمدتاً در Root پروژه قرار دارند:
-
-```text
-index.php
-sign-in.php
-sign-up.php
-course-categories.php
-course-detail.php
-search-content.php
-```
-
-### Instructor Module
-
-تمام منطق اصلی مدرس در:
-
-```text
-instructor/
-```
-
-قرار گرفته است.
-
-### Admin Module
-
-تمام منطق مدیریتی در:
-
-```text
-admin/
-```
-
-قرار گرفته است.
-
-### Email
-
-منطق ارسال ایمیل و کتابخانه PHPMailer در:
-
-```text
-PHPMailer/
-```
-
-قرار دارد.
-
----
-
-# 🌱 ایده پروژه
-
-TeachLine با هدف ساخت یک تجربه آموزشی متمرکز برای هنرجویان شکل گرفته است؛ جایی که محتوای آموزشی بر اساس **پایه، رشته و نوع محتوا** سازمان‌دهی شود و مدرس و مدیر نیز هرکدام محیط کاری مشخص خود را داشته باشند.
-
-این پروژه علاوه بر ارزش کاربردی، یک مسیر عملی برای یادگیری مفاهیم زیر است:
+در طول توسعه آن مفاهیم مختلف Backend و Software Architecture به‌صورت عملی بررسی و پیاده‌سازی شده‌اند:
 
 ```text
 PHP
  │
- ├── Variables / Functions
  ├── OOP
+ │
  ├── Sessions
+ │
  ├── Authentication
+ │
+ ├── Authorization
+ │
  ├── PDO
+ │
  ├── SQL
+ │
  ├── CRUD
- ├── File Structure
- ├── Email
- └── Backend Architecture
-          │
-          ▼
-         MVC
-          │
-          ▼
-       Laravel
-          │
-          ▼
-       REST API
-          │
-          ▼
-    Mobile Application
+ │
+ ├── File Upload
+ │
+ ├── Email / SMTP
+ │
+ ├── Composer
+ │
+ ├── Git / GitHub
+ │
+ └── Security
+       │
+       ▼
+      MVC
+       │
+       ▼
+    Clean Code
+       │
+       ▼
+     Laravel
 ```
+
+هدف این پروژه این است که مفاهیم Backend فقط به‌صورت تئوری یاد گرفته نشوند، بلکه در یک پروژه واقعی و قابل توسعه استفاده شوند.
 
 ---
 
-# ⭐ اگر این پروژه برایت مفید بود
+# 🤝 Contribution
 
-اگر TeachLine برایت جالب بود، می‌توانی با یک ⭐ از پروژه حمایت کنی.
+اگر قصد مشارکت در پروژه را دارید:
 
-اگر ایده، پیشنهاد یا Bug داری، یک **Issue** ایجاد کن یا یک **Pull Request** بفرست.
+```bash
+git clone https://github.com/1MoMaSo2/Teachline.git
+cd Teachline
+composer install
+```
+
+سپس یک Branch ایجاد کنید:
+
+```bash
+git checkout -b feature/my-feature
+```
+
+پس از اعمال تغییرات:
+
+```bash
+git add .
+git commit -m "feat: add my feature"
+git push origin feature/my-feature
+```
+
+سپس می‌توانید Pull Request ایجاد کنید.
+
+---
+
+# 📄 License
+
+این پروژه در حال حاضر یک پروژه آموزشی و Portfolio است.
+
+جزئیات License در صورت تعیین رسمی License برای Repository در این بخش اضافه خواهد شد.
 
 ---
 
 <p align="center">
   <strong>TeachLine</strong>
   <br>
-  Built with PHP • PDO • MySQL/MariaDB • Bootstrap
+  Built with PHP • MySQL • PDO • MVC • Composer
   <br><br>
-  <sub>Learning is better when everything is connected.</sub>
+  <sub>From raw PHP to a structured learning platform.</sub>
 </p>
 
 </div>
